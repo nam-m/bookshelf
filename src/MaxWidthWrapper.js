@@ -1,12 +1,12 @@
 import React from 'react'
 import styled from 'styled-components/macro'
 
-import BookIndex from './BookIndex';
+import Bookshelf from './Bookshelf';
 
 const MaxWidthWrapper = () => {
   return (
     <Wrapper>
-      <BookIndex />
+      <Bookshelf />
     </Wrapper>
     );
 };

@@ -4,12 +4,12 @@ import styled from 'styled-components/macro';
 import BOOKS from "./data";
 import Book from './Book';
 
-const BookIndex = () => {
+const Bookshelf = () => {
   return (
     <Wrapper>
       {/* Map fields of each instance `book` in BOOKS to <Book /> */}
       {BOOKS.map(book =>
-        <BookWrapper>
+        <BookWrapper key={book.name}>
           <Book {...book} />
         </BookWrapper>
       )}
@@ -20,4 +20,5 @@ const BookIndex = () => {
 const Wrapper = styled.div``;
 
 const BookWrapper = styled.div``;
-export default BookIndex;
+
+export default Bookshelf;
