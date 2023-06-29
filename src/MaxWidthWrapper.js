@@ -1,16 +1,12 @@
 import React from 'react'
-import styled from 'styled-components'
+import styled from 'styled-components/macro'
 
-import Book from './Book';
+import BookIndex from './BookIndex';
 
 const MaxWidthWrapper = () => {
   return (
     <Wrapper>
-      <SortHeader>
-        <BookIndex>
-          <Book></Book>
-        </BookIndex>
-      </SortHeader>
+      <BookIndex />
     </Wrapper>
     );
 };
@@ -18,8 +14,6 @@ const MaxWidthWrapper = () => {
 const Wrapper = styled.div`
   padding: 64px 32px;
   display: flex;
-`
-const SortHeader = styled.div`
-  
-`
+`;
+
 export default MaxWidthWrapper;
