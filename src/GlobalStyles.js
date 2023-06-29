@@ -31,7 +31,6 @@ const GlobalStyles = createGlobalStyle`
 	input, button, textarea, select {
 		font: inherit;
 	}
-
-`
+`;
 
 export default GlobalStyles;
