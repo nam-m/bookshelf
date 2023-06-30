@@ -17,8 +17,14 @@ const Bookshelf = () => {
   );
 };
 
-const Wrapper = styled.div``;
+const Wrapper = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
+`;
 
-const BookWrapper = styled.div``;
+const BookWrapper = styled.div`
+  
+`;
 
 export default Bookshelf;
