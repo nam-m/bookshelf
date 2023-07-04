@@ -5,7 +5,7 @@ const Book = ({name, author, imageSrc}) => {
   return (
     <Link>
       <ImageWrapper>
-        <Image alt="" src={imageSrc} />
+        <Image alt='' src={imageSrc} />
       </ImageWrapper>
       <Name>{name}</Name>
       <Author>{author}</Author>
