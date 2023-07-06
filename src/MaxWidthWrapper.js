@@ -5,9 +5,11 @@ import Bookshelf from './Bookshelf';
 
 /* Create a container with maximum width for children elements*/
 const MaxWidthWrapper = () => {
+  const [sortId, setSortId] = React.useState('manual');
+
   return (
     <Wrapper>
-      <Bookshelf />
+      <Bookshelf sortId={sortId} setSortId={setSortId}/>
     </Wrapper>
     );
 };
