@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 
-const Select = ({ label, value, children, ...delegated }) => {
+const SortSelect = ({ label, value, children, ...delegated }) => {
   const childArray = React.Children.toArray(children);
   const selectedChild = childArray.find(
     (child) => child.props.value === value
@@ -58,13 +58,15 @@ const DisplayedSelect = styled.span`
   font-size: 1rem;
   color: hsl(220deg, 3%, 20%);
   padding: 12px 42px 12px 16px;
-  border-radius: 8%;
+  border-radius: 8px;
+  /* Use pointer from NativeSelect instead */
   pointer-events: none;
 
+  /* Add focus effect to Native Select */
   ${NativeSelect}:focus ~ & {
-    outline: 1px dotted #212121;
+    outline: 1px dotted hsl(140deg, 0%, 12%);
     outline: 5px auto -webkit-focus-ring-color;
   }
 `;
 
-export default Select;
+export default SortSelect;
