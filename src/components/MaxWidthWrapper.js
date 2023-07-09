@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components/macro'
 
-import Bookshelf from './Bookshelf';
+import Bookshelf from '../components/Bookshelf';
 
 /* Create a container with maximum width for children elements*/
 const MaxWidthWrapper = () => {

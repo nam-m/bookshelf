@@ -1,9 +1,10 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 
-import BOOKS from './data'
+import BOOKS from '../data'
 import Book from './Book';
-import SortSelect from './SortSelect';
+import SortSelect from './select/SortSelect';
+import ViewInput from './input/ViewInput';
 
 const Bookshelf = ({sortId, setSortId}) => {
   return (
@@ -22,9 +23,7 @@ const Bookshelf = ({sortId, setSortId}) => {
               <option value='author'>Author</option>
               <option value='manual' selected>Manually</option>
             </SortSelect>
-          <SwitchViewButton>
-            List/Grid
-          </SwitchViewButton>
+          <ViewInput />
         </ViewOptions>
       </ViewTray>
       <BookGrid>
@@ -57,10 +56,6 @@ const ViewTray = styled.header`
 const ViewOptions = styled.div`
   display: flex;
   gap: 16px;
-`;
-
-const SwitchViewButton = styled.button`
-  width: 80px;
 `;
 
 const BookStatus = styled.h2`

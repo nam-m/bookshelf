@@ -1,8 +1,8 @@
 import React from 'react';
 
-import Header from './Header';
-import MaxWidthWrapper from './MaxWidthWrapper';
-import Footer from './Footer';
+import Header from './components/Header';
+import MaxWidthWrapper from './components/MaxWidthWrapper';
+import Footer from './components/Footer';
 
 const App = () => {
   return (
