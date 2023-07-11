@@ -1,10 +1,10 @@
 import React from 'react'
 import styled from 'styled-components/macro'
 
-import Bookshelf from '../components/Bookshelf';
+import Bookshelf from './Bookshelf';
 
 /* Create a container with maximum width for children elements*/
-const MaxWidthWrapper = () => {
+const Main = () => {
   const [sortId, setSortId] = React.useState('manual');
 
   return (
@@ -22,4 +22,4 @@ const Wrapper = styled.div`
   display: flex;
 `;
 
-export default MaxWidthWrapper;
+export default Main;
