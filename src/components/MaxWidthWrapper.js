@@ -18,7 +18,7 @@ const Wrapper = styled.div`
   /* Center the wrapper by setting left & right margins to auto*/
   margin-left: auto;
   margin-right: auto;
-  padding: 64px 32px;
+  padding: 0 48px;
   display: flex;
 `;
 
