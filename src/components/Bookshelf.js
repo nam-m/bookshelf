@@ -42,6 +42,7 @@ const Bookshelf = ({sortId, setSortId}) => {
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
+  flex-grow: 1;
 `;
 
 const ViewTray = styled.header`
@@ -59,11 +60,12 @@ const ViewOptions = styled.div`
 `;
 
 const BookStatus = styled.h2`
+  font-size: 1.25rem;
 `;
 
 const BookGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 32px;
 `;
 

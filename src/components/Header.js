@@ -22,7 +22,8 @@ const Header = () => {
 const Wrapper = styled.div`
   margin-left: auto;
   margin-right: auto;
-  padding: 48px;
+  padding: 80px;
+  padding-top: 32px;
   padding-bottom: 32px;
   display: flex;
   justify-content: space-between;
@@ -46,8 +47,6 @@ const UserGroup = styled.div`
 `;
 
 const SearchBar = styled.input`
-  display: block;
-  width: auto-fit;
   line-height: 1.5rem;
   padding: 8px;
   border: none;
