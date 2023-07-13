@@ -16,13 +16,13 @@ const Bookshelf = ({sortId, setSortId}) => {
           <SortSelect
               label='Sort'
               value={sortId}
-              onChange={(ev) => setSortId(ev.target.value)}
-            >
-              <option value='time'>Recent</option>
-              <option value='title'>Title</option>
-              <option value='author'>Author</option>
-              <option value='manual' selected>Manually</option>
-            </SortSelect>
+              onChange={e => setSortId(e.target.value)}
+          >
+            <option value='time'>Recent</option>
+            <option value='title'>Title</option>
+            <option value='author'>Author</option>
+            <option value='manual'>Manually</option>
+          </SortSelect>
           <ViewInput />
         </ViewOptions>
       </ViewTray>

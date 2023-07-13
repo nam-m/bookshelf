@@ -3,7 +3,6 @@ import styled from 'styled-components/macro'
 
 import Bookshelf from './Bookshelf';
 
-/* Create a container with maximum width for children elements*/
 const Main = () => {
   const [sortId, setSortId] = React.useState('manual');
 

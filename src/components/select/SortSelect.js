@@ -1,23 +1,18 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 
-const SortSelect = ({ label, value, children, ...delegated }) => {
-  const childArray = React.Children.toArray(children);
-  const selectedChild = childArray.find(
-    (child) => child.props.value === value
-  );
-
-  const displayedValue = selectedChild.props.children;
-
+const SortSelect = ({ label, value, children, ...props }) => {
   return (
     <Wrapper>
       <VisibleLabel>{label}</VisibleLabel>
-
       <SelectWrapper>
-        <NativeSelect {...delegated}>{children}</NativeSelect>
-
+        <NativeSelect {...props}>
+          {children}
+        </NativeSelect>
         <DisplayedSelect>
-          {displayedValue}
+          {children.find(child => (
+            child.props.value === value
+          ))}
         </DisplayedSelect>
       </SelectWrapper>
     </Wrapper>
@@ -52,8 +47,7 @@ const NativeSelect = styled.select`
   cursor: pointer;
 `;
 
-const DisplayedSelect = styled.span`
-  display: block;
+const DisplayedSelect = styled.div`
   background-color: hsl(185deg, 5%, 90%);
   font-size: 1rem;
   color: hsl(220deg, 3%, 20%);
