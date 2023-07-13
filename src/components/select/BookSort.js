@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 
-const SortSelect = ({ label, value, children, ...props }) => {
+const BookSort = ({ label, value, children, ...props }) => {
   return (
     <Wrapper>
       <VisibleLabel>{label}</VisibleLabel>
@@ -63,4 +63,4 @@ const DisplayedSelect = styled.div`
   }
 `;
 
-export default SortSelect;
+export default BookSort;

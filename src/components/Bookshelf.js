@@ -3,8 +3,8 @@ import styled from 'styled-components/macro';
 
 import BOOKS from '../data'
 import Book from './Book';
-import SortSelect from './select/SortSelect';
-import ViewInput from './input/ViewInput';
+import BookSort from './select/BookSort';
+import BookView from './input/BookView';
 
 const Bookshelf = ({sortId, setSortId}) => {
   return (
@@ -13,7 +13,7 @@ const Bookshelf = ({sortId, setSortId}) => {
       <ViewTray>
         <BookStatus>{BOOKS.length} books</BookStatus>
         <ViewOptions>
-          <SortSelect
+          <BookSort
               label='Sort'
               value={sortId}
               onChange={e => setSortId(e.target.value)}
@@ -22,8 +22,8 @@ const Bookshelf = ({sortId, setSortId}) => {
             <option value='title'>Title</option>
             <option value='author'>Author</option>
             <option value='manual'>Manually</option>
-          </SortSelect>
-          <ViewInput />
+          </BookSort>
+          <BookView />
         </ViewOptions>
       </ViewTray>
       <BookGrid>

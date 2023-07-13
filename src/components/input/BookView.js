@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const ViewInput = () => {
+const BookView = () => {
   return (
     <Wrapper>
       <Checkbox type="checkbox" id="view-toggle" className='toggle'/>
@@ -47,4 +47,4 @@ const Checkbox = styled.input`
   }
 `;
 
-export default ViewInput;
+export default BookView;
