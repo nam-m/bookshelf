@@ -5,7 +5,7 @@ const BookView = () => {
   return (
     <Wrapper>
       <Checkbox type="checkbox" id="view-toggle" className='toggle'/>
-      <Label for="view-toggle" className='toggle'></Label> 
+      <Label htmlFor="view-toggle" className='toggle'></Label>
     </Wrapper>
   );
 };

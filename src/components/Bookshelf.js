@@ -6,7 +6,22 @@ import Book from './Book';
 import BookSort from './select/BookSort';
 import BookView from './input/BookView';
 
-const Bookshelf = ({sortId, setSortId}) => {
+const Bookshelf = ({sortId, setSortId, sortBooks, setSortBooks}) => {
+  const SortBooks = (e) => {
+    const sortKey = e.target.value;
+    const sortedBooks = [...sortBooks]
+      .sort((currentBook, nextBook) => {
+        if (sortId !== 'manual')
+          if (currentBook[sortKey] > nextBook[sortKey])
+            return 1;
+          else if (currentBook[sortKey] < nextBook[sortKey])
+            return -1;
+        else
+          return 0;
+      });
+    setSortBooks(sortedBooks);
+  }
+
   return (
     <Wrapper>
       {/* Tray on top of book grid to provide status & viewing options */}
@@ -14,14 +29,18 @@ const Bookshelf = ({sortId, setSortId}) => {
         <BookStatus>{BOOKS.length} books</BookStatus>
         <ViewOptions>
           <BookSort
-              label='Sort'
-              value={sortId}
-              onChange={e => setSortId(e.target.value)}
+            label='Sort'
+            value={sortId}
+            onChange={e => {
+              setSortId(e.target.value);
+              SortBooks(e);
+            }}
           >
             <option value='time'>Recent</option>
             <option value='title'>Title</option>
             <option value='author'>Author</option>
             <option value='manual'>Manually</option>
+            {sortId}
           </BookSort>
           <BookView />
         </ViewOptions>
@@ -29,7 +48,7 @@ const Bookshelf = ({sortId, setSortId}) => {
       <BookGrid>
         {/* Map fields of each instance `book` in BOOKS to <BookWrapper />
           , which contains <Book /> */}
-        {BOOKS.map(book =>
+        {sortBooks.map(book =>
           <BookWrapper key={book.name}>
             <Book {...book} />
           </BookWrapper>

@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 
-const BookSort = ({ label, value, children, ...props }) => {
+const BookSort = ({label, value, children, ...props}) => {
   return (
     <Wrapper>
       <VisibleLabel>{label}</VisibleLabel>
@@ -19,6 +19,7 @@ const BookSort = ({ label, value, children, ...props }) => {
   );
 };
 
+/* Wrapper needs to be a label to have <option> as child element */
 const Wrapper = styled.label`
   display: flex;
   align-items: baseline;
@@ -29,7 +30,7 @@ const VisibleLabel = styled.span`
   color: hsl(220deg, 5%, 40%);
 `;
 
-const SelectWrapper = styled.div`
+const SelectWrapper = styled.span`
   position: relative;
 `;
 
@@ -47,7 +48,10 @@ const NativeSelect = styled.select`
   cursor: pointer;
 `;
 
-const DisplayedSelect = styled.div`
+/* Use span with display: block instead of div 
+   as div cannot be a child of label */
+const DisplayedSelect = styled.span`
+  display: block;
   background-color: hsl(185deg, 5%, 90%);
   font-size: 1rem;
   color: hsl(220deg, 3%, 20%);

@@ -2,14 +2,21 @@ import React from 'react'
 import styled from 'styled-components/macro'
 
 import Bookshelf from './Bookshelf';
+import BOOKS from '../data';
 
 const Main = () => {
   const [sortId, setSortId] = React.useState('manual');
+  const [sortBooks, setSortBooks] = React.useState(BOOKS);
 
   return (
     <main>
       <Wrapper>
-        <Bookshelf sortId={sortId} setSortId={setSortId}/>
+        <Bookshelf 
+          sortId={sortId} 
+          setSortId={setSortId}
+          sortBooks={sortBooks}
+          setSortBooks={setSortBooks}
+          />
       </Wrapper>
     </main>
     );
