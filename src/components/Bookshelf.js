@@ -7,17 +7,27 @@ import BookSort from './select/BookSort';
 import BookView from './input/BookView';
 
 const Bookshelf = ({sortId, setSortId, sortBooks, setSortBooks}) => {
-  const SortBooks = (e) => {
-    const sortKey = e.target.value;
+  // const sortAuthors = (authorNames) => {
+  //   return authorNames
+  //     .map(authorName => 
+  //       authorName.split(" ").toReversed().join(" "))
+  //     .sort();
+  // }
+
+  const sortBooksById = () => {
     const sortedBooks = [...sortBooks]
       .sort((currentBook, nextBook) => {
-        if (sortId !== 'manual')
-          if (currentBook[sortKey] > nextBook[sortKey])
+        if (sortId !== 'manual') {
+          if (currentBook[sortId] > nextBook[sortId]) {
             return 1;
-          else if (currentBook[sortKey] < nextBook[sortKey])
+          }
+          else if (currentBook[sortId] < nextBook[sortId]) {
             return -1;
-        else
+          }
+        }      
+        else {
           return 0;
+        }
       });
     setSortBooks(sortedBooks);
   }
@@ -33,14 +43,13 @@ const Bookshelf = ({sortId, setSortId, sortBooks, setSortBooks}) => {
             value={sortId}
             onChange={e => {
               setSortId(e.target.value);
-              SortBooks(e);
+              sortBooksById();
             }}
           >
             <option value='time'>Recent</option>
             <option value='title'>Title</option>
             <option value='author'>Author</option>
             <option value='manual'>Manually</option>
-            {sortId}
           </BookSort>
           <BookView />
         </ViewOptions>
