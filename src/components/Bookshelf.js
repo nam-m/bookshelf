@@ -6,7 +6,10 @@ import Book from './Book';
 import BookSort from './select/BookSort';
 import BookView from './input/BookView';
 
-const Bookshelf = ({sortId, setSortId, sortBooks, setSortBooks}) => {
+const Bookshelf = ({
+  sortId, setSortId, 
+  sortBooks, setSortBooks,
+  viewBooks, setViewBooks}) => {
   // const sortAuthors = (authorNames) => {
   //   return authorNames
   //     .map(authorName => 
@@ -51,7 +54,9 @@ const Bookshelf = ({sortId, setSortId, sortBooks, setSortBooks}) => {
             <option value='author'>Author</option>
             <option value='manual'>Manually</option>
           </BookSort>
-          <BookView />
+          <BookView 
+            viewBooks={viewBooks} 
+            setViewBooks={setViewBooks}/>
         </ViewOptions>
       </ViewTray>
       <BookGrid>

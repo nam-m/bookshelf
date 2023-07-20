@@ -1,12 +1,14 @@
 import React from 'react'
+import { useState } from 'react';
 import styled from 'styled-components/macro'
 
 import Bookshelf from './Bookshelf';
 import BOOKS from '../data';
 
 const Main = () => {
-  const [sortId, setSortId] = React.useState('manual');
-  const [sortBooks, setSortBooks] = React.useState(BOOKS);
+  const [sortId, setSortId] = useState('manual');
+  const [sortBooks, setSortBooks] = useState(BOOKS);
+  const [viewBooks, setViewBooks] = useState(false);
 
   return (
     <main>
@@ -16,6 +18,8 @@ const Main = () => {
           setSortId={setSortId}
           sortBooks={sortBooks}
           setSortBooks={setSortBooks}
+          viewBooks={viewBooks}
+          setViewBooks={setViewBooks}
           />
       </Wrapper>
     </main>
