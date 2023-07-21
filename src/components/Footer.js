@@ -10,6 +10,8 @@ const Footer = () => {
 };
 
 const Wrapper = styled.div`
+  /* Placeholder height */
+  height: 100px;
   margin-left: auto;
   margin-right: auto;
   padding: 0 80px;
