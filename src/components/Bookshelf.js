@@ -56,7 +56,8 @@ const Bookshelf = ({
           </BookSort>
           <BookView 
             viewBooks={viewBooks} 
-            setViewBooks={setViewBooks}/>
+            setViewBooks={setViewBooks}
+          />
         </ViewOptions>
       </ViewTray>
       {/* Pass state `viewBooks` to change book view based on <BookView /> */}

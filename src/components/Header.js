@@ -11,7 +11,8 @@ const Header = () => {
           <NavItem href='/Notes'>Notes</NavItem>
         </Nav>
         <UserGroup>
-          <SearchBar type='text' placeholder='Search...'/>
+          <SearchLabel for='search'/>
+          <SearchBar type='text' id='search' placeholder='Search...'/>
           <Profile>Profile</Profile>
         </UserGroup>
       </Wrapper>
@@ -28,6 +29,7 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: baseline;
+  font-size: 1.25rem;
 `;
 
 const Nav = styled.nav`
@@ -36,7 +38,6 @@ const Nav = styled.nav`
 `;
 
 const NavItem = styled.a`
-  font-size: 1.5rem;
   text-decoration: none;
   color: black;
 `;
@@ -46,20 +47,22 @@ const UserGroup = styled.div`
   gap: 32px;
 `;
 
+const SearchLabel = styled.label`
+  display: none;
+`;
+
 const SearchBar = styled.input`
+  font-size: 1rem;
   line-height: 1.5rem;
   padding: 8px;
   border: none;
   border-radius: 8px;
   background-color: hsl(185deg, 10%, 95%);
-
-  &:active {
-    border: 1px solid hsl(220deg, 3%, 50%);
-  }
+  outline-offset: 4px;
 `;
 
 const Profile = styled.a`
-  font-size: 1.5rem;
+  /* font-size: 1.5rem; */
   text-decoration: none;
   color: black;
 `;
