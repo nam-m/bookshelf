@@ -59,11 +59,12 @@ const Bookshelf = ({
             setViewBooks={setViewBooks}/>
         </ViewOptions>
       </ViewTray>
-      <BookGrid>
+      {/* Pass state `viewBooks` to change book view based on <BookView /> */}
+      <BookGrid viewBooks={viewBooks}>
         {/* Map fields of each instance `book` in BOOKS to <BookWrapper />
           , which contains <Book /> */}
         {sortBooks.map(book =>
-          <BookWrapper key={book.name}>
+          <BookWrapper key={book.name} viewBooks={viewBooks}>
             <Book {...book} />
           </BookWrapper>
         )}
@@ -98,12 +99,29 @@ const BookStatus = styled.h2`
 
 const BookGrid = styled.div`
   display: grid;
+  ${p => p.viewBooks ? 
+  `
+  grid-template-rows: repeat(auto-fit, minmax(200px, 1fr));
+  ` 
+  : 
+  `
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 32px;
+  `
+  };
 `;
 
 const BookWrapper = styled.div`
-  
+  ${p => p.viewBooks ?
+  `
+  &:not(:last-of-type) {
+    border-bottom: 1px solid hsl(180deg, 5%, 50%);
+    padding-bottom: 16px;
+    margin-bottom: 16px;
+  }
+  `
+  :
+  ``}
 `;
 
 export default Bookshelf;

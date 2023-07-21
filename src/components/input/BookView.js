@@ -1,11 +1,18 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const BookView = () => {
+const BookView = ({viewBooks, setViewBooks}) => {
   return (
     <Wrapper>
-      <Checkbox type="checkbox" id="view-toggle" className='toggle'/>
-      <Label htmlFor="view-toggle" className='toggle'></Label>
+      <Checkbox 
+        type="checkbox" 
+        id="view-toggle" 
+        className='toggle'
+        checked={viewBooks}
+        onChange={(e) => setViewBooks(e.target.checked)}
+      />
+      <Label htmlFor="view-toggle" className='toggle'>
+      </Label>
     </Wrapper>
   );
 };
