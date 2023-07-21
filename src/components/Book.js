@@ -13,12 +13,15 @@ const Book = ({name, author, imageSrc}) => {
   );
 };
 
-const Link = styled.a``;
+const Link = styled.a`
+  text-decoration: none;
+`;
 
 const ImageWrapper = styled.div`
-  position: relative;
+  /* position: relative; */
   border-radius: 8px;
-  /* Hide image that extends beyong this wrapper */
+  /* Hide image that extends beyong this wrapper
+     to apply border-radius effect */
   overflow: hidden;
 
   &:hover {

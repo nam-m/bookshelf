@@ -101,24 +101,25 @@ const BookGrid = styled.div`
   display: grid;
   ${p => p.viewBooks ? 
   `
-  grid-template-rows: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-rows: repeat(auto-fill, minmax(200px, 1fr));
+    grid-template-columns: 215px;
   ` 
   : 
   `
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 32px;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 32px;
   `
   };
 `;
 
 const BookWrapper = styled.div`
   ${p => p.viewBooks ?
-  `
-  &:not(:last-of-type) {
-    border-bottom: 1px solid hsl(180deg, 5%, 50%);
-    padding-bottom: 16px;
-    margin-bottom: 16px;
-  }
+  `    
+    &:not(:last-of-type) {
+      border-bottom: 1px solid hsl(180deg, 5%, 50%);
+      padding-bottom: 16px;
+      margin-bottom: 16px;
+    }
   `
   :
   ``}
