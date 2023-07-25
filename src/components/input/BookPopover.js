@@ -1,20 +1,20 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components/macro';
 
-const BookPopover = () => {
+const BookPopover = ({popover}) => {
   return (
-    <Wrapper className="invisible">
+    <Wrapper>
       <PopoverInput 
         type='submit' 
         value='Quick look'
-        onClick={() => alert('Clicked!')}
-        />
+        style={popover}
+      />
     </Wrapper>
   );
 };
 
 const Wrapper = styled.div`
-
+  position: relative;
 `;
 
 const PopoverInput = styled.input`

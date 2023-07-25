@@ -1,16 +1,21 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components/macro'
 import BookPopover from './input/BookPopover';
 
-const Book = ({name, author, imageSrc}) => {
+const Book = ({author, imageSrc}) => {
+  const[popover, setPopover] = useState({display: 'none'});
+
   return (
-    <Link>
+    <Link
+      onMouseOver={() => setPopover({display: 'block'})}
+      onMouseOut={() => setPopover({display: 'none'})} 
+    >
       <ImageWrapper>
         <Image alt='' src={imageSrc} />
       </ImageWrapper>
-      <Name>{name}</Name>
+      <Name></Name>
       <Author>{author}</Author>
-      <BookPopover />
+      <BookPopover popover={popover}/>
     </Link>
   );
 };

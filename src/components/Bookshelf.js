@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 
-import BOOKS from '../data'
 import Book from './Book';
 import BookSort from './select/BookSort';
 import BookView from './input/BookView';
@@ -39,7 +38,7 @@ const Bookshelf = ({
     <Wrapper>
       {/* Tray on top of book grid to provide status & viewing options */}
       <ViewTray>
-        <BookStatus>{BOOKS.length} books</BookStatus>
+        <BookStatus>{sortBooks.length} books</BookStatus>
         <ViewOptions>
           <BookSort
             label='Sort'
@@ -62,11 +61,14 @@ const Bookshelf = ({
       </ViewTray>
       {/* Pass state `viewBooks` to change book view based on <BookView /> */}
       <BookGrid viewBooks={viewBooks}>
-        {/* Map fields of each instance `book` in BOOKS to <BookWrapper />
+        {/* Map fields of each instance `book` in sortBooks to <BookWrapper />
           , which contains <Book /> */}
         {sortBooks.map(book =>
-          <BookWrapper key={book.name} viewBooks={viewBooks}>
-            <Book {...book} />
+          <BookWrapper 
+            key={book.title} 
+            viewBooks={viewBooks}
+          >
+            <Book {...book}/>
           </BookWrapper>
         )}
       </BookGrid>
@@ -113,7 +115,7 @@ const BookGrid = styled.div`
   };
 `;
 
-const BookWrapper = styled.div`
+const BookWrapper = styled.div` 
   ${p => p.viewBooks ?
   `    
     &:not(:last-of-type) {
