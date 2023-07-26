@@ -2,20 +2,22 @@ import React, { useState } from 'react'
 import styled from 'styled-components/macro'
 import BookPopover from './input/BookPopover';
 
-const Book = ({author, imageSrc}) => {
+const Book = ([{author, imageSrc}, viewBooks]) => {
   const[popover, setPopover] = useState({display: 'none'});
 
   return (
-    <Link
-      onMouseOver={() => setPopover({display: 'block'})}
-      onMouseOut={() => setPopover({display: 'none'})} 
-    >
-      <ImageWrapper>
-        <Image alt='' src={imageSrc} />
-      </ImageWrapper>
-      <Name></Name>
-      <Author>{author}</Author>
-      <BookPopover popover={popover}/>
+    <Link>
+      <Wrapper 
+        viewBooks={viewBooks}
+        onMouseOver={() => setPopover({display: 'block'})}
+        onMouseOut={() => setPopover({display: 'none'})}
+      >
+        <ImageWrapper>
+          <Image alt='' src={imageSrc} />
+        </ImageWrapper>
+        <Author>{author}</Author>
+        <BookPopover popover={popover}/>
+      </Wrapper>
     </Link>
   );
 };
@@ -24,6 +26,19 @@ const Link = styled.a`
   text-decoration: none;
   position: relative;
   cursor: pointer;
+`;
+
+const Wrapper = styled.div`
+  ${p => p.viewBooks ?
+  `    
+    &:not(:last-of-type) {
+      border-bottom: 1px solid hsl(180deg, 5%, 50%);
+      padding-bottom: 16px;
+      margin-bottom: 16px;
+    }
+  `
+  :
+  ``}
 `;
 
 const ImageWrapper = styled.div`
@@ -51,8 +66,6 @@ const Image = styled.img`
   width: 100%;
   line-height: 0;
 `;
-
-const Name = styled.h2``;
 
 const Author = styled.h3``;
 

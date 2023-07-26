@@ -64,12 +64,11 @@ const Bookshelf = ({
         {/* Map fields of each instance `book` in sortBooks to <BookWrapper />
           , which contains <Book /> */}
         {sortBooks.map(book =>
-          <BookWrapper 
+          <Book
+            {...book}
             key={book.title} 
             viewBooks={viewBooks}
-          >
-            <Book {...book}/>
-          </BookWrapper>
+          />
         )}
       </BookGrid>
     </Wrapper>
@@ -115,17 +114,17 @@ const BookGrid = styled.div`
   };
 `;
 
-const BookWrapper = styled.div` 
-  ${p => p.viewBooks ?
-  `    
-    &:not(:last-of-type) {
-      border-bottom: 1px solid hsl(180deg, 5%, 50%);
-      padding-bottom: 16px;
-      margin-bottom: 16px;
-    }
-  `
-  :
-  ``}
-`;
+// const BookWrapper = styled.div` 
+//   ${p => p.viewBooks ?
+//   `    
+//     &:not(:last-of-type) {
+//       border-bottom: 1px solid hsl(180deg, 5%, 50%);
+//       padding-bottom: 16px;
+//       margin-bottom: 16px;
+//     }
+//   `
+//   :
+//   ``}
+// `;
 
 export default Bookshelf;
