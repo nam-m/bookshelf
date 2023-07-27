@@ -6,19 +6,20 @@ const Book = ({author, imageSrc, viewBooks}) => {
   const[popover, setPopover] = useState({display: 'none'});
 
   return (
-    <Link>
-      <Wrapper 
-        viewBooks={viewBooks}
-        onMouseOver={() => setPopover({display: 'block'})}
-        onMouseOut={() => setPopover({display: 'none'})}
-      >
-        <ImageWrapper>
+    <Wrapper 
+      viewBooks={viewBooks}
+      onMouseOver={() => setPopover({display: 'block'})}
+      onMouseOut={() => setPopover({display: 'none'})}
+    >
+      <Link>
+      <ImageWrapper>
           <Image alt='' src={imageSrc} />
         </ImageWrapper>
         <Author>{author}</Author>
+      </Link>
         <BookPopover popover={popover}/>
-      </Wrapper>
-    </Link>
+    </Wrapper>
+    
   );
 };
 
@@ -29,17 +30,16 @@ const Link = styled.a`
 `;
 
 const Wrapper = styled.div`
+  max-width: 100%;
   ${p => p.viewBooks ?
   `
-    ${Link}:not(:last-child) & {
+    &:not(:last-child) {
       border-bottom: 1px solid hsl(180deg, 5%, 50%);
       padding-bottom: 16px;
       margin-bottom: 16px;
     }
   `
-  :
-  `
-  `
+  :``
   };
 `;
 
@@ -65,7 +65,7 @@ const Image = styled.img`
   /* Set to block to cover all parent container space*/  
   display: block;
   /* Set width to be the same as parent content's */
-  width: 100%;
+  max-width: 100%;
   line-height: 0;
 `;
 
