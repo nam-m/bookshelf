@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import styled from 'styled-components/macro'
 import BookPopover from './input/BookPopover';
 
-const Book = ([{author, imageSrc}, viewBooks]) => {
+const Book = ({author, imageSrc, viewBooks}) => {
   const[popover, setPopover] = useState({display: 'none'});
 
   return (
@@ -30,15 +30,17 @@ const Link = styled.a`
 
 const Wrapper = styled.div`
   ${p => p.viewBooks ?
-  `    
-    &:not(:last-of-type) {
+  `
+    ${Link}:not(:last-child) & {
       border-bottom: 1px solid hsl(180deg, 5%, 50%);
       padding-bottom: 16px;
       margin-bottom: 16px;
     }
   `
   :
-  ``}
+  `
+  `
+  };
 `;
 
 const ImageWrapper = styled.div`

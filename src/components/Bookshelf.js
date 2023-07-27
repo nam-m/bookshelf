@@ -114,17 +114,4 @@ const BookGrid = styled.div`
   };
 `;
 
-// const BookWrapper = styled.div` 
-//   ${p => p.viewBooks ?
-//   `    
-//     &:not(:last-of-type) {
-//       border-bottom: 1px solid hsl(180deg, 5%, 50%);
-//       padding-bottom: 16px;
-//       margin-bottom: 16px;
-//     }
-//   `
-//   :
-//   ``}
-// `;
-
 export default Bookshelf;
