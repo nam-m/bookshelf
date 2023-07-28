@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
 import styled from 'styled-components/macro'
 import BookPopover from './input/BookPopover';
+import BookInfo from './BookInfo';
 
-const Book = ({author, imageSrc, viewBooks}) => {
+const Book = ({title, author, imageSrc, pages, viewBooks}) => {
   const[popover, setPopover] = useState({display: 'none'});
 
   return (
@@ -12,22 +13,21 @@ const Book = ({author, imageSrc, viewBooks}) => {
       onMouseOut={() => setPopover({display: 'none'})}
     >
       <Link>
-      <ImageWrapper>
+        <ImageWrapper>
           <Image alt='' src={imageSrc} />
         </ImageWrapper>
         <Author>{author}</Author>
       </Link>
-        <BookPopover popover={popover}/>
+      <BookInfo
+        title={title}
+        author={author}
+        pages={pages}
+      />
+      <BookPopover popover={popover}/>
     </Wrapper>
     
   );
 };
-
-const Link = styled.a`
-  text-decoration: none;
-  position: relative;
-  cursor: pointer;
-`;
 
 const Wrapper = styled.div`
   max-width: 100%;
@@ -43,6 +43,12 @@ const Wrapper = styled.div`
   };
 `;
 
+const Link = styled.a`
+  text-decoration: none;
+  position: relative;
+  cursor: pointer;
+`;
+
 const ImageWrapper = styled.div`
   /* position: relative; */
   border-radius: 8px;
@@ -54,7 +60,6 @@ const ImageWrapper = styled.div`
     box-shadow: 4px 4px 10px hsl(180deg, 5%, 50%);
     /* transform: skewY(8deg) translate(10px); */
   }
-
   &:focus {
     box-shadow: 4px 4px 10px hsl(180deg, 5%, 50%);
   }
