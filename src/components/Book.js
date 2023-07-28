@@ -16,14 +16,16 @@ const Book = ({title, author, imageSrc, pages, viewBooks}) => {
         <ImageWrapper>
           <Image alt='' src={imageSrc} />
         </ImageWrapper>
-        <Author>{author}</Author>
       </Link>
+      <BookPopover 
+        viewBooks={viewBooks}
+        popover={popover}/>
       <BookInfo
+        viewBooks={viewBooks}
         title={title}
         author={author}
         pages={pages}
       />
-      <BookPopover popover={popover}/>
     </Wrapper>
     
   );
@@ -31,15 +33,24 @@ const Book = ({title, author, imageSrc, pages, viewBooks}) => {
 
 const Wrapper = styled.div`
   max-width: 100%;
+  display: flex;
+  
   ${p => p.viewBooks ?
-  `
+  ` 
+    flex-direction: row;
+    justify-content: space-around;
+    align-item: center;
+    
     &:not(:last-child) {
       border-bottom: 1px solid hsl(180deg, 5%, 50%);
       padding-bottom: 16px;
       margin-bottom: 16px;
     }
   `
-  :``
+  :
+  `
+    flex-direction: column;
+  `
   };
 `;
 
@@ -63,7 +74,6 @@ const ImageWrapper = styled.div`
   &:focus {
     box-shadow: 4px 4px 10px hsl(180deg, 5%, 50%);
   }
-  
 `;
 
 const Image = styled.img`
@@ -73,7 +83,5 @@ const Image = styled.img`
   max-width: 100%;
   line-height: 0;
 `;
-
-const Author = styled.h3``;
 
 export default Book;

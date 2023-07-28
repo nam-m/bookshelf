@@ -66,7 +66,7 @@ const Bookshelf = ({
         {sortBooks.map(book =>
           <Book
             {...book}
-            key={book.title} 
+            key={book.title}
             viewBooks={viewBooks}
           />
         )}
