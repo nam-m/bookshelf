@@ -14,8 +14,10 @@ const BookPopover = ({popover, viewBooks}) => {
 };
 
 const Wrapper = styled.div`
-  position: relative;
-
+  position: absolute;
+  top: 300px;
+  left: 0;
+  right: 0;
   ${p => p.viewBooks ?
   `
     display: none;
@@ -26,10 +28,8 @@ const Wrapper = styled.div`
 `;
 
 const PopoverInput = styled.input`
-  position: absolute;
-  bottom: 20px;
-  left: 0;
-  right: 0;
+  /* position: absolute; */
+  
   width: 95%;
   margin: auto;
   background-color: hsl(185deg, 5%, 95%);

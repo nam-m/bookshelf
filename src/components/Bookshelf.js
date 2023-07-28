@@ -104,7 +104,6 @@ const BookGrid = styled.div`
   ${p => p.viewBooks ? 
   `
     grid-template-rows: repeat(auto-fill, minmax(200px, 1fr));
-    grid-template-columns: 215px;
   ` 
   : 
   `

@@ -33,13 +33,13 @@ const Book = ({title, author, imageSrc, pages, viewBooks}) => {
 
 const Wrapper = styled.div`
   max-width: 100%;
-  display: flex;
-  
+  position: relative;  
   ${p => p.viewBooks ?
   ` 
-    flex-direction: row;
-    justify-content: space-around;
-    align-item: center;
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-columns: 215px 1fr;
+    gap: 16px;
     
     &:not(:last-child) {
       border-bottom: 1px solid hsl(180deg, 5%, 50%);
@@ -49,7 +49,8 @@ const Wrapper = styled.div`
   `
   :
   `
-    flex-direction: column;
+    display: grid;
+    gap: 4px 0;
   `
   };
 `;
