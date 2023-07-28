@@ -33,10 +33,11 @@ const Book = ({title, author, imageSrc, pages, viewBooks}) => {
 
 const Wrapper = styled.div`
   max-width: 100%;
-  position: relative;  
+  position: relative;
+  display: grid;
+
   ${p => p.viewBooks ?
   ` 
-    display: grid;
     grid-auto-flow: column;
     grid-template-columns: 215px 1fr;
     gap: 16px;
@@ -49,7 +50,8 @@ const Wrapper = styled.div`
   `
   :
   `
-    display: grid;
+    grid-auto-flow: row;
+    grid-template-rows: 1fr 100%;
     gap: 4px 0;
   `
   };

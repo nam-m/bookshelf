@@ -12,15 +12,16 @@ const BookInfo = ({title, author, pages, viewBooks}) => {
 };
 
 const Wrapper = styled.div`
-  position: relative;
   /* Add overflow to prevent long text from breaking parent component width */
   overflow: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+
   ${p => p.viewBooks
   ?
   `
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
+    margin-top: -6px;
   `
   :
   ``
