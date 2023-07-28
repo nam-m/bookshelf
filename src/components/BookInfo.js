@@ -13,6 +13,8 @@ const BookInfo = ({title, author, pages, viewBooks}) => {
 
 const Wrapper = styled.div`
   position: relative;
+  /* Add overflow to prevent long text from breaking parent component width */
+  overflow: auto;
   ${p => p.viewBooks
   ?
   `
@@ -25,7 +27,9 @@ const Wrapper = styled.div`
   };
 `;
 
-const Title = styled.h2``;
+const Title = styled.h2`
+  overflow-wrap: break-word;
+`;
 
 const Author = styled.h3``;
 
