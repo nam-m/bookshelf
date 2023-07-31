@@ -2,8 +2,9 @@ import React from 'react';
 import styled from 'styled-components/macro';
 
 const BookPopover = ({popover, viewBooks}) => {
-  return (
-    <Wrapper viewBooks={viewBooks}>
+  return viewBooks ? null
+  : (
+    <Wrapper>
       <PopoverInput 
         type='submit' 
         value='Quick look'
@@ -15,16 +16,9 @@ const BookPopover = ({popover, viewBooks}) => {
 
 const Wrapper = styled.div`
   position: absolute;
-  top: 290px;
+  top: 300px;
   left: 0;
   right: 0;
-  ${p => p.viewBooks ?
-  `
-    display: none;
-  `
-  :
-  ``
-  };
 `;
 
 const PopoverInput = styled.input`
