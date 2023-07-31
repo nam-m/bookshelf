@@ -16,7 +16,7 @@ const BookPopover = ({popover, viewBooks}) => {
 
 const Wrapper = styled.div`
   position: absolute;
-  top: 300px;
+  top: 65%;
   left: 0;
   right: 0;
 `;
