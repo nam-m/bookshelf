@@ -2,15 +2,17 @@ import React, { useState } from 'react'
 import styled from 'styled-components/macro'
 import BookPopover from './input/BookPopover';
 import BookInfo from './BookInfo';
+// import BookPreview from '../BookPreview';
 
 const Book = ({title, author, imageSrc, pages, viewBooks}) => {
-  const[popover, setPopover] = useState({display: 'none'});
+  const[popover, setPopover] = useState('false');
+  // const[preview, setPreview] = useState('false');
 
   return (
     <Wrapper 
       viewBooks={viewBooks}
-      onMouseOver={() => setPopover({display: 'block'})}
-      onMouseOut={() => setPopover({display: 'none'})}
+      onMouseOver={() => setPopover('true')}
+      onMouseOut={() => setPopover('false')}
     >
       <Link>
         <ImageWrapper>
@@ -19,7 +21,10 @@ const Book = ({title, author, imageSrc, pages, viewBooks}) => {
       </Link>
       <BookPopover 
         viewBooks={viewBooks}
-        popover={popover}/>
+        popover={popover}
+        // onClick={() => setPreview('true')}
+        />
+      {/* <BookPreview preview={preview}/> */}
       <BookInfo
         viewBooks={viewBooks}
         title={title}
@@ -51,7 +56,7 @@ const Wrapper = styled.div`
   :
   `
     grid-auto-flow: row;
-    grid-template-rows: 1fr 100%;
+    grid-template-rows: 1fr 150px;
     gap: 4px 0;
   `
   };

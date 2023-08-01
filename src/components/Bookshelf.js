@@ -17,20 +17,19 @@ const Bookshelf = ({
   // }
 
   const sortBooksById = () => {
-    const sortedBooks = [...sortBooks]
-      .sort((currentBook, nextBook) => {
-        if (sortId !== 'manual') {
-          if (currentBook[sortId] > nextBook[sortId]) {
-            return 1;
-          }
-          else if (currentBook[sortId] < nextBook[sortId]) {
-            return -1;
-          }
-        }      
-        else {
-          return 0;
+    const sortedBooks = [...sortBooks].sort((currentBook, nextBook) => {
+      if (sortId !== 'manual') {
+        if (currentBook[sortId] > nextBook[sortId]) {
+          return 1;
         }
-      });
+        else if (currentBook[sortId] < nextBook[sortId]) {
+          return -1;
+        }
+      }      
+      else {
+        return 0;
+      }
+    });
     setSortBooks(sortedBooks);
   }
 
