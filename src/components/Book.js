@@ -37,7 +37,6 @@ const Book = ({title, author, imageSrc, pages, viewBooks}) => {
 };
 
 const Wrapper = styled.div`
-  max-width: 100%;
   position: relative;
   display: grid;
 
@@ -56,7 +55,7 @@ const Wrapper = styled.div`
   :
   `
     grid-auto-flow: row;
-    grid-template-rows: 1fr 150px;
+    grid-template-rows: 1fr auto;
     gap: 4px 0;
   `
   };
@@ -89,6 +88,7 @@ const Image = styled.img`
   display: block;
   /* Set width to be the same as parent content's */
   max-width: 100%;
+  max-height: 100%;
   line-height: 0;
 `;
 
