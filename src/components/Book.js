@@ -55,7 +55,7 @@ const Wrapper = styled.div`
   :
   `
     grid-auto-flow: row;
-    grid-template-rows: 1fr auto;
+    grid-template-rows: min-content auto;
     gap: 4px 0;
   `
   };
