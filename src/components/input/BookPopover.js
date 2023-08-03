@@ -5,7 +5,7 @@ const BookPopover = ({popover, viewBooks}) => {
   if (viewBooks)
     return null;
   else
-    if (popover === 'false')
+    if (!popover)
       return null;
     else
       return (

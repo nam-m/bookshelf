@@ -3,17 +3,15 @@ import styled from 'styled-components/macro'
 
 import BookPopover from './input/BookPopover';
 import BookInfo from './BookInfo';
-// import BookPreview from '../BookPreview';
 
 const Book = ({title, author, imageSrc, pages, viewBooks}) => {
-  const[popover, setPopover] = useState('false');
-  // const[preview, setPreview] = useState('false');
-
+  const[popover, setPopover] = useState(false);
+  
   return (
     <Wrapper 
       viewBooks={viewBooks}
-      onMouseOver={() => setPopover('true')}
-      onMouseOut={() => setPopover('false')}
+      onMouseOver={() => setPopover(true)}
+      onMouseOut={() => setPopover(false)}
     >
       <Link>
         <ImageWrapper>
@@ -23,9 +21,7 @@ const Book = ({title, author, imageSrc, pages, viewBooks}) => {
       <BookPopover 
         viewBooks={viewBooks}
         popover={popover}
-        // onClick={() => setPreview('true')}
         />
-      {/* <BookPreview preview={preview}/> */}
       <BookInfo
         viewBooks={viewBooks}
         title={title}
