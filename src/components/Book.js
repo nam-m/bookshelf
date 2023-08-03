@@ -13,15 +13,22 @@ const Book = ({title, author, imageSrc, pages, viewBooks}) => {
       onMouseOver={() => setPopover(true)}
       onMouseOut={() => setPopover(false)}
     >
-      <Link>
+      <BookCover>
+        <Link>
         <ImageWrapper>
           <Image alt='' src={imageSrc} />
         </ImageWrapper>
+        </Link>
+        <BookPopover 
+          viewBooks={viewBooks}
+          popover={popover}
       </Link>
       <BookPopover 
         viewBooks={viewBooks}
         popover={popover}
         />
+          />
+      </BookCover>
       <BookInfo
         viewBooks={viewBooks}
         title={title}
@@ -52,14 +59,18 @@ const Wrapper = styled.div`
   :
   `
     grid-auto-flow: row;
+    grid-template-rows: min-content min-content;
     gap: 4px 0;
   `
   };
 `;
 
+const BookCover = styled.div`
+  position: relative;
+`;
+
 const Link = styled.a`
   text-decoration: none;
-  position: relative;
   cursor: pointer;
 `;
 

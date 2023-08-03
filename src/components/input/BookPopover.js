@@ -20,7 +20,7 @@ const BookPopover = ({popover, viewBooks}) => {
 
 const Wrapper = styled.div`
   position: absolute;
-  top: 70%;
+  top: 90%;
   /* Center popover wrapper by setting left and width */
   left: 5%;
   width: 90%;
