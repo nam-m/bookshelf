@@ -106,7 +106,8 @@ const BookGrid = styled.div`
   ` 
   : 
   `
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    height: min-content;
     gap: 32px;
   `
   };

@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import styled from 'styled-components/macro'
+
 import BookPopover from './input/BookPopover';
 import BookInfo from './BookInfo';
 // import BookPreview from '../BookPreview';
@@ -43,7 +44,7 @@ const Wrapper = styled.div`
   ${p => p.viewBooks ?
   ` 
     grid-auto-flow: column;
-    grid-template-columns: 215px 1fr;
+    grid-template-columns: 200px minmax(300px, 1fr);
     gap: 16px;
     
     &:not(:last-child) {
@@ -55,7 +56,6 @@ const Wrapper = styled.div`
   :
   `
     grid-auto-flow: row;
-    grid-template-rows: min-content auto;
     gap: 4px 0;
   `
   };

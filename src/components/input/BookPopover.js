@@ -19,19 +19,17 @@ const BookPopover = ({popover, viewBooks}) => {
 };
 
 const Wrapper = styled.div`
-  /* display: block; */
   position: absolute;
-  top: 65%;
-  left: 0;
-  right: 0;
+  top: 70%;
+  /* Center popover wrapper by setting left and width */
+  left: 5%;
+  width: 90%;
 `;
 
 const PopoverInput = styled.input`
-  position: absolute;
-  left: 0;
-  right: 0;
-  margin: auto;
-  width: 90%;
+  position: relative;
+  /* Take all width and height from wrapper*/
+  width: 100%;
   border: 1px solid hsl(185deg, 5%, 50%);
   border-radius: 8px;
   cursor: pointer;
