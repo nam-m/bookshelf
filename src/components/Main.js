@@ -10,7 +10,7 @@ const Main = () => {
   const [sortId, setSortId] = useState('manual');
   const [sortBooks, setSortBooks] = useState(BOOKS);
   const [viewBooks, setViewBooks] = useState(false);
-  const [preview, setPreview] = useState(false);
+  const [showPreview, setShowPreview] = useState(false);
 
   return (
     <main>
@@ -22,18 +22,17 @@ const Main = () => {
           setSortBooks={setSortBooks}
           viewBooks={viewBooks}
           setViewBooks={setViewBooks}
-          setPreview={setPreview}
-          />
+          setShowPreview={setShowPreview}
+        />
+        <BookPreview showPreview={showPreview}/>
       </Wrapper>
-      <BookPreview
-        preview={preview}
-      />
     </main>
     );
 };
 
 const Wrapper = styled.div`
   /* Center the wrapper by setting left & right margins to auto*/
+  position: relative;
   margin-left: auto;
   margin-right: auto;
   padding: 0 80px;

@@ -8,7 +8,8 @@ import BookView from './input/BookView';
 const Bookshelf = ({
   sortId, setSortId, 
   sortBooks, setSortBooks,
-  viewBooks, setViewBooks}) => {
+  viewBooks, setViewBooks,
+  setShowPreview}) => {
   // const sortAuthors = (authorNames) => {
   //   return authorNames
   //     .map(authorName => 
@@ -18,17 +19,15 @@ const Bookshelf = ({
 
   const sortBooksById = () => {
     const sortedBooks = [...sortBooks].sort((currentBook, nextBook) => {
-      if (sortId !== 'manual') {
+      if (sortId !== 'manual' && sortId !== 'time') {
         if (currentBook[sortId] > nextBook[sortId]) {
           return 1;
         }
         else if (currentBook[sortId] < nextBook[sortId]) {
           return -1;
         }
-      }      
-      else {
-        return 0;
       }
+      return 0;
     });
     setSortBooks(sortedBooks);
   }
@@ -67,14 +66,17 @@ const Bookshelf = ({
             {...book}
             key={book.title}
             viewBooks={viewBooks}
+            setShowPreview={setShowPreview}
           />
         )}
       </BookGrid>
+
     </Wrapper>
   );
 };
 
 const Wrapper = styled.div`
+  position: relative;
   display: flex;
   flex-direction: column;
   flex-grow: 1;
@@ -106,8 +108,7 @@ const BookGrid = styled.div`
   ` 
   : 
   `
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    height: min-content;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 32px;
   `
   };
