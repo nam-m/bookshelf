@@ -11,7 +11,7 @@ const Header = () => {
           <NavItem href='/Notes'>Notes</NavItem>
         </Nav>
         <UserGroup>
-          <SearchLabel for='search'/>
+          <SearchLabel htmlFor='search'/>
           <SearchBar type='text' id='search' placeholder='Search...'/>
           <Profile>Profile</Profile>
         </UserGroup>
