@@ -4,11 +4,13 @@ import styled from 'styled-components/macro'
 
 import Bookshelf from './Bookshelf';
 import BOOKS from '../data';
+import BookPreview from '../BookPreview';
 
 const Main = () => {
   const [sortId, setSortId] = useState('manual');
   const [sortBooks, setSortBooks] = useState(BOOKS);
   const [viewBooks, setViewBooks] = useState(false);
+  const [preview, setPreview] = useState(false);
 
   return (
     <main>
@@ -20,8 +22,12 @@ const Main = () => {
           setSortBooks={setSortBooks}
           viewBooks={viewBooks}
           setViewBooks={setViewBooks}
+          setPreview={setPreview}
           />
       </Wrapper>
+      <BookPreview
+        preview={preview}
+      />
     </main>
     );
 };
