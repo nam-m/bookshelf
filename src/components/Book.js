@@ -9,7 +9,7 @@ const Book = ({title, author, imageSrc, pages, viewBooks, setShowPreview}) => {
   
   return (
     <Wrapper 
-      viewBooks={viewBooks}
+      $viewBooks={viewBooks}
       onMouseOver={() => setPopover(true)}
       onMouseOut={() => setPopover(false)}
     >
@@ -40,7 +40,7 @@ const Wrapper = styled.div`
   position: relative;
   display: grid;
 
-  ${p => p.viewBooks ?
+  ${p => p.$viewBooks ?
   ` 
     grid-auto-flow: column;
     grid-template-columns: 200px minmax(300px, 1fr);

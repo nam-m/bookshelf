@@ -58,7 +58,7 @@ const Bookshelf = ({
         </ViewOptions>
       </ViewTray>
       {/* Pass state `viewBooks` to change book view based on <BookView /> */}
-      <BookGrid viewBooks={viewBooks}>
+      <BookGrid $viewBooks={viewBooks}>
         {/* Map fields of each instance `book` in sortBooks to <BookWrapper />
           , which contains <Book /> */}
         {sortBooks.map(book =>
@@ -102,7 +102,7 @@ const BookStatus = styled.h2`
 
 const BookGrid = styled.div`
   display: grid;
-  ${p => p.viewBooks ? 
+  ${p => p.$viewBooks ? 
   `
     grid-template-rows: repeat(auto-fill, minmax(200px, 1fr));
   ` 

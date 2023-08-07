@@ -3,7 +3,7 @@ import styled from "styled-components/macro";
 
 const BookInfo = ({title, author, pages, viewBooks}) => {
   return (
-    <Wrapper viewBooks={viewBooks}>
+    <Wrapper $viewBooks={viewBooks}>
       <Title>{title}</Title>
       <Author><em>{author}</em></Author>
       <Pages>{pages} pages</Pages>
@@ -18,7 +18,7 @@ const Wrapper = styled.div`
   flex-direction: column;
   justify-content: flex-start;
 
-  ${p => p.viewBooks
+  ${p => p.$viewBooks
   ?
   `
     margin-top: -6px;
