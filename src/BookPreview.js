@@ -1,22 +1,22 @@
-import React from "react";
+import React, { forwardRef } from "react";
 import styled from "styled-components/macro";
 
-const BookPreview = ({showPreview}) => {
+const BookPreview = forwardRef(function BookPreview({showPreview}, ref) {
   return (showPreview) ? (
-    <Wrapper>
+    <Wrapper ref={ref}>
       <PreviewContent>this is a popover</PreviewContent>
     </Wrapper>
   ) : null;
-};
+});
 
 const Wrapper = styled.div`
   position: absolute;
-  inset: 50%;
-  width: 100%;
+  inset: 200px;
 `;
 
 const PreviewContent = styled.p`
-  width: 80%;
+  width: 100%;
+  height: 100%;
   background-color: red;
 `;
 

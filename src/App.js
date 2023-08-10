@@ -21,7 +21,7 @@ const App = () => {
       <Main setShowPreview={setShowPreview}/>
       <Footer />
       <PreviewWrapper $showPreview={showPreview}>
-        <BookPreview showPreview={showPreview}/>
+        <BookPreview showPreview={showPreview} ref={ref}/>
       </PreviewWrapper>
     </>
   );
