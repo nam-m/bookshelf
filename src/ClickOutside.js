@@ -4,14 +4,16 @@ const useClickOutside = (ref, handler) => {
   useEffect(() => {
     const handleClickOutside = (e) => {
       if (ref.current && !ref.current.contains(e.target)) {
-        console.log(ref.current);
         handler(e);
       }
     };
 
     document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener('touchstart', handleClickOutside);
+
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('touchstart', handleClickOutside);
     };
   }, [ref, handler]);
 };
