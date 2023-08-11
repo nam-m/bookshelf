@@ -63,7 +63,7 @@ const Bookshelf = ({
           , which contains <Book /> */}
         {sortBooks.map(book =>
           <Book
-            {...book}
+            book = {{...book}}
             key={book.title}
             viewBooks={viewBooks}
             setShowPreview={setShowPreview}

@@ -4,9 +4,9 @@ import styled from 'styled-components/macro'
 import BookPopover from './input/BookPopover';
 import BookInfo from './BookInfo';
 
-const Book = ({title, author, imageSrc, pages, viewBooks, setShowPreview}) => {
+const Book = ({book, viewBooks, setShowPreview}) => {
   const[popover, setPopover] = useState(false);
-  
+
   return (
     <Wrapper 
       $viewBooks={viewBooks}
@@ -16,7 +16,7 @@ const Book = ({title, author, imageSrc, pages, viewBooks, setShowPreview}) => {
       <BookCover>
         <Link>
         <ImageWrapper>
-          <Image alt='' src={imageSrc} />
+          <Image alt='' src={book.imageSrc} />
         </ImageWrapper>
         </Link>
         <BookPopover 
@@ -27,9 +27,7 @@ const Book = ({title, author, imageSrc, pages, viewBooks, setShowPreview}) => {
       </BookCover>
       <BookInfo
         viewBooks={viewBooks}
-        title={title}
-        author={author}
-        pages={pages}
+        book={book}
       />
     </Wrapper>
     
