@@ -4,7 +4,7 @@ import styled from 'styled-components/macro'
 import BookPopover from './input/BookPopover';
 import BookInfo from './BookInfo';
 
-const Book = ({book, viewBooks, setShowPreview}) => {
+const Book = ({book, viewBooks, setShowPreview, setBookPreview}) => {
   const[popover, setPopover] = useState(false);
 
   return (
@@ -23,6 +23,8 @@ const Book = ({book, viewBooks, setShowPreview}) => {
           viewBooks={viewBooks}
           popover={popover}
           setShowPreview={setShowPreview}
+          setBookPreview={setBookPreview}
+          book={book}
           />
       </BookCover>
       <BookInfo

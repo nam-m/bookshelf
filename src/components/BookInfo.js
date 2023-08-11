@@ -17,15 +17,6 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-
-  ${p => p.$viewBooks
-  ?
-  `
-    margin-top: -6px;
-  `
-  :
-  ``
-  };
 `;
 
 const Title = styled.h2`

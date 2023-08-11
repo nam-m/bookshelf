@@ -9,7 +9,8 @@ const Bookshelf = ({
   sortId, setSortId, 
   sortBooks, setSortBooks,
   viewBooks, setViewBooks,
-  setShowPreview}) => {
+  setShowPreview,
+  setBookPreview}) => {
   // const sortAuthors = (authorNames) => {
   //   return authorNames
   //     .map(authorName => 
@@ -67,6 +68,7 @@ const Bookshelf = ({
             key={book.title}
             viewBooks={viewBooks}
             setShowPreview={setShowPreview}
+            setBookPreview={setBookPreview}
           />
         )}
       </BookGrid>

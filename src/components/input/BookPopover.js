@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 
-const BookPopover = ({popover, viewBooks, setShowPreview}) => {
+const BookPopover = ({popover, viewBooks, setShowPreview, setBookPreview, book}) => {
   if (viewBooks)
     return null;
   else
@@ -13,7 +13,12 @@ const BookPopover = ({popover, viewBooks, setShowPreview}) => {
           <PopoverInput 
             type='submit' 
             value='Quick look'
-            onClick={() => setShowPreview(true)}
+            onClick={() => 
+              {
+                setShowPreview(true);
+                setBookPreview({book});
+              }
+            }
           />
         </Wrapper>
       );

@@ -2,7 +2,6 @@ import React from 'react';
 import { useState, useRef } from 'react';
 import styled from 'styled-components/macro'
 
-
 import Header from './components/Header';
 import Main from './components/Main';
 import Footer from './components/Footer';
@@ -10,6 +9,7 @@ import BookPreview from './BookPreview';
 import useClickOutside from './ClickOutside';
 
 const App = () => {
+  const [bookPreview, setBookPreview] = useState();
   const [showPreview, setShowPreview] = useState(false);
   const ref = useRef();
   /* Prevent setShowPreview re-rendering by using arrow function */
@@ -18,12 +18,16 @@ const App = () => {
   return (
     <>
       <Header />
-      <Main setShowPreview={setShowPreview}/>
+      <Main 
+        setShowPreview={setShowPreview}
+        setBookPreview={setBookPreview}
+        />
       <Footer />
       <PreviewWrapper $showPreview={showPreview}>
         <BookPreview 
           showPreview={showPreview} 
           ref={ref}
+          bookPreview={bookPreview}
         />
       </PreviewWrapper>
     </>
