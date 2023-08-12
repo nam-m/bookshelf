@@ -5,21 +5,27 @@ const BookPreview = forwardRef(function BookPreview({bookPreview, showPreview}, 
   return (showPreview) ? (
     <Wrapper ref={ref}>
       <PreviewContent>
-        <ImageWrapper>
-          <Image alt='' src={bookPreview.book.imageSrc}/>
-        </ImageWrapper>
         <MainInfo>
-          Title: {bookPreview.book.title} <br/>
-          Author: {bookPreview.book.author}
+          <ImageWrapper>
+            <Image alt='' src={bookPreview.imageSrc}/>
+          </ImageWrapper>
+          <BookInfo>
+            <Row>
+              {bookPreview.title}
+            </Row>
+            <Row>
+              {bookPreview.author}
+            </Row>
+          </BookInfo>
         </MainInfo>
         <Description>
           This is the book&apos;s description
         </Description>
         <Footnote>
-          <Genre>Thriller</Genre>
-          <Length>{bookPreview.book.pages} pages</Length>
-          <ReleasedDate></ReleasedDate>
-          <Publisher></Publisher>
+          <Row>Genre</Row>
+          <Row>{bookPreview.pages} pages</Row>
+          <Row>Edition/Released date</Row>
+          <Row>Publisher</Row>
         </Footnote>
       </PreviewContent>
     </Wrapper>
@@ -36,27 +42,26 @@ const PreviewContent = styled.article`
   position: relative;
   width: 100%;
   height: 100%;
+  padding: 64px;
   background-color: white;
-  display: grid;
-  grid-auto-flow: row;
-  grid-template-areas: 
-    'image main-info'
-    'description description'
-    'footnote footnote';
-  grid-template-rows: 250px min-content min-content;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 `;
 
 const MainInfo = styled.header`
-  grid-area: main-info;
-
+  display: flex;
+  flex-direction: row;
+  gap: 32px;
 `;
 
 const ImageWrapper = styled.div`
-  grid-area: image;
   border-radius: 8px;
   /* Hide image that extends beyong this wrapper
      to apply border-radius effect */
   overflow: hidden;
+  flex-basis: 200px;
+  box-shadow: 4px 4px 10px hsl(180deg, 5%, 50%);
 `;
 
 const Image = styled.img`
@@ -68,17 +73,14 @@ const Image = styled.img`
   line-height: 0;
 `;
 
+const BookInfo = styled.div``;
+
 const Description = styled.p`
-  grid-area: description;
 `;
 
 const Footnote = styled.footer`
-  grid-area: footnote;
 `;
 
-const Genre = styled.h3``;
-const Length = styled.h3``;
-const ReleasedDate = styled.h3``;
-const Publisher = styled.h3``;
+const Row = styled.div``;
 
 export default BookPreview;

@@ -79,7 +79,6 @@ const ImageWrapper = styled.div`
 
   &:hover {
     box-shadow: 4px 4px 10px hsl(180deg, 5%, 50%);
-    /* transform: skewY(8deg) translate(10px); */
   }
   &:focus {
     box-shadow: 4px 4px 10px hsl(180deg, 5%, 50%);
