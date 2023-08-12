@@ -16,7 +16,7 @@ const BookPopover = ({popover, viewBooks, setShowPreview, setBookPreview, book})
             onClick={() => 
               {
                 setShowPreview(true);
-                setBookPreview({book});
+                setBookPreview(book);
               }
             }
           />

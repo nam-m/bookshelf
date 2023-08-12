@@ -9,7 +9,7 @@ import BookPreview from './components/BookPreview';
 import useClickOutside from './ClickOutside';
 
 const App = () => {
-  const [bookPreview, setBookPreview] = useState();
+  const [bookPreview, setBookPreview] = useState({});
   const [showPreview, setShowPreview] = useState(false);
   const ref = useRef();
   /* Prevent setShowPreview re-rendering by using arrow function */
