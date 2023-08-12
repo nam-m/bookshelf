@@ -5,7 +5,7 @@ import styled from 'styled-components/macro'
 import Header from './components/Header';
 import Main from './components/Main';
 import Footer from './components/Footer';
-import BookPreview from './BookPreview';
+import BookPreview from './components/BookPreview';
 import useClickOutside from './ClickOutside';
 
 const App = () => {
@@ -25,9 +25,9 @@ const App = () => {
       <Footer />
       <PreviewWrapper $showPreview={showPreview}>
         <BookPreview 
-          showPreview={showPreview} 
-          ref={ref}
           bookPreview={bookPreview}
+          showPreview={showPreview}
+          ref={ref}
         />
       </PreviewWrapper>
     </>
