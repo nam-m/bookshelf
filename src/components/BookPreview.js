@@ -11,21 +11,29 @@ const BookPreview = forwardRef(function BookPreview({bookPreview, showPreview}, 
           </ImageWrapper>
           <BookInfo>
             <Row>
-              {bookPreview.title}
+              <strong>{bookPreview.title}</strong>
             </Row>
             <Row>
               {bookPreview.author}
             </Row>
+            <NoteWrapper>
+              <Label htmlFor="notes">Notes</Label>
+              <NoteArea id="notes" name="notes" rows="5" cols="33"></NoteArea>
+            </NoteWrapper>
           </BookInfo>
         </MainInfo>
         <Description>
           This is the book&apos;s description
         </Description>
+        <Review>
+          User&apos;s review
+        </Review>
         <Footnote>
-          <Row>Genre</Row>
-          <Row>{bookPreview.pages} pages</Row>
-          <Row>Edition/Released date</Row>
-          <Row>Publisher</Row>
+          <FootnoteItem>Genre</FootnoteItem>
+          <FootnoteItem>{bookPreview.pages} pages</FootnoteItem>
+          <FootnoteItem>Edition</FootnoteItem>
+          <FootnoteItem>Released Date</FootnoteItem>
+          <FootnoteItem>Publisher</FootnoteItem>
         </Footnote>
       </PreviewContent>
     </Wrapper>
@@ -44,6 +52,7 @@ const PreviewContent = styled.article`
   height: 100%;
   padding: 64px;
   background-color: white;
+  border-radius: 8px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -75,12 +84,41 @@ const Image = styled.img`
 
 const BookInfo = styled.div``;
 
-const Description = styled.p`
+const NoteWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-top: 40px;
 `;
+
+const Label = styled.label``;
+
+const NoteArea = styled.textarea``;
+
+const Description = styled.p`
+  margin-top: 16px;
+`;
+
+const Review = styled.p``;
 
 const Footnote = styled.footer`
+  display: grid;
+  grid-auto-flow: column;
+  justify-items: center;
+  gap: 8px;
+  margin-top: 16px;
 `;
 
-const Row = styled.div``;
+const Row = styled.div`
+  font-size: 1.25rem;
+  display: flex;
+  justify-content: space-between;
+`;
 
+const FootnoteItem = styled.div`
+  font-size: 1.25rem;
+  &:not(:last-child) {
+    border-right: 2px solid hsl(180deg, 5%, 50%);
+    padding-right: 8px;
+  }
+`;
 export default BookPreview;
