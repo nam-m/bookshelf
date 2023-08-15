@@ -4,6 +4,7 @@ import styled from 'styled-components/macro';
 import Book from './Book';
 import BookSort from './select/BookSort';
 import BookView from './input/BookView';
+import AddBook from './button/AddBook';
 
 const Bookshelf = ({
   sortId, setSortId, 
@@ -39,6 +40,7 @@ const Bookshelf = ({
       <ViewTray>
         <BookStatus>{sortBooks.length} books</BookStatus>
         <ViewOptions>
+          <AddBook />
           <BookSort
             label='Sort'
             value={sortId}
