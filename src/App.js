@@ -41,9 +41,16 @@ const PreviewWrapper = styled.div`
   top: 0;
   left: 0;
   overflow: auto;
+  /* Make background more opague when popover is on */
+  background: hsl(0deg 0% 0% / 0.35);
   
   ${p => p.$showPreview
-  ? `visibility: visible` : `visibility: hidden`};
+  ? 
+  `visibility: visible;
+  ` 
+  : 
+  `visibility: hidden`
+  };
 `;
 
 export default App;
