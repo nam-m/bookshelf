@@ -34,7 +34,7 @@ const Button = styled.button`
   }
 
   &:active {
-    box-shadow: 0 0 0 2px hsl(185deg, 10%, 95%);
+    box-shadow: 0 0 0 3px hsl(185deg, 10%, 95%);
   }
 `;
 
