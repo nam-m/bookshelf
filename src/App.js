@@ -8,6 +8,7 @@ import Footer from './layouts/Footer';
 import BookPreview from './features/bookshelf/book/BookPreview';
 import useClickOutside from './utils/ClickOutside';
 import popoverBackground from './utils/PopoverBackground';
+import PopoverWrapper from './components/common/PopoverWrapper';
 
 const App = () => {
   const [bookPreview, setBookPreview] = useState({});
@@ -37,19 +38,11 @@ const App = () => {
   );
 };
 
-const PreviewWrapper = styled.div`
-  position: fixed;
-  height: 100%;
-  width: 100%;
-  top: 0;
-  left: 0;
-  overflow: auto;
-  /* Make background more opague when popover is on */
-  background: hsl(0deg 0% 0% / 0.35);
-  
+const PreviewWrapper = styled(PopoverWrapper)`
   ${p => p.$showPreview
   ? 
-  `visibility: visible;` 
+  `visibility: visible;
+  ` 
   : 
   `visibility: hidden`
   };
