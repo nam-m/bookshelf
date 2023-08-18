@@ -38,14 +38,6 @@ const App = () => {
   );
 };
 
-const PreviewWrapper = styled(PopoverWrapper)`
-  ${p => p.$showPreview
-  ? 
-  `visibility: visible;
-  ` 
-  : 
-  `visibility: hidden`
-  };
-`;
+const PreviewWrapper = styled(PopoverWrapper)``;
 
 export default App;
