@@ -46,7 +46,9 @@ const PreviewWrapper = styled.div`
   
   ${p => p.$showPreview
   ? 
-  `visibility: visible;` 
+  `visibility: visible;
+   document.body.style.overflow = 'hidden';
+  ` 
   : 
   `visibility: hidden`
   };

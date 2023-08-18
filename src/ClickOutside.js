@@ -4,6 +4,7 @@ const useClickOutside = (ref, handler) => {
   useEffect(() => {
     const handleClickOutside = (e) => {
       if (ref.current && !ref.current.contains(e.target)) {
+        document.body.style.overflow = 'auto';
         handler(e);
       }
     };

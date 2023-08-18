@@ -2,6 +2,10 @@ import React from 'react';
 import styled from 'styled-components/macro';
 
 const BookPopover = ({popover, viewBooks, setShowPreview, setBookPreview, book}) => {
+  const disableScroll = () => {
+    document.body.style.overflow = 'hidden';
+  }
+  
   if (viewBooks)
     return null;
   else
@@ -16,6 +20,7 @@ const BookPopover = ({popover, viewBooks, setShowPreview, setBookPreview, book})
             onClick={() => 
               {
                 setShowPreview(true);
+                disableScroll();
                 setBookPreview(book);
               }
             }
