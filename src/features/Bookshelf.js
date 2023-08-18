@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 
-import Book from './book/Book';
-import BookSort from './SortBook';
-import BookView from './ViewBook';
-import AddBook from './AddBook';
+import Book from './bookshelf/book/Book';
+import BookSort from './bookshelf/SortBook';
+import BookView from './bookshelf/ViewBook';
+import AddBook from './bookshelf/AddBook';
 
 const Bookshelf = ({
   sortId, setSortId, 
