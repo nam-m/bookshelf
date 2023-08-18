@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import styled from 'styled-components/macro'
 
-import BookPopover from './input/BookPopover';
+import BookPopover from './BookPopover';
 import BookInfo from './BookInfo';
 
 const Book = ({book, viewBooks, setShowPreview, setBookPreview}) => {

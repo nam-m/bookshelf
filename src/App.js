@@ -2,11 +2,11 @@ import React from 'react';
 import { useState, useRef } from 'react';
 import styled from 'styled-components/macro'
 
-import Header from './components/Header';
-import Main from './components/Main';
-import Footer from './components/Footer';
-import BookPreview from './components/BookPreview';
-import useClickOutside from './ClickOutside';
+import Header from './layouts/Header';
+import Main from './layouts/Main';
+import Footer from './layouts/Footer';
+import BookPreview from './features/bookshelf/book/BookPreview';
+import useClickOutside from './utils/ClickOutside';
 
 const App = () => {
   const [bookPreview, setBookPreview] = useState({});
@@ -46,9 +46,7 @@ const PreviewWrapper = styled.div`
   
   ${p => p.$showPreview
   ? 
-  `visibility: visible;
-   document.body.style.overflow = 'hidden';
-  ` 
+  `visibility: visible;` 
   : 
   `visibility: hidden`
   };

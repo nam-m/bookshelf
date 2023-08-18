@@ -2,7 +2,7 @@ import React from 'react'
 import { useState } from 'react';
 import styled from 'styled-components/macro'
 
-import Bookshelf from './Bookshelf';
+import Bookshelf from '../features/bookshelf/Bookshelf';
 import BOOKS from '../data';
 
 const Main = ({setShowPreview, setBookPreview}) => {

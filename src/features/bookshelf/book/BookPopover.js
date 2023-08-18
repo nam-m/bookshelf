@@ -1,11 +1,8 @@
 import React from 'react';
 import styled from 'styled-components/macro';
+import popoverBackground from '../../../utils/PopoverBackground';
 
-const BookPopover = ({popover, viewBooks, setShowPreview, setBookPreview, book}) => {
-  const disableScroll = () => {
-    document.body.style.overflow = 'hidden';
-  }
-  
+const BookPopover = ({popover, viewBooks, setShowPreview, setBookPreview, book}) => {  
   if (viewBooks)
     return null;
   else
@@ -20,7 +17,7 @@ const BookPopover = ({popover, viewBooks, setShowPreview, setBookPreview, book})
             onClick={() => 
               {
                 setShowPreview(true);
-                disableScroll();
+                popoverBackground();
                 setBookPreview(book);
               }
             }
