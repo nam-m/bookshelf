@@ -7,6 +7,7 @@ import Main from './layouts/Main';
 import Footer from './layouts/Footer';
 import BookPreview from './features/bookshelf/book/BookPreview';
 import useClickOutside from './utils/ClickOutside';
+import popoverBackground from './utils/PopoverBackground';
 
 const App = () => {
   const [bookPreview, setBookPreview] = useState({});
@@ -14,11 +15,13 @@ const App = () => {
   const ref = useRef();
   /* Prevent setShowPreview re-rendering by using arrow function */
   useClickOutside(ref, () => setShowPreview(false));
+  popoverBackground(showPreview);
 
   return (
     <>
       <Header />
-      <Main 
+      <Main
+        showPreview={showPreview} 
         setShowPreview={setShowPreview}
         setBookPreview={setBookPreview}
         />

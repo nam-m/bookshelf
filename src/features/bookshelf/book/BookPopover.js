@@ -2,29 +2,34 @@ import React from 'react';
 import styled from 'styled-components/macro';
 import popoverBackground from '../../../utils/PopoverBackground';
 
-const BookPopover = ({popover, viewBooks, setShowPreview, setBookPreview, book}) => {  
-  if (viewBooks)
-    return null;
-  else
-    if (!popover)
+const BookPopover = ({
+  popover, 
+  viewBooks, 
+  showPreview, setShowPreview, 
+  setBookPreview, 
+  book}) => {  
+    if (viewBooks)
       return null;
     else
-      return (
-        <Wrapper>
-          <PopoverInput 
-            type='submit' 
-            value='Quick look'
-            onClick={() => 
-              {
-                setShowPreview(true);
-                popoverBackground();
-                setBookPreview(book);
+      if (!popover)
+        return null;
+      else
+        return (
+          <Wrapper>
+            <PopoverInput 
+              type='submit' 
+              value='Quick look'
+              onClick={() => 
+                {
+                  setShowPreview(true);
+                  popoverBackground(showPreview);
+                  setBookPreview(book);
+                }
               }
-            }
-          />
-        </Wrapper>
-      );
-};
+            />
+          </Wrapper>
+        );
+  };
 
 const Wrapper = styled.div`
   position: absolute;
