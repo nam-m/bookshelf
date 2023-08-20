@@ -4,7 +4,9 @@ import styled from 'styled-components/macro';
 const AddBook = () => {
   return (
     <Wrapper>
-      <Button type='button'>
+      <Button type='button'
+        // onClick={() => setAddBook(true)}
+      >
         Add book
       </Button>
     </Wrapper>

@@ -11,7 +11,8 @@ const Bookshelf = ({
   sortBooks, setSortBooks,
   viewBooks, setViewBooks,
   setShowPreview,
-  setBookPreview}) => {
+  setBookPreview,
+  setAddBook}) => {
   // const sortAuthors = (authorNames) => {
   //   return authorNames
   //     .map(authorName => 
@@ -40,7 +41,7 @@ const Bookshelf = ({
       <ViewTray>
         <BookStatus>{sortBooks.length} books</BookStatus>
         <ViewOptions>
-          <AddBook />
+          <AddBook setAddBook={setAddBook}/>
           <BookSort
             label='Sort'
             value={sortId}

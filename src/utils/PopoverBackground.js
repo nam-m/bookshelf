@@ -1,5 +1,5 @@
-const popoverBackground = (showPreview) => {
-  if (showPreview) {
+const popoverBackground = (popoverOn) => {
+  if (popoverOn) {
     document.body.style.overflow = 'hidden';
     /* Shift body to account for scroll bar disappearing 
     TO DO: make this value responsive*/

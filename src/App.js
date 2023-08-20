@@ -9,13 +9,16 @@ import BookPreview from './features/bookshelf/book/BookPreview';
 import useClickOutside from './utils/ClickOutside';
 import popoverBackground from './utils/PopoverBackground';
 import PopoverWrapper from './components/common/PopoverWrapper';
+// import BookForm from './features/bookshelf/BookForm';
 
 const App = () => {
   const [bookPreview, setBookPreview] = useState({});
   const [showPreview, setShowPreview] = useState(false);
+  // const [addBook, setAddBook] = useState(false);
   const ref = useRef();
   /* Prevent setShowPreview re-rendering by using arrow function */
   useClickOutside(ref, () => setShowPreview(false));
+  /* TO DO: consider grouping popoverBackground and showPreview into 1 hook */
   popoverBackground(showPreview);
 
   return (
@@ -25,6 +28,7 @@ const App = () => {
         showPreview={showPreview} 
         setShowPreview={setShowPreview}
         setBookPreview={setBookPreview}
+        // setAddBook={setAddBook}
         />
       <Footer />
       <PreviewWrapper $showPreview={showPreview}>
@@ -33,6 +37,9 @@ const App = () => {
           showPreview={showPreview}
           ref={ref}
         />
+        {/* <BookForm 
+          addBook={addBook}
+        /> */}
       </PreviewWrapper>
     </>
   );
