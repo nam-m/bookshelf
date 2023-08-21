@@ -1,6 +1,7 @@
+// import React from 'react'
 import styled from 'styled-components/macro';
 
-const PopoverWrapper = styled.div<{show: Boolean | undefined}>`
+const PopoverWrapper = styled.div`
   position: fixed;
   height: 100%;
   width: 100%;
@@ -11,13 +12,7 @@ const PopoverWrapper = styled.div<{show: Boolean | undefined}>`
   background: hsl(0deg 0% 0% / 0.35);
 
   /* Make it visible when passed prop is true and vice versa*/
-  ${p => p.$show
-  ? 
-  `visibility: visible;
-  ` 
-  : 
-  `visibility: hidden`
-  };
+  visibility: ${p => p.$show ? 'visible' : 'hidden'};
 `;
 
 export default PopoverWrapper;

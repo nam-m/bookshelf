@@ -1,5 +1,5 @@
-import React, { forwardRef } from "react";
-import styled from "styled-components/macro";
+import React, { forwardRef } from 'react';
+import styled from 'styled-components/macro';
 
 const BookPreview = forwardRef(function BookPreview({bookPreview, showPreview}, ref) {
   return (showPreview) ? (
