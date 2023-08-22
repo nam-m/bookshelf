@@ -12,7 +12,7 @@ const PopoverWrapper = styled.div`
   background: hsl(0deg 0% 0% / 0.35);
 
   /* Make it visible when passed prop is true and vice versa*/
-  visibility: ${p => p.$show ? 'visible' : 'hidden'};
+  visibility: ${p => p.$showPreview ? 'visible' : 'hidden'};
 `;
 
 export default PopoverWrapper;
