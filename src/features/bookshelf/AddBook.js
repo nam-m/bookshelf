@@ -1,11 +1,11 @@
 import React from "react";
 import styled from 'styled-components/macro';
 
-const AddBook = () => {
+const AddBook = ({setAddBook}) => {
   return (
     <Wrapper>
       <Button type='button'
-        // onClick={() => setAddBook(true)}
+        onClick={() => setAddBook(true)}
       >
         Add book
       </Button>

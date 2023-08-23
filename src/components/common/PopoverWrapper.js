@@ -13,6 +13,7 @@ const PopoverWrapper = styled.div`
 
   /* Make it visible when passed prop is true and vice versa*/
   visibility: ${p => p.$showPreview ? 'visible' : 'hidden'};
+  visibility: ${p => p.$addBook ? 'visible' : 'hidden'};
 `;
 
 export default PopoverWrapper;
