@@ -1,12 +1,20 @@
 import React, { forwardRef } from "react";
 import styled from 'styled-components/macro';
+import AddBook from "./AddBook";
 
 const BookForm = forwardRef(function BookForm({addBook}, ref) {
   return addBook ? (
     <Wrapper ref={ref}>
-      <Form action="example.com" method="post">
-        <Input type="text">
-        </Input>
+      <Form action="https://httpbin.org/post" method="post">
+        <Row>
+          <BookLabel for="book">Book</BookLabel>
+          <BookInput type="text" id="book" name="book"></BookInput>
+        </Row>
+        <Row>
+          <AuthorLabel for="author">Author</AuthorLabel>
+          <AuthorInput type="text" id="author" name="author"></AuthorInput>
+        </Row>
+        <SubmitButton type='submit'>Submit</SubmitButton>
       </Form>
     </Wrapper>
   ) : null;
@@ -16,10 +24,38 @@ const Wrapper = styled.div`
   position: absolute;
   inset: 18%;
   border-radius: 4px;
+  background-color: white;
+  padding: 64px;
 `;
 
-const Form = styled.form``;
+const Form = styled.form`
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+`;
 
-const Input = styled.input``;
+const Row = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+`;
+
+const BookLabel = styled.label``;
+
+const Input = styled.input`
+  line-height: 1.5rem;
+  padding: 8px;
+  border: none;
+  border-radius: 8px;
+  background-color: hsl(185deg, 10%, 95%);
+`;
+
+const BookInput = styled(Input)``;
+
+const AuthorLabel = styled.label``;
+
+const AuthorInput = styled(Input)``;
+
+const SubmitButton = styled.button``;
 
 export default BookForm;

@@ -44,6 +44,7 @@ const Wrapper = styled.div`
   position: absolute;
   inset: 18%;
   border-radius: 4px;
+  background-color: white;
 `;
 
 const PreviewContent = styled.article`
@@ -51,7 +52,6 @@ const PreviewContent = styled.article`
   width: 100%;
   height: 100%;
   padding: 64px;
-  background-color: white;
   border-radius: 8px;
   display: flex;
   flex-direction: column;
