@@ -8,14 +8,26 @@ const BookForm = forwardRef(function BookForm({addBook}, ref) {
       <Form action="https://httpbin.org/post" method="post">
         <Row>
           <BookLabel htmlFor="book">Book</BookLabel>
-          <BookInput type="text" id="book" name="book"></BookInput>
+          <BookInput 
+            type="text" 
+            id="book" 
+            name="book" 
+            >
+          </BookInput>
         </Row>
         <Row>
           <AuthorLabel htmlFor="author">Author</AuthorLabel>
-          <AuthorInput type="text" id="author" name="author"></AuthorInput>
+          <AuthorInput 
+            type="text" 
+            id="author" 
+            name="author"  
+            pattern="^[a-zA-Z\-\s]+$"
+            required
+          >
+          </AuthorInput>
         </Row>
         <Row>
-          <SubmitButton>Add book</SubmitButton>
+          <SubmitButton type="submit">Add book</SubmitButton>
         </Row>
       </Form>
     </Wrapper>
@@ -50,6 +62,10 @@ const Input = styled.input`
   border: none;
   border-radius: 8px;
   background-color: hsl(185deg, 10%, 95%);
+
+  &:invalid {
+    outline: 2px solid red;
+  }
 `;
 
 const BookInput = styled(Input)``;

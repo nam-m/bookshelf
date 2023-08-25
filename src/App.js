@@ -10,7 +10,6 @@ import useClickOutside from './utils/ClickOutside';
 import popoverBackground from './utils/PopoverBackground';
 import PopoverWrapper from './components/common/PopoverWrapper';
 import BookForm from './features/bookshelf/BookForm';
-import AddBook from './features/bookshelf/AddBook';
 
 const App = () => {
   const [bookPreview, setBookPreview] = useState({});
