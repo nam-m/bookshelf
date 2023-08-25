@@ -1,20 +1,22 @@
 import React, { forwardRef } from "react";
 import styled from 'styled-components/macro';
-import AddBook from "./AddBook";
+import CreateButton from "../../components/common/CreateButton";
 
 const BookForm = forwardRef(function BookForm({addBook}, ref) {
-  return addBook ? (
+  return (addBook) ? (
     <Wrapper ref={ref}>
       <Form action="https://httpbin.org/post" method="post">
         <Row>
-          <BookLabel for="book">Book</BookLabel>
+          <BookLabel htmlFor="book">Book</BookLabel>
           <BookInput type="text" id="book" name="book"></BookInput>
         </Row>
         <Row>
-          <AuthorLabel for="author">Author</AuthorLabel>
+          <AuthorLabel htmlFor="author">Author</AuthorLabel>
           <AuthorInput type="text" id="author" name="author"></AuthorInput>
         </Row>
-        <SubmitButton type='submit'>Submit</SubmitButton>
+        <Row>
+          <SubmitButton>Add book</SubmitButton>
+        </Row>
       </Form>
     </Wrapper>
   ) : null;
@@ -56,6 +58,8 @@ const AuthorLabel = styled.label``;
 
 const AuthorInput = styled(Input)``;
 
-const SubmitButton = styled.button``;
+const SubmitButton = styled(CreateButton)`
+  align-self: flex-end;
+`;
 
 export default BookForm;
