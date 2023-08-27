@@ -1,17 +1,41 @@
-import React, { forwardRef } from "react";
+import React, { forwardRef, useState } from "react";
 import styled from 'styled-components/macro';
 import CreateButton from "../../components/common/CreateButton";
 
 const BookForm = forwardRef(function BookForm({addBook}, ref) {
+  const [bookInput, setbookInput] = useState("");
+  const handleSubmit = (e) => {
+    // Prevent default submit
+    e.preventDefault();
+
+    const form = e.target;
+    const formData = new FormData(form);
+
+    const formJson = Object.fromEntries(formData.entries());
+    console.log(formJson);
+  };
+
+  // const checkValidity = () => {
+  //   if ()
+  // };
+
   return (addBook) ? (
     <Wrapper ref={ref}>
-      <Form action="https://httpbin.org/post" method="post">
+      <Form 
+        action="https://httpbin.org/post" 
+        method="post"
+        /* Turn off form automatic error msg*/
+        noValidate
+        onSubmit={handleSubmit}
+      >
         <Row>
           <BookLabel htmlFor="book">Book</BookLabel>
           <BookInput 
             type="text" 
             id="book" 
-            name="book" 
+            name="book"
+            value={bookInput}
+            onChange={e => setbookInput(e.target.value)}
             >
           </BookInput>
         </Row>
@@ -41,7 +65,11 @@ const BookForm = forwardRef(function BookForm({addBook}, ref) {
           </NoteArea>
         </Row>
         <Row>
-          <SubmitButton type="submit">Add book</SubmitButton>
+          <SubmitButton 
+            type="submit"
+          >
+            Add book
+          </SubmitButton>
         </Row>
       </Form>
     </Wrapper>
@@ -77,9 +105,9 @@ const Input = styled.input`
   border-radius: 8px;
   background-color: hsl(185deg, 10%, 95%);
 
-  &:invalid {
+  /* &:invalid {
     outline: 2px solid red;
-  }
+  } */
 `;
 
 const BookInput = styled(Input)``;
