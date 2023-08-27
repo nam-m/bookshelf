@@ -27,6 +27,20 @@ const BookForm = forwardRef(function BookForm({addBook}, ref) {
           </AuthorInput>
         </Row>
         <Row>
+          <NoteLabel 
+            htmlFor="notes"
+          >
+            Your Notes
+          </NoteLabel>
+          <NoteArea 
+            as="textarea"
+            id="notes" 
+            name="notes" 
+            rows="5" cols="33"
+          >
+          </NoteArea>
+        </Row>
+        <Row>
           <SubmitButton type="submit">Add book</SubmitButton>
         </Row>
       </Form>
@@ -73,6 +87,12 @@ const BookInput = styled(Input)``;
 const AuthorLabel = styled.label``;
 
 const AuthorInput = styled(Input)``;
+
+const NoteLabel = styled.label``;
+
+const NoteArea = styled(Input)`
+  resize: none;
+`;
 
 const SubmitButton = styled(CreateButton)`
   align-self: flex-end;
