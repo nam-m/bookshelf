@@ -9,18 +9,20 @@ const BookForm = forwardRef(function BookForm({addBook, setAddBook}, ref) {
     author: ""
   });
 
+  // Error state and set state when input is invalid
+    const [error, setError] = useState({
+      book: "",
+      author: ""
+    });
+
   // Update input fields onChange
   const onUpdateForm = (e) => {
-    checkValidity(e);
     const updateFormState = {
       ...form,
       [e.target.name]: e.target.value
     };
     setForm(updateFormState);
   }
-
-  // Error state and set state when input is invalid
-  const [error, setError] = useState();
 
   const handleSubmit = (e) => {
     // Prevent default submit
@@ -36,12 +38,13 @@ const BookForm = forwardRef(function BookForm({addBook, setAddBook}, ref) {
     setAddBook(false);
   };
 
-  const checkValidity = (e) => {
-    if (e.target.value == 'a')
-      setError("*Unexpected input");
+  const authorValidator = (e) => {
+    const re = new RegExp(/^[a-zA-Z\-\s]+$/);
+    if (!re.test(e.target.value))
+      setError({...error, [e.target.name]: "*Unexpected input"});
     else
-      setError("");
-  };
+      setError({...error, [e.target.name]: ""});
+  }
 
   return (addBook) ? (
     <Wrapper ref={ref}>
@@ -65,9 +68,9 @@ const BookForm = forwardRef(function BookForm({addBook, setAddBook}, ref) {
             autoFocus
             >
           </BookInput>
-          {error && 
+          {error.book && 
             <ErrorMessage htmlFor="error">
-              {error}
+              {error.book}
             </ErrorMessage>
           }
         </Row>
@@ -80,12 +83,14 @@ const BookForm = forwardRef(function BookForm({addBook, setAddBook}, ref) {
             value={form.author}  
             pattern="^[a-zA-Z\-\s]+$"
             required
-            onChange={e => onUpdateForm(e)}
+            onChange={e => {
+              onUpdateForm(e);
+              authorValidator(e);}}
           >
           </AuthorInput>
-          {error && 
+          {error.author && 
             <ErrorMessage htmlFor="error">
-              {error}
+              {error.author}
             </ErrorMessage>
           }
         </Row>
@@ -106,7 +111,6 @@ const BookForm = forwardRef(function BookForm({addBook, setAddBook}, ref) {
         <Row>
           <SubmitButton 
             type="submit"
-            // onClick={}
           >
             Add book
           </SubmitButton>
@@ -137,7 +141,7 @@ const Row = styled.div`
 `;
 
 const ErrorMessage = styled.label`
-  font-size: 0.75rem;
+  font-size: 0.875rem;
   color: red;
 `;
 
