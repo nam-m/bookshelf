@@ -43,6 +43,7 @@ const App = () => {
       <AddBookWrapper $addBook={addBook}>
         <BookForm 
           addBook={addBook}
+          setAddBook={setAddBook}
           ref={addRef}
         />
       </AddBookWrapper>

@@ -2,31 +2,56 @@ import React, { forwardRef, useState } from "react";
 import styled from 'styled-components/macro';
 import CreateButton from "../../components/common/CreateButton";
 
-const BookForm = forwardRef(function BookForm({addBook}, ref) {
-  const [bookInput, setbookInput] = useState("");
+const BookForm = forwardRef(function BookForm({addBook, setAddBook}, ref) {
+  // State and set state of form input fields
+  const [form, setForm] = useState({
+    book: "",
+    author: ""
+  });
+
+  // Update input fields onChange
+  const onUpdateForm = (e) => {
+    checkValidity(e);
+    const updateFormState = {
+      ...form,
+      [e.target.name]: e.target.value
+    };
+    setForm(updateFormState);
+  }
+
+  // Error state and set state when input is invalid
+  const [error, setError] = useState();
+
   const handleSubmit = (e) => {
     // Prevent default submit
     e.preventDefault();
 
-    const form = e.target;
-    const formData = new FormData(form);
-
-    const formJson = Object.fromEntries(formData.entries());
-    console.log(formJson);
+    console.log(JSON.stringify(form, null, 2));
+    // Reset all fields in form
+    setForm({
+      book: "",
+      author: ""
+    });
+    // Set addBook state to false to trigger useClickOutside in App.js
+    setAddBook(false);
   };
 
-  // const checkValidity = () => {
-  //   if ()
-  // };
+  const checkValidity = (e) => {
+    if (e.target.value == 'a')
+      setError("*Unexpected input");
+    else
+      setError("");
+  };
 
   return (addBook) ? (
     <Wrapper ref={ref}>
       <Form 
         action="https://httpbin.org/post" 
         method="post"
-        /* Turn off form automatic error msg*/
+        // Open a new page on submit
+        target="_blank"
         noValidate
-        onSubmit={handleSubmit}
+        onSubmit={(e) => handleSubmit(e)}
       >
         <Row>
           <BookLabel htmlFor="book">Book</BookLabel>
@@ -34,21 +59,35 @@ const BookForm = forwardRef(function BookForm({addBook}, ref) {
             type="text" 
             id="book" 
             name="book"
-            value={bookInput}
-            onChange={e => setbookInput(e.target.value)}
+            value={form.book}
+            required
+            onChange={e => onUpdateForm(e)}
+            autoFocus
             >
           </BookInput>
+          {error && 
+            <ErrorMessage htmlFor="error">
+              {error}
+            </ErrorMessage>
+          }
         </Row>
         <Row>
           <AuthorLabel htmlFor="author">Author</AuthorLabel>
           <AuthorInput 
             type="text" 
             id="author" 
-            name="author"  
+            name="author"
+            value={form.author}  
             pattern="^[a-zA-Z\-\s]+$"
             required
+            onChange={e => onUpdateForm(e)}
           >
           </AuthorInput>
+          {error && 
+            <ErrorMessage htmlFor="error">
+              {error}
+            </ErrorMessage>
+          }
         </Row>
         <Row>
           <NoteLabel 
@@ -67,6 +106,7 @@ const BookForm = forwardRef(function BookForm({addBook}, ref) {
         <Row>
           <SubmitButton 
             type="submit"
+            // onClick={}
           >
             Add book
           </SubmitButton>
@@ -94,6 +134,11 @@ const Row = styled.div`
   display: flex;
   flex-direction: column;
   gap: 4px;
+`;
+
+const ErrorMessage = styled.label`
+  font-size: 0.75rem;
+  color: red;
 `;
 
 const BookLabel = styled.label``;
