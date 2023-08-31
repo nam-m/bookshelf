@@ -15,10 +15,11 @@ const App = () => {
   const [bookPreview, setBookPreview] = useState({});
   const [showPreview, setShowPreview] = useState(false);
   const [addBook, setAddBook] = useState(false);
-  const ref = useRef();
+  const previewRef = useRef();
+  const addRef = useRef();
   /* Prevent setShowPreview re-rendering by using arrow function */
-  useClickOutside(ref, () => setShowPreview(false));
-  useClickOutside(ref, () => setAddBook(false));
+  useClickOutside(previewRef, () => setShowPreview(false));
+  useClickOutside(addRef, () => setAddBook(false));
   /* TO DO: consider grouping popoverBackground and showPreview into 1 hook */
   popoverBackground(showPreview);
 
@@ -36,13 +37,13 @@ const App = () => {
         <BookPreview 
           bookPreview={bookPreview}
           showPreview={showPreview}
-          ref={ref}
+          ref={previewRef}
         />
       </PreviewWrapper>
       <AddBookWrapper $addBook={addBook}>
         <BookForm 
           addBook={addBook}
-          ref={ref}
+          ref={addRef}
         />
       </AddBookWrapper>
     </>
