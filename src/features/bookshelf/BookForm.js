@@ -26,9 +26,10 @@ const BookForm = forwardRef(function BookForm({addBook, setAddBook}, ref) {
 
   const handleSubmit = (e) => {
     // Prevent default submit
-    e.preventDefault();
+    e.preventDefault(); 
 
     console.log(JSON.stringify(form, null, 2));
+
     // Reset all fields in form
     setForm({
       book: "",
@@ -39,9 +40,17 @@ const BookForm = forwardRef(function BookForm({addBook, setAddBook}, ref) {
   };
 
   const authorValidator = (e) => {
-    const re = new RegExp(/^[a-zA-Z\-\s]+$/);
-    if (!re.test(e.target.value))
-      setError({...error, [e.target.name]: "*Unexpected input"});
+    const re = new RegExp(/^[a-zA-Z.\-' ]+$/);
+    if (!e.target.value)
+      setError({
+        ...error, 
+        [e.target.name]: "*Author is required"
+      });
+    else if (!re.test(e.target.value))
+      setError({
+        ...error, 
+        [e.target.name]: "*Name must not contain digits or special characters"
+      });
     else
       setError({...error, [e.target.name]: ""});
   }
@@ -63,7 +72,6 @@ const BookForm = forwardRef(function BookForm({addBook, setAddBook}, ref) {
             id="book" 
             name="book"
             value={form.book}
-            required
             onChange={e => onUpdateForm(e)}
             autoFocus
             >
@@ -81,8 +89,6 @@ const BookForm = forwardRef(function BookForm({addBook, setAddBook}, ref) {
             id="author" 
             name="author"
             value={form.author}  
-            pattern="^[a-zA-Z\-\s]+$"
-            required
             onChange={e => {
               onUpdateForm(e);
               authorValidator(e);}}
