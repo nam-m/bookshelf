@@ -11,8 +11,16 @@ const BookForm = forwardRef(function BookForm({addBook, setAddBook}, ref) {
 
   // Error state and set state when input is invalid
     const [error, setError] = useState({
-      book: "",
-      author: ""
+      book: {
+        dirty: false,
+        error: false,
+        message: ""
+      },
+      author: {
+        dirty: false,
+        error: false,
+        message: ""
+      }
     });
 
   // Update input fields onChange
@@ -39,21 +47,40 @@ const BookForm = forwardRef(function BookForm({addBook, setAddBook}, ref) {
     setAddBook(false);
   };
 
-  const authorValidator = (e) => {
+  const validateBook = (e) => {
+    let errorMessage = "";
+    if (!e.target.value && error[e.target.name].dirty)
+      errorMessage = "*Author is required";
+    setError({
+      ...error,
+      book: {
+        ...error.book,
+        message: errorMessage
+      }
+    });
+  };
+
+  const validateAuthor = (e) => {
     const re = new RegExp(/^[a-zA-Z.\-' ]+$/);
-    if (!e.target.value)
-      setError({
-        ...error, 
-        [e.target.name]: "*Author is required"
-      });
+    let errorMessage = "";
+    if (!e.target.value && error[e.target.name].dirty)
+      errorMessage = "*Author is required";
     else if (!re.test(e.target.value))
-      setError({
-        ...error, 
-        [e.target.name]: "*Name must not contain digits or special characters"
-      });
-    else
-      setError({...error, [e.target.name]: ""});
+      errorMessage = "*Name must not contain digits or special characters";
+    setError({
+      ...error,
+      author: {
+        ...error.author,
+        message: errorMessage
+      }
+    });
   }
+
+  // const validateForm = () => {
+  //   // Set flag to submit/not submit form
+  //   let valid = true;
+  //   Object.values(error).forEa
+  // };
 
   return (addBook) ? (
     <Wrapper ref={ref}>
@@ -72,13 +99,25 @@ const BookForm = forwardRef(function BookForm({addBook, setAddBook}, ref) {
             id="book" 
             name="book"
             value={form.book}
-            onChange={e => onUpdateForm(e)}
+            onMouseDown={(e) => {
+              setError({
+                ...error, 
+                book: {
+                  ...error.book,
+                  dirty: true
+                }
+              });
+            }}
+            onChange={e => {
+              onUpdateForm(e);
+              validateBook(e);
+            }}
             autoFocus
             >
           </BookInput>
-          {error.book && 
+          {error.book.message && 
             <ErrorMessage htmlFor="error">
-              {error.book}
+              {error.book.message}
             </ErrorMessage>
           }
         </Row>
@@ -91,12 +130,20 @@ const BookForm = forwardRef(function BookForm({addBook, setAddBook}, ref) {
             value={form.author}  
             onChange={e => {
               onUpdateForm(e);
-              authorValidator(e);}}
+              validateAuthor(e);
+              setError({
+                ...error, 
+                author: {
+                  ...error.author,
+                  dirty: true
+                }
+              });
+            }}
           >
           </AuthorInput>
-          {error.author && 
+          {error.author.message && 
             <ErrorMessage htmlFor="error">
-              {error.author}
+              {error.author.message}
             </ErrorMessage>
           }
         </Row>
