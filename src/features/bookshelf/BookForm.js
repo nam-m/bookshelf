@@ -1,69 +1,68 @@
 import React, { forwardRef, useState } from 'react';
 import styled from 'styled-components/macro';
 import CreateButton from '../../components/common/CreateButton';
+import ErrorMessage from '../../utils/FormErrorMessage';
 
 const BookForm = forwardRef(function BookForm({addBook, setAddBook}, ref) {
   // State and set state of form input fields
   // Error state and set state when input is invalid
-    const [form, setForm] = useState({
-      book: {
-        value: '',
-        dirty: false,
-        error: false,
-        message: ''
-      },
-      author: {
-        value: '',
-        dirty: false,
-        error: false,
-        message: ''
-      }
-    });
+  const [form, setForm] = useState({
+    book: {
+      value: '',
+      dirty: false,
+      error: false,
+      message: ''
+    },
+    author: {
+      value: '',
+      dirty: false,
+      error: false,
+      message: ''
+    }
+  });
+
+  const [submitted, setSubmitted] = useState(false);
 
   // Update input fields onChange
   const onUpdateForm = (e) => {
     // Perform validation here
     let errorMessage = '';
 
-    if (e.target.name === 'book') {      
-      if (!e.target.value && form[e.target.name].dirty)
-        errorMessage = '*Author is required';
+    if (e.target.value === '') {
+      errorMessage = '*' + e.target.name + ' is required';
     }
-    
-    else if (e.target.name === 'author') {
-      const re = new RegExp(/^[a-zA-Z.\-' ]+$/);
-      if (!e.target.value && form[e.target.name].dirty)
-        errorMessage = '*Author is required';
-      else if (!re.test(e.target.value))
-        errorMessage = '*Name must not contain digits or special characters';
+    else {
+      if (e.target.name === 'author') {
+        const re = new RegExp(/^[a-zA-Z.\-' ]+$/);
+        if (!re.test(e.target.value))
+          errorMessage = '*Name must not contain digits or special characters';
+      }
     }
-
-    const updateFormState = {
+     
+    setForm({
       ...form,
       [e.target.name]: {
         ...form[e.target.name],
         value: e.target.value,
-        dirty: true,
         error: !!errorMessage,
         message: errorMessage
       }
-    };
-      
-    setForm(updateFormState);
+    });
   }
 
   const isFormValid = () => {
-    const validForm = Object.keys(form).reduce((result, key) => {
-      const {dirty, error, value} = form[key];
-      return result || (dirty && (error || value === ''));
-    }, false);
-
-    return validForm;
+    return Object.keys(form).reduce((isValid, key) => {
+      const field = form[key];
+      return isValid && !field.error && field.value !== '';
+    }, true);
   }
 
   const handleSubmit = (e) => {
     // Prevent default submit
     e.preventDefault(); 
+
+    // Set submitted state
+    setSubmitted(true);
     
     // Reset all fields in form
     if (isFormValid()) {
@@ -84,15 +83,16 @@ const BookForm = forwardRef(function BookForm({addBook, setAddBook}, ref) {
         }
       });
     }
-    else
-      alert('Invalid form', form);
-    
+    else {
+      alert('Invalid form');
+      console.log('Invalid form:', form);
+    }
+      
     // Set addBook state to false to trigger useClickOutside in App.js
     setAddBook(false);
   };
 
   
-
   return (addBook) ? (
     <Wrapper ref={ref}>
       <Form 
@@ -110,25 +110,24 @@ const BookForm = forwardRef(function BookForm({addBook, setAddBook}, ref) {
             id='book' 
             name='book'
             value={form.book.value}
-            // onMouseDown={(e) => {
-            //   setForm({
-            //     ...form, 
-            //     book: {
-            //       ...form.book,
-            //       dirty: true
-            //     }
-            //   });
-            // }}
+            onClick={() => {
+              setForm({
+                ...form, 
+                book: {
+                  ...form.book,
+                  dirty: true
+                }
+              });
+            }}
             onChange={e => {
               onUpdateForm(e);
             }}
-            autoFocus
             >
           </BookInput>
-          {form.book.error && form.book.dirty &&
-            <ErrorMessage htmlFor='error'>
-              {form.book.message}
-            </ErrorMessage>
+          {
+            (submitted && form.book.dirty && form.book.error) 
+            &&
+            <ErrorMessage message={form.book.message}/>
           }
         </Row>
         <Row>
@@ -137,16 +136,25 @@ const BookForm = forwardRef(function BookForm({addBook, setAddBook}, ref) {
             type='text' 
             id='author' 
             name='author'
-            value={form.author.value}  
+            value={form.author.value}
+            onClick={() => {
+              setForm({
+                ...form, 
+                author: {
+                  ...form.author,
+                  dirty: true
+                }
+              });
+            }}  
             onChange={e => {
               onUpdateForm(e);
             }}
           >
           </AuthorInput>
-          {form.author.error && form.author.dirty &&
-            <ErrorMessage htmlFor='error'>
-              {form.author.message}
-            </ErrorMessage>
+          {
+            (submitted && form.author.dirty && form.author.error) 
+            &&
+            <ErrorMessage message={form.author.message}/>
           }
         </Row>
         <Row>
@@ -166,6 +174,7 @@ const BookForm = forwardRef(function BookForm({addBook, setAddBook}, ref) {
         <Row>
           <SubmitButton 
             type='submit'
+            disabled={!isFormValid()}
           >
             Add book
           </SubmitButton>
@@ -193,11 +202,6 @@ const Row = styled.div`
   display: flex;
   flex-direction: column;
   gap: 4px;
-`;
-
-const ErrorMessage = styled.label`
-  font-size: 0.875rem;
-  color: red;
 `;
 
 const BookLabel = styled.label``;
