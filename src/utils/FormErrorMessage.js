@@ -1,12 +1,20 @@
 import React from 'react';
 import { styled } from 'styled-components';
 
-const ErrorMessage = ({ message }) => {
+const ErrorMessage = ({ 
+  message, submitted, inputDirty, inputError, inputValue 
+}) => {
   return (
-    <Label className='error-message' htmlFor='error'>
-      {message}
-    </Label>
-  );
+    (submitted && inputDirty && inputError)
+    || 
+    (submitted && inputValue === '')
+    )
+    ? (
+        <Label htmlFor='error'>
+          {message}
+        </Label>
+    ) 
+    : null;
 };
 
 const Label = styled.label`
