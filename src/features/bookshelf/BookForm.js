@@ -28,15 +28,13 @@ const BookForm = forwardRef(function BookForm({addBook, setAddBook}, ref) {
     // Perform validation here
     let errorMessage = '';
 
-    if (e.target.value === '') {
+    if (!e.target.value) {
       errorMessage = '*' + e.target.name + ' is required';
     }
-    else {
-      if (e.target.name === 'author') {
+    if (e.target.name === 'author') {
         const re = new RegExp(/^[a-zA-Z.\-' ]+$/);
         if (!re.test(e.target.value))
           errorMessage = '*Name must not contain digits or special characters';
-      }
     }
      
     setForm({
@@ -57,6 +55,27 @@ const BookForm = forwardRef(function BookForm({addBook, setAddBook}, ref) {
     }, true);
   }
 
+  const checkEmptyField = () => {
+    // Create a copy to setForm at the end if any state needs changes
+    let formCopy = { ...form };
+    let hasEmptyField = false;
+    
+    for (const key in formCopy) {
+      if (!formCopy[key].value) {
+        formCopy[key] = {
+          ...formCopy[key],
+          error: true,
+          message: '*' + key + ' must not be empty'
+        }
+        hasEmptyField = true;
+      }
+    }
+
+    if (hasEmptyField) {
+      setForm(formCopy);
+    }
+  }
+
   const handleSubmit = (e) => {
     // Prevent default submit
     e.preventDefault(); 
@@ -64,6 +83,8 @@ const BookForm = forwardRef(function BookForm({addBook, setAddBook}, ref) {
     // Set submitted state
     setSubmitted(true);
     
+    checkEmptyField();
+
     // Reset all fields in form
     if (isFormValid()) {
       console.log('Valid form', form);
@@ -82,17 +103,15 @@ const BookForm = forwardRef(function BookForm({addBook, setAddBook}, ref) {
           message: ''
         }
       });
+      
+      // Set addBook state to false to trigger useClickOutside in App.js
+      setAddBook(false);
     }
     else {
-      alert('Invalid form');
       console.log('Invalid form:', form);
     }
-      
-    // Set addBook state to false to trigger useClickOutside in App.js
-    setAddBook(false);
   };
 
-  
   return (addBook) ? (
     <Wrapper ref={ref}>
       <Form 
@@ -124,11 +143,13 @@ const BookForm = forwardRef(function BookForm({addBook, setAddBook}, ref) {
             }}
             >
           </BookInput>
-          {
-            (submitted && form.book.dirty && form.book.error) 
-            &&
-            <ErrorMessage message={form.book.message}/>
-          }
+          <ErrorMessage 
+            message={form.book.message}
+            submitted={submitted}
+            inputDirty={form.book.dirty}
+            inputError={form.book.error}
+            inputValue={form.book.value}
+          />
         </Row>
         <Row>
           <AuthorLabel htmlFor='author'>Author</AuthorLabel>
@@ -151,11 +172,13 @@ const BookForm = forwardRef(function BookForm({addBook, setAddBook}, ref) {
             }}
           >
           </AuthorInput>
-          {
-            (submitted && form.author.dirty && form.author.error) 
-            &&
-            <ErrorMessage message={form.author.message}/>
-          }
+          <ErrorMessage 
+            message={form.author.message}
+            submitted={submitted}
+            inputDirty={form.author.dirty}
+            inputError={form.author.error}
+            inputValue={form.author.value}
+          />
         </Row>
         <Row>
           <NoteLabel 
@@ -174,7 +197,11 @@ const BookForm = forwardRef(function BookForm({addBook, setAddBook}, ref) {
         <Row>
           <SubmitButton 
             type='submit'
-            disabled={!isFormValid()}
+            // disabled={!isFormValid()}
+            onClick={() => {
+              console.log('Submitted: ', submitted);
+              console.log(form);
+            }}
           >
             Add book
           </SubmitButton>
