@@ -31,10 +31,10 @@ const BookForm = forwardRef(function BookForm({addBook, setAddBook}, ref) {
     if (!e.target.value) {
       errorMessage = '*' + e.target.name + ' is required';
     }
-    if (e.target.name === 'author') {
-        const re = new RegExp(/^[a-zA-Z.\-' ]+$/);
-        if (!re.test(e.target.value))
-          errorMessage = '*Name must not contain digits or special characters';
+    else if (e.target.name === 'author') {
+      const re = new RegExp(/^[a-zA-Z.\-' ]+$/);
+      if (!re.test(e.target.value))
+        errorMessage = '*Name must not contain digits or special characters';
     }
      
     setForm({
@@ -104,7 +104,7 @@ const BookForm = forwardRef(function BookForm({addBook, setAddBook}, ref) {
         }
       });
       
-      // Set addBook state to false to trigger useClickOutside in App.js
+      // Set addBook state to false to trigger useClickOutside in App.js to close form
       setAddBook(false);
     }
     else {
@@ -129,6 +129,7 @@ const BookForm = forwardRef(function BookForm({addBook, setAddBook}, ref) {
             id='book' 
             name='book'
             value={form.book.value}
+            $showError={!!form.book.message}
             onClick={() => {
               setForm({
                 ...form, 
@@ -158,6 +159,7 @@ const BookForm = forwardRef(function BookForm({addBook, setAddBook}, ref) {
             id='author' 
             name='author'
             value={form.author.value}
+            $showError={!!form.author.message}
             onClick={() => {
               setForm({
                 ...form, 
@@ -240,9 +242,13 @@ const Input = styled.input`
   border-radius: 8px;
   background-color: hsl(185deg, 10%, 95%);
 
-  /* &:invalid {
-    outline: 2px solid red;
-  } */
+  ${p => p.$showError ?
+  `
+    outline: 1px solid red;
+  `
+  :
+  ``
+  };
 `;
 
 const BookInput = styled(Input)``;
