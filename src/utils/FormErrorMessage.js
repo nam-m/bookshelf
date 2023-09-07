@@ -5,16 +5,15 @@ const ErrorMessage = ({
   message, submitted, inputDirty, inputError, inputValue 
 }) => {
   return (
-    (submitted && inputDirty && inputError)
-    || 
-    (submitted && inputValue === '')
-    )
-    ? (
-        <Label htmlFor='error'>
-          {message}
-        </Label>
+    (submitted && (inputError ||inputValue === ''))
+    ? 
+    (
+      <Label htmlFor='error'>
+        {message}
+      </Label>
     ) 
-    : null;
+    : null
+  );
 };
 
 const Label = styled.label`

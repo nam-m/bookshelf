@@ -236,6 +236,7 @@ const Row = styled.div`
 const BookLabel = styled.label``;
 
 const Input = styled.input`
+  width: 100%;
   line-height: 1.5rem;
   padding: 8px;
   border: none;
