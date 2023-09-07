@@ -1,8 +1,8 @@
 import React from 'react';
 import { styled } from 'styled-components';
 
-const ErrorMessage = ({ 
-  message, submitted, inputDirty, inputError, inputValue 
+const FormErrorMessage = ({ 
+  message, submitted, inputError, inputValue 
 }) => {
   return (
     (submitted && (inputError ||inputValue === ''))
@@ -21,4 +21,4 @@ const Label = styled.label`
   color: red;
 `;
 
-export default ErrorMessage;
+export default FormErrorMessage;

@@ -1,24 +1,32 @@
 import React, { forwardRef, useState } from 'react';
 import styled from 'styled-components/macro';
+
 import CreateButton from '../../components/common/CreateButton';
 import ErrorMessage from '../../utils/FormErrorMessage';
+import BookFormRow from './BookFormRow';
+
+class FormInput {
+  constructor(
+    value = '',
+    dirty = false,
+    error = false,
+    message = ''
+  ) {
+    this.value = value;
+    this.dirty = dirty;
+    this.error = error;
+    this.message = message;
+  }
+}
 
 const BookForm = forwardRef(function BookForm({addBook, setAddBook}, ref) {
   // State and set state of form input fields
   // Error state and set state when input is invalid
+  const initialInput = new FormInput('', false, false, '');
+
   const [form, setForm] = useState({
-    book: {
-      value: '',
-      dirty: false,
-      error: false,
-      message: ''
-    },
-    author: {
-      value: '',
-      dirty: false,
-      error: false,
-      message: ''
-    }
+    book: initialInput,
+    author: initialInput,
   });
 
   const [submitted, setSubmitted] = useState(false);
@@ -90,18 +98,8 @@ const BookForm = forwardRef(function BookForm({addBook, setAddBook}, ref) {
       console.log('Valid form', form);
       // Reset form
       setForm({
-        book: {
-          value: '',
-          dirty: false,
-          error: false,
-          message: ''
-        },
-        author: {
-          value: '',
-          dirty: false,
-          error: false,
-          message: ''
-        }
+        book: initialInput,
+        author: initialInput,
       });
       
       // Set addBook state to false to trigger useClickOutside in App.js to close form
@@ -122,66 +120,22 @@ const BookForm = forwardRef(function BookForm({addBook, setAddBook}, ref) {
         noValidate
         onSubmit={(e) => handleSubmit(e)}
       >
-        <Row>
-          <BookLabel htmlFor='book'>Book</BookLabel>
-          <BookInput 
-            type='text' 
-            id='book' 
-            name='book'
-            value={form.book.value}
-            $showError={!!form.book.message}
-            onClick={() => {
-              setForm({
-                ...form, 
-                book: {
-                  ...form.book,
-                  dirty: true
-                }
-              });
-            }}
-            onChange={e => {
-              onUpdateForm(e);
-            }}
-            >
-          </BookInput>
-          <ErrorMessage 
-            message={form.book.message}
-            submitted={submitted}
-            inputDirty={form.book.dirty}
-            inputError={form.book.error}
-            inputValue={form.book.value}
-          />
-        </Row>
-        <Row>
-          <AuthorLabel htmlFor='author'>Author</AuthorLabel>
-          <AuthorInput 
-            type='text' 
-            id='author' 
-            name='author'
-            value={form.author.value}
-            $showError={!!form.author.message}
-            onClick={() => {
-              setForm({
-                ...form, 
-                author: {
-                  ...form.author,
-                  dirty: true
-                }
-              });
-            }}  
-            onChange={e => {
-              onUpdateForm(e);
-            }}
-          >
-          </AuthorInput>
-          <ErrorMessage 
-            message={form.author.message}
-            submitted={submitted}
-            inputDirty={form.author.dirty}
-            inputError={form.author.error}
-            inputValue={form.author.value}
-          />
-        </Row>
+        <BookFormRow 
+          name='book'
+          formInput={form.book}
+          form={form} 
+          setForm={setForm} 
+          onUpdateForm={onUpdateForm}
+          submitted={submitted}
+        />
+        <BookFormRow 
+          name='author'
+          formInput={form.author}
+          form={form} 
+          setForm={setForm} 
+          onUpdateForm={onUpdateForm}
+          submitted={submitted}
+        />
         <Row>
           <NoteLabel 
             htmlFor='notes'
