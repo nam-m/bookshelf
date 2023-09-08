@@ -3,39 +3,36 @@ import styled from 'styled-components/macro';
 
 import CreateButton from '../../components/common/CreateButton';
 import BookFormRow from './BookFormRow';
-class FormInput {
-  constructor(
-    value = '',
-    dirty = false,
-    error = false,
-    message = ''
-  ) {
-    this.value = value;
-    this.dirty = dirty;
-    this.error = error;
-    this.message = message;
-  }
-}
-
-class FormTemp {
-  constructor(
-    title = new FormInput(),
-    author = new FormInput(),
-    pages = new FormInput(),
-    image = new FormInput()
-  ) {
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.image = image;
-  }
-}
 
 const BookForm = forwardRef(function BookForm({addBook, setAddBook}, ref) {
   // State and set state of form input fields
   // Error state and set state when input is invalid
-  const newForm = new FormTemp();
-  const [form, setForm] = useState(newForm);
+  const [form, setForm] = useState({
+    title: {  
+      value: '',
+      dirty: false,
+      error: false,
+      message: ''
+    },
+    author: {
+      value: '',
+      dirty: false,
+      error: false,
+      message: ''
+    },
+    pages: {
+      value: '',
+      dirty: false,
+      error: false,
+      message: ''
+    },
+    image: {
+      value: '',
+      dirty: false,
+      error: false,
+      message: ''
+    }
+  });
 
   const [submitted, setSubmitted] = useState(false);
 
@@ -71,13 +68,10 @@ const BookForm = forwardRef(function BookForm({addBook, setAddBook}, ref) {
   }
 
   const isFormValid = () => {
-    return Object.keys(form)
-      .filter(key => key === 'image')
-      .reduce((isValid, key) => {
-        return isValid 
-          && !form[key].error 
-          && !form[key].value;
-      }, true);
+    const willCheckForm = Object.fromEntries(Object.entries(form).filter(([key]) => key !== 'image'));
+    return Object.keys(willCheckForm).reduce((isValid, key) => {
+      return isValid && !form[key].error && !form[key].value;
+    }, true);
   }
 
   const checkEmptyField = () => {
@@ -114,7 +108,32 @@ const BookForm = forwardRef(function BookForm({addBook, setAddBook}, ref) {
     if (isFormValid()) {
       console.log('Valid form', form);
       // Reset form
-      setForm(newForm);
+      setForm({
+        title: {
+          value: '',
+          dirty: false,
+          error: false,
+          message: ''
+        },
+        author: {
+          value: '',
+          dirty: false,
+          error: false,
+          message: ''
+        },
+        pages: {
+          value: '',
+          dirty: false,
+          error: false,
+          message: ''
+        },
+        image: {
+          value: '',
+          dirty: false,
+          error: false,
+          message: ''
+        }
+      });
       // Set addBook state to false to trigger useClickOutside in App.js to close form
       setAddBook(false);
     }
@@ -136,17 +155,15 @@ const BookForm = forwardRef(function BookForm({addBook, setAddBook}, ref) {
         <BookFormRow 
           name='title'
           type='text'
-          formInput={form.title}
-          form={form} 
-          setForm={setForm} 
+          form={form}
+          setForm={setForm}
           onUpdateForm={onUpdateForm}
           submitted={submitted}
         />
         <BookFormRow 
           name='author'
           type='text'
-          formInput={form.author}
-          form={form} 
+          form={form}
           setForm={setForm} 
           onUpdateForm={onUpdateForm}
           submitted={submitted}
@@ -164,7 +181,6 @@ const BookForm = forwardRef(function BookForm({addBook, setAddBook}, ref) {
           name='image'
           type='url'
           placeholder='Enter book cover image URL..'
-          formInput={form.image}
           form={form} 
           setForm={setForm} 
           onUpdateForm={onUpdateForm}

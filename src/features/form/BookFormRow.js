@@ -3,9 +3,11 @@ import styled from 'styled-components/macro';
 
 import FormErrorMessage from '../../utils/FormErrorMessage';
 
-const BookFormRow = ({name, type, formInput, form, setForm, onUpdateForm, placeholder, submitted}) => {
+const BookFormRow = ({name, type, form, setForm, onUpdateForm, placeholder, submitted}) => {
   // Label name for each row
+  const key = Object.keys(form).find(key => key === name);
   const labelName = name.charAt(0).toUpperCase() + name.slice(1);
+
   return (
     <Row>
       <Label htmlFor={name}>{labelName}</Label>
@@ -13,27 +15,27 @@ const BookFormRow = ({name, type, formInput, form, setForm, onUpdateForm, placeh
         type={type} 
         id={name} 
         name={name}
-        value={formInput.value}
+        value={form[key].value}
         placeholder={placeholder}
-        $showError={!!formInput.message}
+        $showError={!!form[key].message}
         onClick={() => {
           setForm({
             ...form, 
-            book: {
-              ...formInput,
+            [key]: {
+              ...form[key],
               dirty: true
             }
           });
         }}
-        onChange={e => {onUpdateForm(e);}}
+        onChange={e => onUpdateForm(e)}
         >
       </Input>
       <FormErrorMessage 
-        message={formInput.message}
         submitted={submitted}
-        inputDirty={formInput.dirty}
-        inputError={formInput.error}
-        inputValue={formInput.value}
+        message={form[key].message}
+        inputDirty={form[key].dirty}
+        inputError={form[key].error}
+        inputValue={form[key].value}
       />
     </Row>
   );
