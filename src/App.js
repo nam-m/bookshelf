@@ -9,7 +9,7 @@ import BookPreview from './features/bookshelf/book/BookPreview';
 import useClickOutside from './utils/ClickOutside';
 import popoverBackground from './utils/PopoverBackground';
 import PopoverWrapper from './components/common/PopoverWrapper';
-import BookForm from './features/bookshelf/BookForm';
+import BookForm from './features/form/BookForm';
 
 const App = () => {
   const [bookPreview, setBookPreview] = useState({});

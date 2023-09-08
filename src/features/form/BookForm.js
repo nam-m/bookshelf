@@ -2,9 +2,7 @@ import React, { forwardRef, useState } from 'react';
 import styled from 'styled-components/macro';
 
 import CreateButton from '../../components/common/CreateButton';
-import ErrorMessage from '../../utils/FormErrorMessage';
 import BookFormRow from './BookFormRow';
-
 class FormInput {
   constructor(
     value = '',
@@ -19,15 +17,25 @@ class FormInput {
   }
 }
 
+class FormTemp {
+  constructor(
+    title = new FormInput(),
+    author = new FormInput(),
+    pages = new FormInput(),
+    image = new FormInput()
+  ) {
+    this.title = title;
+    this.author = author;
+    this.pages = pages;
+    this.image = image;
+  }
+}
+
 const BookForm = forwardRef(function BookForm({addBook, setAddBook}, ref) {
   // State and set state of form input fields
   // Error state and set state when input is invalid
-  const initialInput = new FormInput('', false, false, '');
-
-  const [form, setForm] = useState({
-    book: initialInput,
-    author: initialInput,
-  });
+  const newForm = new FormTemp();
+  const [form, setForm] = useState(newForm);
 
   const [submitted, setSubmitted] = useState(false);
 
@@ -36,7 +44,8 @@ const BookForm = forwardRef(function BookForm({addBook, setAddBook}, ref) {
     // Perform validation here
     let errorMessage = '';
 
-    if (!e.target.value) {
+    if (!e.target.value 
+        && (e.target.name === 'title' || e.target.name === 'author')) {
       errorMessage = '*' + e.target.name + ' is required';
     }
     else if (e.target.name === 'author') {
@@ -59,7 +68,10 @@ const BookForm = forwardRef(function BookForm({addBook, setAddBook}, ref) {
   const isFormValid = () => {
     return Object.keys(form).reduce((isValid, key) => {
       const field = form[key];
-      return isValid && !field.error && field.value !== '';
+      return isValid 
+        && !field.error 
+        && (field.value !== '' 
+          && (key !== 'title' || key !== 'author'));
     }, true);
   }
 
@@ -69,7 +81,7 @@ const BookForm = forwardRef(function BookForm({addBook, setAddBook}, ref) {
     let hasEmptyField = false;
     
     for (const key in formCopy) {
-      if (!formCopy[key].value) {
+      if (!formCopy[key].value && (key === 'title' || key === 'author')) {
         formCopy[key] = {
           ...formCopy[key],
           error: true,
@@ -97,11 +109,7 @@ const BookForm = forwardRef(function BookForm({addBook, setAddBook}, ref) {
     if (isFormValid()) {
       console.log('Valid form', form);
       // Reset form
-      setForm({
-        book: initialInput,
-        author: initialInput,
-      });
-      
+      setForm(newForm);
       // Set addBook state to false to trigger useClickOutside in App.js to close form
       setAddBook(false);
     }
@@ -121,8 +129,9 @@ const BookForm = forwardRef(function BookForm({addBook, setAddBook}, ref) {
         onSubmit={(e) => handleSubmit(e)}
       >
         <BookFormRow 
-          name='book'
-          formInput={form.book}
+          name='title'
+          type='text'
+          formInput={form.title}
           form={form} 
           setForm={setForm} 
           onUpdateForm={onUpdateForm}
@@ -130,7 +139,27 @@ const BookForm = forwardRef(function BookForm({addBook, setAddBook}, ref) {
         />
         <BookFormRow 
           name='author'
+          type='text'
           formInput={form.author}
+          form={form} 
+          setForm={setForm} 
+          onUpdateForm={onUpdateForm}
+          submitted={submitted}
+        />
+        <BookFormRow 
+          name='pages'
+          type='text'
+          formInput={form.pages}
+          form={form} 
+          setForm={setForm} 
+          onUpdateForm={onUpdateForm}
+          submitted={submitted}
+        />
+        <BookFormRow 
+          name='image'
+          type='url'
+          placeholder='Enter book cover image URL..'
+          formInput={form.image}
           form={form} 
           setForm={setForm} 
           onUpdateForm={onUpdateForm}
@@ -154,10 +183,6 @@ const BookForm = forwardRef(function BookForm({addBook, setAddBook}, ref) {
           <SubmitButton 
             type='submit'
             // disabled={!isFormValid()}
-            onClick={() => {
-              console.log('Submitted: ', submitted);
-              console.log(form);
-            }}
           >
             Add book
           </SubmitButton>
@@ -169,7 +194,7 @@ const BookForm = forwardRef(function BookForm({addBook, setAddBook}, ref) {
 
 const Wrapper = styled.div`
   position: absolute;
-  inset: 18%;
+  inset: 15%;
   border-radius: 4px;
   background-color: white;
   padding: 64px;
@@ -187,8 +212,6 @@ const Row = styled.div`
   gap: 4px;
 `;
 
-const BookLabel = styled.label``;
-
 const Input = styled.input`
   width: 100%;
   line-height: 1.5rem;
@@ -205,12 +228,6 @@ const Input = styled.input`
   ``
   };
 `;
-
-const BookInput = styled(Input)``;
-
-const AuthorLabel = styled.label``;
-
-const AuthorInput = styled(Input)``;
 
 const NoteLabel = styled.label``;
 
