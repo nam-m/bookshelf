@@ -45,9 +45,8 @@ const BookForm = forwardRef(function BookForm({addBook, setAddBook}, ref) {
     let errorMessage = '';
     let re;
 
-    if (!e.target.value 
-        && (e.target.name === 'title' || e.target.name === 'author')) {
-      errorMessage = '*' + e.target.name + ' is required';
+    if (!e.target.value && e.target.name !== 'image') {
+      errorMessage = '*' + e.target.name + ' input is required';
     }
     else if (e.target.name === 'author') {
       re = new RegExp(/^[a-zA-Z.\-' ]+$/);
@@ -72,13 +71,13 @@ const BookForm = forwardRef(function BookForm({addBook, setAddBook}, ref) {
   }
 
   const isFormValid = () => {
-    return Object.keys(form).reduce((isValid, key) => {
-      const field = form[key];
-      return isValid 
-        && !field.error 
-        && (field.value !== '' 
-          && (key !== 'title' || key !== 'author'));
-    }, true);
+    return Object.keys(form)
+      .filter(key => key === 'image')
+      .reduce((isValid, key) => {
+        return isValid 
+          && !form[key].error 
+          && !form[key].value;
+      }, true);
   }
 
   const checkEmptyField = () => {
@@ -87,7 +86,7 @@ const BookForm = forwardRef(function BookForm({addBook, setAddBook}, ref) {
     let hasEmptyField = false;
     
     for (const key in formCopy) {
-      if (!formCopy[key].value && (key === 'title' || key === 'author')) {
+      if (!formCopy[key].value && key !== 'image') {
         formCopy[key] = {
           ...formCopy[key],
           error: true,
