@@ -43,17 +43,23 @@ const BookForm = forwardRef(function BookForm({addBook, setAddBook}, ref) {
   const onUpdateForm = (e) => {
     // Perform validation here
     let errorMessage = '';
+    let re;
 
     if (!e.target.value 
         && (e.target.name === 'title' || e.target.name === 'author')) {
       errorMessage = '*' + e.target.name + ' is required';
     }
     else if (e.target.name === 'author') {
-      const re = new RegExp(/^[a-zA-Z.\-' ]+$/);
+      re = new RegExp(/^[a-zA-Z.\-' ]+$/);
       if (!re.test(e.target.value))
         errorMessage = '*Name must not contain digits or special characters';
     }
-     
+    else if (e.target.name === 'pages') {
+      re = new RegExp(/^\d+$/);
+      if (!re.test(e.target.value))
+        errorMessage = '*Pages must be numbers only';
+    }
+    
     setForm({
       ...form,
       [e.target.name]: {
