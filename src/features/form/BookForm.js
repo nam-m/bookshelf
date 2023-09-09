@@ -171,7 +171,6 @@ const BookForm = forwardRef(function BookForm({addBook, setAddBook}, ref) {
         <BookFormRow 
           name='pages'
           type='text'
-          formInput={form.pages}
           form={form} 
           setForm={setForm} 
           onUpdateForm={onUpdateForm}

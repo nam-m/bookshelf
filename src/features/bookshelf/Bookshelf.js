@@ -20,19 +20,21 @@ const Bookshelf = ({
   //     .sort();
   // }
 
-  const sortBooksById = () => {
-    const sortedBooks = [...sortBooks].sort((currentBook, nextBook) => {
-      if (sortId !== 'manual' && sortId !== 'time') {
-        if (currentBook[sortId] > nextBook[sortId]) {
+  const sortBooksById = (sortValue) => {
+    if (sortValue !== 'manual' && sortValue !== 'time') {
+      const sortedBooks = [...sortBooks].sort((currentBook, nextBook) => {
+        if (currentBook[sortValue] > nextBook[sortValue]) {
           return 1;
         }
-        else if (currentBook[sortId] < nextBook[sortId]) {
+        else if (currentBook[sortValue] < nextBook[sortValue]) {
           return -1;
         }
-      }
-      return 0;
-    });
-    setSortBooks(sortedBooks);
+        return 0;
+      });
+      console.log('Sort ID: ', sortValue);
+      console.log(sortedBooks);
+      setSortBooks(sortedBooks);
+    }
   }
 
   return (
@@ -47,7 +49,7 @@ const Bookshelf = ({
             value={sortId}
             onChange={e => {
               setSortId(e.target.value);
-              sortBooksById();
+              sortBooksById(e.target.value);
             }}
           >
             <option value='time'>Recent</option>
