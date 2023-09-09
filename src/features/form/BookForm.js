@@ -68,9 +68,9 @@ const BookForm = forwardRef(function BookForm({addBook, setAddBook}, ref) {
   }
 
   const isFormValid = () => {
-    const willCheckForm = Object.fromEntries(Object.entries(form).filter(([key]) => key !== 'image'));
-    return Object.keys(willCheckForm).reduce((isValid, key) => {
-      return isValid && !form[key].error && !form[key].value;
+    const checkForm = Object.fromEntries(Object.entries(form).filter(([key]) => key !== 'image'));
+    return Object.keys(checkForm).reduce((isValid, key) => {
+      return isValid && !checkForm[key].error && checkForm[key].value;
     }, true);
   }
 
