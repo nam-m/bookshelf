@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const BookView = ({viewBooks, setViewBooks}) => {
+const ViewBook = ({viewBooks, setViewBooks}) => {
   return (
     <Wrapper>
       <Checkbox 
@@ -54,4 +54,4 @@ const Checkbox = styled.input`
   }
 `;
 
-export default BookView;
+export default ViewBook;
