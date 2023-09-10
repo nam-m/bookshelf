@@ -2,8 +2,8 @@ import React from 'react';
 import styled from 'styled-components/macro';
 
 import Book from './book/Book';
-import BookSort from './SortBook';
-import BookView from './ViewBook';
+import SortBook from './SortBook';
+import ViewBook from './ViewBook';
 import AddBook from './AddBook';
 
 const Bookshelf = ({
@@ -44,7 +44,7 @@ const Bookshelf = ({
         <BookStatus>{sortBooks.length} books</BookStatus>
         <ViewOptions>
           <AddBook setAddBook={setAddBook}/>
-          <BookSort
+          <SortBook
             label='Sort'
             value={sortId}
             onChange={e => {
@@ -56,14 +56,14 @@ const Bookshelf = ({
             <option value='title'>Title</option>
             <option value='author'>Author</option>
             <option value='manual'>Manually</option>
-          </BookSort>
-          <BookView 
+          </SortBook>
+          <ViewBook 
             viewBooks={viewBooks} 
             setViewBooks={setViewBooks}
           />
         </ViewOptions>
       </ViewTray>
-      {/* Pass state `viewBooks` to change book view based on <BookView /> */}
+      {/* Pass state `viewBooks` to change book view based on <ViewBook /> */}
       <BookGrid $viewBooks={viewBooks}>
         {/* Map fields of each instance `book` in sortBooks to <BookWrapper />
           , which contains <Book /> */}

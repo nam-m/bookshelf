@@ -3,11 +3,13 @@ import { useState } from 'react';
 import styled from 'styled-components/macro'
 
 import Bookshelf from '../features/bookshelf/Bookshelf';
+import { BookStorage } from '../features/bookshelf/BookStorage';
 import BOOKS from '../data';
 
 const Main = ({showPreview, setShowPreview, setBookPreview, setAddBook}) => {
   const [sortId, setSortId] = useState('manual');
-  const [sortBooks, setSortBooks] = useState(BOOKS);
+  const bookStorage = new BookStorage();
+  const [sortBooks, setSortBooks] = useState(bookStorage.books);
   const [viewBooks, setViewBooks] = useState(false);
 
   return (

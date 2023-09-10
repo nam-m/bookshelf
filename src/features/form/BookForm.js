@@ -3,6 +3,7 @@ import styled from 'styled-components/macro';
 
 import CreateButton from '../../components/common/CreateButton';
 import BookFormRow from './BookFormRow';
+import { Book, BookStorage } from '../bookshelf/BookStorage';
 
 const BookForm = forwardRef(function BookForm({addBook, setAddBook}, ref) {
   // State and set state of form input fields
@@ -107,6 +108,15 @@ const BookForm = forwardRef(function BookForm({addBook, setAddBook}, ref) {
     // Reset all fields in form
     if (isFormValid()) {
       console.log('Valid form', form);
+
+      //Store new book
+      BookStorage.addBook({
+        title: form.title.value,
+        author: form.author.value,
+        pages: form.pages.value,
+        imageSrc: form.image.value 
+      })
+
       // Reset form
       setForm({
         title: {
