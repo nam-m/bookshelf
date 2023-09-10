@@ -5,7 +5,7 @@ import CreateButton from '../../components/common/CreateButton';
 import BookFormRow from './BookFormRow';
 import { Book, BookStorage } from '../bookshelf/BookStorage';
 
-const BookForm = forwardRef(function BookForm({addBook, setAddBook}, ref) {
+const BookForm = forwardRef(function BookForm({bookStorage, setSortBooks, addBook, setAddBook}, ref) {
   // State and set state of form input fields
   // Error state and set state when input is invalid
   const [form, setForm] = useState({
@@ -110,12 +110,15 @@ const BookForm = forwardRef(function BookForm({addBook, setAddBook}, ref) {
       console.log('Valid form', form);
 
       //Store new book
-      BookStorage.addBook({
-        title: form.title.value,
-        author: form.author.value,
-        pages: form.pages.value,
-        imageSrc: form.image.value 
-      })
+      const newBook = new Book(
+        form.title.value,
+        form.author.value,
+        form.pages.value,
+        form.image.value 
+      );
+      
+      bookStorage.addBook(newBook);
+      setSortBooks(bookStorage.books);
 
       // Reset form
       setForm({

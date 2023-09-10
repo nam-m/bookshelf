@@ -10,11 +10,15 @@ import useClickOutside from './utils/ClickOutside';
 import popoverBackground from './utils/PopoverBackground';
 import PopoverWrapper from './components/common/PopoverWrapper';
 import BookForm from './features/form/BookForm';
+import { BookStorage } from './features/bookshelf/BookStorage';
 
 const App = () => {
   const [bookPreview, setBookPreview] = useState({});
   const [showPreview, setShowPreview] = useState(false);
   const [addBook, setAddBook] = useState(false);
+  const bookStorage = new BookStorage();
+  const [sortBooks, setSortBooks] = useState(bookStorage.books);
+
   const previewRef = useRef();
   const addRef = useRef();
   /* Prevent setShowPreview re-rendering by using arrow function */
@@ -31,7 +35,9 @@ const App = () => {
         setShowPreview={setShowPreview}
         setBookPreview={setBookPreview}
         setAddBook={setAddBook}
-        />
+        sortBooks={sortBooks}
+        setSortBooks={setSortBooks}
+      />
       <Footer />
       <PreviewWrapper $showPreview={showPreview}>
         <BookPreview 
@@ -42,6 +48,8 @@ const App = () => {
       </PreviewWrapper>
       <AddBookWrapper $addBook={addBook}>
         <BookForm 
+          bookStorage={bookStorage}
+          setSortBooks={setSortBooks}
           addBook={addBook}
           setAddBook={setAddBook}
           ref={addRef}
