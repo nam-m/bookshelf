@@ -31,17 +31,15 @@ const Bookshelf = ({
         }
         return 0;
       });
-      console.log('Sort ID: ', sortValue);
-      console.log(sortedBooks);
       setSortBooks(sortedBooks);
     }
   }
-
+  
   return (
     <Wrapper>
       {/* Tray on top of book grid to provide status & viewing options */}
       <ViewTray>
-        <BookStatus>{sortBooks.length} books</BookStatus>
+        <BookStatus>{sortBooks.length} {(sortBooks.length > 1) ? 'books' : 'book'}</BookStatus>
         <ViewOptions>
           <AddBook setAddBook={setAddBook}/>
           <SortBook

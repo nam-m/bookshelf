@@ -3,9 +3,9 @@ import styled from 'styled-components/macro';
 
 import CreateButton from '../../components/common/CreateButton';
 import BookFormRow from './BookFormRow';
-import { Book, BookStorage } from '../bookshelf/BookStorage';
+import { Book } from '../bookshelf/BookStorage';
 
-const BookForm = forwardRef(function BookForm({bookStorage, setSortBooks, addBook, setAddBook}, ref) {
+const BookForm = forwardRef(function BookForm({sortBooks, setSortBooks, addBook, setAddBook}, ref) {
   // State and set state of form input fields
   // Error state and set state when input is invalid
   const [form, setForm] = useState({
@@ -117,8 +117,7 @@ const BookForm = forwardRef(function BookForm({bookStorage, setSortBooks, addBoo
         form.image.value 
       );
       
-      bookStorage.addBook(newBook);
-      setSortBooks(bookStorage.books);
+      setSortBooks([...sortBooks, newBook]);
 
       // Reset form
       setForm({

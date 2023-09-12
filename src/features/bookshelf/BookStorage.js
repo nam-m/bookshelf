@@ -1,3 +1,7 @@
+import React from 'react';
+import { useState } from 'react';
+
+
 export class Book {
   constructor(
     title = '',
@@ -12,7 +16,7 @@ export class Book {
   }
 }
 
-export class BookStorage {
+export class BookStorage {  
   constructor (){
     this.books = [];
   }
@@ -20,6 +24,10 @@ export class BookStorage {
   addBook(newBook) {
     if (!this.hasBook(newBook)) {
       this.books.push(newBook);
+      // Add new book to localStorage with key as <title-author>
+      localStorage.setItem(
+        newBook.title.concat('-', newBook.title)
+        , JSON.stringify(newBook));
     }
   }
 
