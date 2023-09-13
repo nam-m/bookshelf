@@ -226,8 +226,12 @@ const BookForm = forwardRef(function BookForm({sortBooks, setSortBooks, addBook,
 
 const Wrapper = styled.div`
   position: absolute;
-  inset: 15%;
-  border-radius: 4px;
+  display: flex;
+  inset: 0;
+  margin: auto;
+  width: max-content;
+  height: max-content;
+  border-radius: 12px;
   background-color: white;
   padding: 64px;
 `;
