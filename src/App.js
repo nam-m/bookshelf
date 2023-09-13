@@ -62,8 +62,14 @@ const App = () => {
   );
 };
 
-const PreviewWrapper = styled(PopoverWrapper)``;
+const PreviewWrapper = styled(PopoverWrapper)`
+  /* Make it visible when passed prop is true and vice versa*/
+  visibility: ${p => p.$showPreview ? 'visible' : 'hidden'};
+`;
 
-const AddBookWrapper = styled(PopoverWrapper)``;
+const AddBookWrapper = styled(PopoverWrapper)`
+  /* Make it visible when passed prop is true and vice versa*/
+  visibility: ${p => p.$addBook ? 'visible' : 'hidden'};
+`;
 
 export default App;

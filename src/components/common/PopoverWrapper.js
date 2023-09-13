@@ -9,9 +9,6 @@ const PopoverWrapper = styled.div`
   overflow: auto;
   /* Make background more opague when popover is on */
   background: hsl(0deg 0% 0% / 0.35);
-
-  /* Make it visible when passed prop is true and vice versa*/
-  visibility: ${p => (p.$showPreview || p.$addBook) ? 'visible' : 'hidden'};
 `;
 
 export default PopoverWrapper;
