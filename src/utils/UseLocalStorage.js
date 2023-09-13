@@ -13,11 +13,11 @@ const useLocalStorage = (key, initialValue) => {
   });
 
 // Save new key-value pair to localStorage every time key or value changes
-useEffect(() => {
+  useEffect(() => {
     localStorage.setItem(key, JSON.stringify(value));
   }, [key, value]);
- 
-return [value, setValue];
+  
+  return [value, setValue];
 }
 
 export default useLocalStorage;
