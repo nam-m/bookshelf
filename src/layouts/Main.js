@@ -27,11 +27,6 @@ const Main = ({showPreview, setShowPreview, setBookPreview, setAddBook, sortBook
 };
 
 const MainWrapper = styled.main`
-  /* Center the wrapper by setting left & right margins to auto*/
-  /* position: relative; */
-  margin-left: auto;
-  margin-right: auto;
-  padding-top: 16px;
   height: 100%;
 `;
 
