@@ -21,12 +21,36 @@ const SideBar = () => {
 const Wrapper = styled.aside`
   display: flex;
   flex-direction: column;
+  /* gap: 32px; */
 `;
 
-const CreateCategory = styled(CreateButton)``;
+const Item = styled.div`
+  --item-width: 8em;
 
-const AllBooks = styled.div``;
+  width: 100%;
+  padding: 16px 8px;
+  border-radius: 0 calc(var(--item-width)/2) calc(var(--item-width)/2) 0;
+;
+  border: none;
+  cursor: pointer;
+  
+  &:hover {
+    background-color: hsl(16deg, 100%, 60%);
+    font-weight: 700;
+    color: white;
+  }
 
-const Category = styled.div``;
+  &:focus {
+    background-color: hsl(16deg, 100%, 50%);
+    font-weight: 700;
+    color: white;
+  }
+`;
+
+const CreateCategory = styled(Item)``;
+
+const AllBooks = styled(Item)``;
+
+const Category = styled(Item)``;
 
 export default SideBar;
