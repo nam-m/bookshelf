@@ -12,6 +12,7 @@ import PopoverWrapper from './components/common/PopoverWrapper';
 import BookForm from './features/form/BookForm';
 import { BookStorage } from './features/bookshelf/BookStorage';
 import useLocalStorage from './utils/UseLocalStorage';
+import SideBar from './layouts/SideBar';
 
 const App = () => {
   const [bookPreview, setBookPreview] = useState({});
@@ -31,17 +32,22 @@ const App = () => {
   popoverBackground(showPreview);
 
   return (
-    <>
-      <Header />
-      <Main
-        showPreview={showPreview} 
-        setShowPreview={setShowPreview}
-        setBookPreview={setBookPreview}
-        setAddBook={setAddBook}
-        sortBooks={sortBooks}
-        setSortBooks={setSortBooks}
-      />
-      <Footer />
+    <Wrapper>
+      <LeftColumn>
+        <SideBar/>
+      </LeftColumn>
+      <MainColumn>
+        <Header />
+        <Main
+          showPreview={showPreview} 
+          setShowPreview={setShowPreview}
+          setBookPreview={setBookPreview}
+          setAddBook={setAddBook}
+          sortBooks={sortBooks}
+          setSortBooks={setSortBooks}
+        />
+        <Footer />
+      </MainColumn>
       <PreviewWrapper $showPreview={showPreview}>
         <BookPreview 
           bookPreview={bookPreview}
@@ -58,9 +64,22 @@ const App = () => {
           ref={addRef}
         />
       </AddBookWrapper>
-    </>
+    </Wrapper>
   );
 };
+
+const Wrapper = styled.div`
+  display: flex;
+  min-height: 100%;
+`;
+
+const LeftColumn = styled.div`
+  flex: 1 1 250px;
+  border-right: 1px solid hsl(120deg 5% 5%);
+`;
+
+const MainColumn = styled.div`
+`;
 
 const PreviewWrapper = styled(PopoverWrapper)`
   /* Make it visible when passed prop is true and vice versa*/
