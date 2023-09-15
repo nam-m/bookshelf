@@ -10,7 +10,6 @@ import useClickOutside from './utils/UseClickOutside';
 import popoverBackground from './utils/PopoverBackground';
 import PopoverWrapper from './components/common/PopoverWrapper';
 import BookForm from './features/form/BookForm';
-import { BookStorage } from './features/bookshelf/BookStorage';
 import useLocalStorage from './utils/UseLocalStorage';
 import SideBar from './layouts/SideBar';
 
@@ -79,6 +78,11 @@ const LeftColumn = styled.div`
 `;
 
 const MainColumn = styled.div`
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding-left: 80px;
+  padding-right: 80px;
 `;
 
 const PreviewWrapper = styled(PopoverWrapper)`

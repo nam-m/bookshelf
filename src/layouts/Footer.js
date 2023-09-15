@@ -2,27 +2,23 @@ import React from 'react'
 import styled from 'styled-components/macro'
 
 const Footer = () => {
-    return (
-      <footer>
-        <Wrapper>
-          <Info>
-            &copy;2023 Nam Mai | All Rights Reserved
-          </Info>
-        </Wrapper>
-      </footer>
-    );
+  return (
+    <FooterWrapper>
+      <Info>
+        &copy;2023 Nam Mai | All Rights Reserved
+      </Info>
+    </FooterWrapper>
+  );
 };
 
-const Wrapper = styled.div`
+const FooterWrapper = styled.footer`
   /* Placeholder height */
-  height: 100px;
-  margin-left: auto;
-  margin-right: auto;
+  height: 100px;  
+  border-top: 1px solid hsl(120deg 5% 5%);
   padding: 0 80px;
   display: flex;
   justify-content: center;
   align-items: center;
-  border-top: 1px solid hsl(120deg 5% 5%);
 `;
 
 const Info = styled.p`

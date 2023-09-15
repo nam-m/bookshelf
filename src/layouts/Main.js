@@ -9,32 +9,30 @@ const Main = ({showPreview, setShowPreview, setBookPreview, setAddBook, sortBook
   const [viewBooks, setViewBooks] = useState(false);
 
   return (
-    <main>
-      <Wrapper>
-        <Bookshelf 
-          sortId={sortId} 
-          setSortId={setSortId}
-          sortBooks={sortBooks}
-          setSortBooks={setSortBooks}
-          viewBooks={viewBooks}
-          setViewBooks={setViewBooks}
-          showPreview={showPreview}
-          setShowPreview={setShowPreview}
-          setBookPreview={setBookPreview}
-          setAddBook={setAddBook}
-        />
-      </Wrapper>
-    </main>
+    <MainWrapper>
+      <Bookshelf 
+        sortId={sortId} 
+        setSortId={setSortId}
+        sortBooks={sortBooks}
+        setSortBooks={setSortBooks}
+        viewBooks={viewBooks}
+        setViewBooks={setViewBooks}
+        showPreview={showPreview}
+        setShowPreview={setShowPreview}
+        setBookPreview={setBookPreview}
+        setAddBook={setAddBook}
+      />
+    </MainWrapper>
     );
 };
 
-const Wrapper = styled.div`
+const MainWrapper = styled.main`
   /* Center the wrapper by setting left & right margins to auto*/
-  position: relative;
+  /* position: relative; */
   margin-left: auto;
   margin-right: auto;
-  padding: 0 80px;
-  display: flex;
+  padding-top: 16px;
+  height: 100%;
 `;
 
 export default Main;

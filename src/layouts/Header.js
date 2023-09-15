@@ -3,29 +3,24 @@ import styled from 'styled-components/macro'
 
 const Header = () => {
   return (
-    <header>
-      <Wrapper>
-        <Nav>
-          <NavItem href='/Home'>Home</NavItem>
-          <NavItem href='/Collections'>Collections</NavItem>
-          <NavItem href='/Notes'>Notes</NavItem>
-        </Nav>
-        <UserGroup>
-          <SearchLabel htmlFor='search'/>
-          <SearchBar type='text' id='search' placeholder='Search...'/>
-          <Profile>Profile</Profile>
-        </UserGroup>
-      </Wrapper>
-    </header>
+    <HeaderWrapper>
+      <Nav>
+        <NavItem href='/Home'>Home</NavItem>
+        <NavItem href='/Collections'>Collections</NavItem>
+        <NavItem href='/Notes'>Notes</NavItem>
+      </Nav>
+      <UserGroup>
+        <SearchLabel htmlFor='search'/>
+        <SearchBar type='text' id='search' placeholder='Search...'/>
+        <Profile>Profile</Profile>
+      </UserGroup>
+    </HeaderWrapper>
   );
 };
 
-const Wrapper = styled.div`
-  margin-left: auto;
-  margin-right: auto;
-  padding: 80px;
+const HeaderWrapper = styled.header`
   padding-top: 32px;
-  padding-bottom: 32px;
+  padding-bottom: 16px;
   display: flex;
   justify-content: space-between;
   align-items: baseline;
