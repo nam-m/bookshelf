@@ -32,11 +32,16 @@ const App = () => {
 
   return (
     <Wrapper>
-      <LeftColumn>
+      <LeftColumnTop>
+
+      </LeftColumnTop>
+      <LeftColumnBot>
         <SideBar/>
-      </LeftColumn>
-      <MainColumn>
+      </LeftColumnBot>
+      <MainColumnTop>
         <Header />
+      </MainColumnTop>
+      <MainColumnBot>
         <Main
           showPreview={showPreview} 
           setShowPreview={setShowPreview}
@@ -46,7 +51,7 @@ const App = () => {
           setSortBooks={setSortBooks}
         />
         <Footer />
-      </MainColumn>
+      </MainColumnBot>
       <PreviewWrapper $showPreview={showPreview}>
         <BookPreview 
           bookPreview={bookPreview}
@@ -68,21 +73,36 @@ const App = () => {
 };
 
 const Wrapper = styled.div`
-  display: flex;
   min-height: 100%;
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-columns: 280px 1fr;
+  grid-template-rows: 100px 1fr;
 `;
 
-const LeftColumn = styled.div`
-  flex: 1 1 250px;
+const LeftColumnTop = styled.div`
   border-right: 1px solid hsl(120deg 5% 5%);
 `;
 
-const MainColumn = styled.div`
+const LeftColumnBot = styled.div`
+  /* flex: 1 1 400px; */
+  padding-top: 16px;
+    padding-right: 16px;
+  border-right: 1px solid hsl(120deg 5% 5%);
+`;
+
+const MainColumnTop = styled.div`
+  padding-left: 40px;
+  padding-right: 40px;
+`;
+
+const MainColumnBot = styled.div`
   min-height: 100%;
   display: flex;
   flex-direction: column;
-  padding-left: 80px;
-  padding-right: 80px;
+  padding-top: 16px;
+  padding-left: 40px;
+  padding-right: 40px;
 `;
 
 const PreviewWrapper = styled(PopoverWrapper)`
