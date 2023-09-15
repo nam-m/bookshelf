@@ -14,7 +14,7 @@ const GlobalStyles = createGlobalStyle`
 	}
 
 	/* Use percentage-based heights*/
-	html, body {
+	html, body, #root {
 		height: 100%;
 	}
 
