@@ -87,7 +87,7 @@ const LeftColumnTop = styled.div`
 const LeftColumnBot = styled.div`
   /* flex: 1 1 400px; */
   padding-top: 16px;
-    padding-right: 16px;
+  padding-right: 16px;
   border-right: 1px solid hsl(120deg 5% 5%);
 `;
 

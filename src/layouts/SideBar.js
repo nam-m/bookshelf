@@ -5,15 +5,15 @@ import CreateButton from '../components/common/CreateButton';
 const SideBar = () => {
   return (
     <Wrapper>
-      <CreateCategory>
-        Create new category
-      </CreateCategory>
-      <AllBooks>
+      <CreateShelf>
+        Create new shelf
+      </CreateShelf>
+      <Shelf>
         All books
-      </AllBooks>
-      <Category>
+      </Shelf>
+      <Shelf>
         Category 1
-      </Category>
+      </Shelf>
     </Wrapper>
   );
 };
@@ -28,7 +28,7 @@ const Item = styled.div`
   --item-width: 8em;
 
   width: 100%;
-  padding: 16px 8px;
+  padding: 16px;
   border-radius: 0 calc(var(--item-width)/2) calc(var(--item-width)/2) 0;
 ;
   border: none;
@@ -47,10 +47,8 @@ const Item = styled.div`
   }
 `;
 
-const CreateCategory = styled(Item)``;
+const CreateShelf = styled(Item)``;
 
-const AllBooks = styled(Item)``;
-
-const Category = styled(Item)``;
+const Shelf = styled(Item)``;
 
 export default SideBar;
