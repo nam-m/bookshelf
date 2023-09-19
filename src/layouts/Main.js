@@ -4,7 +4,7 @@ import styled from 'styled-components/macro'
 
 import Bookshelf from '../features/bookshelf/Bookshelf';
 
-const Main = ({showPreview, setShowPreview, setBookPreview, setAddBook, sortBooks, setSortBooks}) => {
+const Main = ({showPreview, setShowPreview, setBookPreview, setAddBook, books, setBooks}) => {
   const [sortId, setSortId] = useState('manual');
   const [viewBooks, setViewBooks] = useState(false);
 
@@ -13,8 +13,8 @@ const Main = ({showPreview, setShowPreview, setBookPreview, setAddBook, sortBook
       <Bookshelf 
         sortId={sortId} 
         setSortId={setSortId}
-        sortBooks={sortBooks}
-        setSortBooks={setSortBooks}
+        books={books}
+        setBooks={setBooks}
         viewBooks={viewBooks}
         setViewBooks={setViewBooks}
         showPreview={showPreview}

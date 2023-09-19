@@ -8,30 +8,37 @@ import AddBook from './AddBook';
 
 const Bookshelf = ({
   sortId, setSortId, 
-  sortBooks, setSortBooks,
+  books, setBooks,
   viewBooks, setViewBooks,
   setShowPreview,
   setBookPreview,
   setAddBook}) => {
-  // const sortAuthors = (authorNames) => {
-  //   return authorNames
-  //     .map(authorName => 
-  //       authorName.split(" ").toReversed().join(" "))
-  //     .sort();
-  // }
+
+  const compareName = (name) => {
+    return name.toLowerCase().split(" ").toReversed().join(" ");
+  }
 
   const sortBooksById = (sortValue) => {
-    if (sortValue !== 'manual' && sortValue !== 'time') {
-      const sortedBooks = [...sortBooks].sort((currentBook, nextBook) => {
-        if (currentBook[sortValue] > nextBook[sortValue]) {
+    let sortedBooks;
+    if (sortValue === 'author') {
+      sortedBooks = [...books].sort((currentBook, nextBook) => {
+        if (compareName(currentBook[sortValue]) > compareName(nextBook[sortValue]))
           return 1;
-        }
-        else if (currentBook[sortValue] < nextBook[sortValue]) {
+        if (compareName(currentBook[sortValue]) < compareName(nextBook[sortValue]))
           return -1;
-        }
         return 0;
       });
-      setSortBooks(sortedBooks);
+      setBooks(sortedBooks);
+    }
+    else if (sortValue === 'title') {
+      sortedBooks = [...books].sort((currentBook, nextBook) => {
+        if (currentBook[sortValue] > nextBook[sortValue])
+          return 1;
+        if (currentBook[sortValue] < nextBook[sortValue])
+          return -1;
+        return 0;
+      });
+      setBooks(sortedBooks);
     }
   }
   
@@ -39,7 +46,9 @@ const Bookshelf = ({
     <Wrapper>
       {/* Tray on top of book grid to provide status & viewing options */}
       <ViewTray>
-        <BookStatus>{sortBooks.length} {(sortBooks.length > 1) ? 'books' : 'book'}</BookStatus>
+        <BookStatus>
+          {books.length} {(books.length > 1) ? 'books' : 'book'}
+        </BookStatus>
         <ViewOptions>
           <AddBook setAddBook={setAddBook}/>
           <SortBook
@@ -63,9 +72,9 @@ const Bookshelf = ({
       </ViewTray>
       {/* Pass state `viewBooks` to change book view based on <ViewBook /> */}
       <BookGrid $viewBooks={viewBooks}>
-        {/* Map fields of each instance `book` in sortBooks to <BookWrapper />
+        {/* Map fields of each instance `book` in books to <BookWrapper />
           , which contains <Book /> */}
-        {sortBooks.map(book =>
+        {books.map(book => 
           <Book
             book = {{...book}}
             key={book.title}

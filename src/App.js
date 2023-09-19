@@ -18,9 +18,9 @@ const App = () => {
   const [showPreview, setShowPreview] = useState(false);
   const [addBook, setAddBook] = useState(false);
   // const bookStorage = new BookStorage();
-  // const [sortBooks, setSortBooks] = useState([bookStorage.books]);
-  // const [sortBooks, setSortBooks] = useState([]);
-  const [sortBooks, setSortBooks] = useLocalStorage('books', []);
+  // const [books, setBooks] = useState([bookStorage.books]);
+  // const [books, setBooks] = useState([]);
+  const [books, setBooks] = useLocalStorage('books', []);
 
   const previewRef = useRef();
   const addRef = useRef();
@@ -47,8 +47,8 @@ const App = () => {
           setShowPreview={setShowPreview}
           setBookPreview={setBookPreview}
           setAddBook={setAddBook}
-          sortBooks={sortBooks}
-          setSortBooks={setSortBooks}
+          books={books}
+          setBooks={setBooks}
         />
         <Footer />
       </MainColumnBot>
@@ -61,8 +61,8 @@ const App = () => {
       </PreviewWrapper>
       <AddBookWrapper $addBook={addBook}>
         <BookForm 
-          sortBooks={sortBooks}
-          setSortBooks={setSortBooks}
+          books={books}
+          setBooks={setBooks}
           addBook={addBook}
           setAddBook={setAddBook}
           ref={addRef}
