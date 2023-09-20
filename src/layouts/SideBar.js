@@ -5,7 +5,9 @@ import CreateButton from '../components/common/CreateButton';
 const SideBar = () => {
   return (
     <Wrapper>
-      <CreateShelf>
+      <CreateShelf 
+        as='button'
+      >
         Create new shelf
       </CreateShelf>
       <Shelf>
@@ -47,7 +49,9 @@ const Item = styled.div`
   }
 `;
 
-const CreateShelf = styled(Item)``;
+const CreateShelf = styled(Item)`
+  text-align: start;
+`;
 
 const Shelf = styled(Item)``;
 
