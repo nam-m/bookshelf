@@ -12,6 +12,7 @@ import PopoverWrapper from './components/common/PopoverWrapper';
 import BookForm from './features/form/BookForm';
 import useLocalStorage from './utils/UseLocalStorage';
 import SideBar from './layouts/SideBar';
+import SHELVES from './data/ShelfData';
 
 const App = () => {
   const [bookPreview, setBookPreview] = useState({});
@@ -36,7 +37,7 @@ const App = () => {
 
       </LeftColumnTop>
       <LeftColumnBot>
-        <SideBar/>
+        <SideBar shelves={SHELVES}/>
       </LeftColumnBot>
       <MainColumnTop>
         <Header />

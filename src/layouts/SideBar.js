@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components/macro';
 import CreateButton from '../components/common/CreateButton';
 
-const SideBar = () => {
+const SideBar = ({shelves}) => {
   return (
     <Wrapper>
       <CreateShelf 
@@ -10,12 +10,20 @@ const SideBar = () => {
       >
         Create new shelf
       </CreateShelf>
-      <Shelf>
-        All books
-      </Shelf>
-      <Shelf>
-        Category 1
-      </Shelf>
+      <ShelfList>
+        <AllBooks>
+          All books
+        </AllBooks>
+        {shelves.map(shelf =>
+          <Shelf
+            id={shelf.id}
+            key={shelf.id}
+          >
+            {shelf.name}
+          </Shelf>)
+        }
+      </ShelfList>
+      
     </Wrapper>
   );
 };
@@ -26,7 +34,7 @@ const Wrapper = styled.aside`
   /* gap: 32px; */
 `;
 
-const Item = styled.div`
+const Item = styled.li`
   --item-width: 8em;
 
   width: 100%;
@@ -51,6 +59,15 @@ const Item = styled.div`
 
 const CreateShelf = styled(Item)`
   text-align: start;
+`;
+
+const AllBooks = styled(Item)`
+  font-weight: 600;
+`;
+
+const ShelfList = styled.ul`
+  list-style: none;
+  padding: 0;
 `;
 
 const Shelf = styled(Item)``;
