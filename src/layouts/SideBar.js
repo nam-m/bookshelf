@@ -1,11 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components/macro';
 import { nanoid } from 'nanoid';
 import CreateButton from '../components/common/CreateButton';
+import ShelfForm from '../features/bookshelf/shelf/ShelfForm';
+import ShelfView from '../features/bookshelf/shelf/ShelfView';
 
 const SideBar = ({shelves, setShelves}) => {
-  const addShelf = (newShelfName) => {
-    const newShelf = { id: `shelf-${nanoid()}`, name: newShelfName, books: [] };
+  const [isEditing, setEditing] = useState(false);
+
+  const addShelf = () => {
+    const newShelf = { 
+      id: `shelf-${nanoid()}`,
+      name: '',
+      isEditing: true,
+      books: [] 
+    };
+
     setShelves([...shelves, newShelf]);
   }
 
@@ -26,35 +36,28 @@ const SideBar = ({shelves, setShelves}) => {
   
   return (
     <Wrapper>
-      <CreateShelf 
-        as='button'
-        onClick={addShelf}
-      >
-        Create new shelf
-      </CreateShelf>
-      <ShelfList>
+      <NavGroup>
         <AllBooks>
           All books
         </AllBooks>
+      </NavGroup>
+      <NavGroup>
+        <CreateShelf 
+          as='button'
+          onClick={() => {
+            addShelf();
+          }}
+        >
+          Create new shelf
+        </CreateShelf>
         {shelves.map(shelf =>
           <Shelf
-            href={'/' + shelf.id}
-            id={shelf.id}
             key={shelf.id}
           >
-            {shelf.name}
-            <ShelfAction>
-              <EditShelf>
-                Edit
-              </EditShelf>
-              <DeleteShelf>
-                Delete
-              </DeleteShelf>
-            </ShelfAction>
-          </Shelf>)
-        }
-      </ShelfList>
-      
+            {shelf.isEditing ? <ShelfForm /> : <ShelfView shelfName={shelf.name}/>}
+          </Shelf>
+        )}
+      </NavGroup>
     </Wrapper>
   );
 };
@@ -62,10 +65,13 @@ const SideBar = ({shelves, setShelves}) => {
 const Wrapper = styled.aside`
   display: flex;
   flex-direction: column;
-  /* gap: 32px; */
+  justify-content: flex-start;
+  gap: 16px;
 `;
 
-const Item = styled.a`
+const NavGroup = styled.nav``;
+
+const Item = styled.div`
   --item-width: 8em;
 
   display: block;
@@ -80,13 +86,6 @@ const Item = styled.a`
   
   &:hover {
     background-color: hsl(16deg, 100%, 60%);
-    font-weight: 700;
-    color: white;
-  }
-
-  &:focus {
-    background-color: hsl(16deg, 100%, 50%);
-    font-weight: 700;
     color: white;
   }
 `;
@@ -99,14 +98,6 @@ const AllBooks = styled(Item)`
   font-weight: 600;
 `;
 
-const ShelfList = styled.nav``;
-
 const Shelf = styled(Item)``;
-
-const ShelfAction = styled.div``;
-
-const EditShelf = styled.button``;
-
-const DeleteShelf = styled.button``;
 
 export default SideBar;
