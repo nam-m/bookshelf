@@ -22,6 +22,7 @@ const App = () => {
   // const [books, setBooks] = useState([bookStorage.books]);
   // const [books, setBooks] = useState([]);
   const [books, setBooks] = useLocalStorage('books', []);
+  const [shelves, setShelves] = useState(SHELVES);
 
   const previewRef = useRef();
   const addRef = useRef();
@@ -37,7 +38,10 @@ const App = () => {
 
       </LeftColumnTop>
       <LeftColumnBot>
-        <SideBar shelves={SHELVES}/>
+        <SideBar 
+          shelves={shelves}
+          setShelves={setShelves}
+        />
       </LeftColumnBot>
       <MainColumnTop>
         <Header />
