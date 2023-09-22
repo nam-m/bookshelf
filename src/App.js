@@ -12,24 +12,19 @@ import PopoverWrapper from './components/common/PopoverWrapper';
 import BookForm from './features/form/BookForm';
 import useLocalStorage from './utils/UseLocalStorage';
 import SideBar from './layouts/SideBar';
-import SHELVES from './data/ShelfData';
 
 const App = () => {
   const [bookPreview, setBookPreview] = useState({});
   const [showPreview, setShowPreview] = useState(false);
   const [addBook, setAddBook] = useState(false);
-  // const bookStorage = new BookStorage();
-  // const [books, setBooks] = useState([bookStorage.books]);
-  // const [books, setBooks] = useState([]);
   const [books, setBooks] = useLocalStorage('books', []);
-  const [shelves, setShelves] = useState(SHELVES);
 
   const previewRef = useRef();
   const addRef = useRef();
+  
   /* Prevent setShowPreview re-rendering by using arrow function */
   useClickOutside(previewRef, () => setShowPreview(false));
   useClickOutside(addRef, () => setAddBook(false));
-  /* TO DO: consider grouping popoverBackground and showPreview into 1 hook */
   popoverBackground(showPreview);
 
   return (
@@ -38,10 +33,7 @@ const App = () => {
 
       </LeftColumnTop>
       <LeftColumnBot>
-        <SideBar 
-          shelves={shelves}
-          setShelves={setShelves}
-        />
+        <SideBar />
       </LeftColumnBot>
       <MainColumnTop>
         <Header />

@@ -2,23 +2,24 @@ import React, { useState } from "react";
 import styled from 'styled-components/macro';
 import Icon from "../../../components/common/Icon";
 import IconButton from "../../../components/common/IconButton";
-import updateObjectInArray from "../../../utils/utils";
+import { getObjectValueinArray, updateObjectInArray } from "../../../utils/utils";
 
-const ShelfForm = ({currentShelf, shelves, setShelves}) => {
+const ShelfForm = ({shelf, shelves, setShelves}) => {
   // const [submitted, setSubmitted] = useState(false);
-
+  const [originalShelfName] = useState(getObjectValueinArray(shelves, shelf.id, 'name'));
+  
   const handleSubmit = (e) => {
     e.preventDefault();
-    const updatedShelves = updateObjectInArray([...shelves], currentShelf.id, 'isEditing', false);
+    const updatedShelves = updateObjectInArray([...shelves], shelf.id, 'isEditing', false);
     setShelves(updatedShelves);
   }
 
-  const onNameChange = (e) => {
-    const updatedShelves = updateObjectInArray([...shelves], currentShelf.id, 'name', e.target.value);
+  const handleNameChange = (e) => {
+    const updatedShelves = updateObjectInArray([...shelves], shelf.id, 'name', e.target.value);
     setShelves(updatedShelves);
   }
 
-  const onUpdateForm = (e) => {
+  const handleUpdateForm = (e) => {
     let errorMessage;
 
     if (!e.target.value) {
@@ -36,24 +37,25 @@ const ShelfForm = ({currentShelf, shelves, setShelves}) => {
           <Label htmlFor='new_shelf'></Label>
           <Input
             type='text'
-            id='new_shelf_id'
+            id='new_shelf'
             name='new_shelf'
-            value={currentShelf.name}
+            value={shelf.name}
             placeholder='Enter shelf name'
             autoFocus
-            onChange={e => onNameChange(e)}
+            onChange={e => handleNameChange(e)}
           >
           </Input>
           <ButtonGroup>
             <SubmitButton
               type='submit'
-              onClick={() => {
-                console.log('Create new shelf');
-              }}
             >
               <Icon id='check' color='green' size={24} strokeWidth={2} />
             </SubmitButton>
             <CancelButton
+              onClick={() => 
+              setShelves(updateObjectInArray(
+                [...shelves], shelf.id, 'name', originalShelfName)
+              )}
             >
               <Icon id='cancel' color='red' size={24} strokeWidth={2} />
             </CancelButton>

@@ -38,7 +38,7 @@ const BookForm = forwardRef(function BookForm({books, setBooks, addBook, setAddB
   const [submitted, setSubmitted] = useState(false);
 
   // Update input fields onChange
-  const onUpdateForm = (e) => {
+  const handleUpdateForm = (e) => {
     // Perform validation here
     let errorMessage = '';
     let re;
@@ -169,7 +169,7 @@ const BookForm = forwardRef(function BookForm({books, setBooks, addBook, setAddB
           type='text'
           form={form}
           setForm={setForm}
-          onUpdateForm={onUpdateForm}
+          handleUpdateForm={handleUpdateForm}
           submitted={submitted}
         />
         <BookFormRow 
@@ -177,7 +177,7 @@ const BookForm = forwardRef(function BookForm({books, setBooks, addBook, setAddB
           type='text'
           form={form}
           setForm={setForm} 
-          onUpdateForm={onUpdateForm}
+          handleUpdateForm={handleUpdateForm}
           submitted={submitted}
         />
         <BookFormRow 
@@ -185,7 +185,7 @@ const BookForm = forwardRef(function BookForm({books, setBooks, addBook, setAddB
           type='text'
           form={form} 
           setForm={setForm} 
-          onUpdateForm={onUpdateForm}
+          handleUpdateForm={handleUpdateForm}
           submitted={submitted}
         />
         <BookFormRow 
@@ -194,7 +194,7 @@ const BookForm = forwardRef(function BookForm({books, setBooks, addBook, setAddB
           placeholder='Enter book cover image URL..'
           form={form} 
           setForm={setForm} 
-          onUpdateForm={onUpdateForm}
+          handleUpdateForm={handleUpdateForm}
           submitted={submitted}
         />
         <Row>
@@ -214,7 +214,6 @@ const BookForm = forwardRef(function BookForm({books, setBooks, addBook, setAddB
         <Row>
           <SubmitButton 
             type='submit'
-            // disabled={!isFormValid()}
           >
             Add book
           </SubmitButton>

@@ -3,7 +3,7 @@ import styled from 'styled-components/macro';
 
 import FormErrorMessage from '../../utils/FormErrorMessage';
 
-const BookFormRow = ({name, type, form, setForm, onUpdateForm, placeholder, submitted}) => {
+const BookFormRow = ({name, type, form, setForm, handleUpdateForm, placeholder, submitted}) => {
   // Label name for each row
   const key = Object.keys(form).find(key => key === name);
   const labelName = name.charAt(0).toUpperCase() + name.slice(1);
@@ -27,7 +27,7 @@ const BookFormRow = ({name, type, form, setForm, onUpdateForm, placeholder, subm
             }
           });
         }}
-        onChange={e => onUpdateForm(e)}
+        onChange={e => handleUpdateForm(e)}
         >
       </Input>
       <FormErrorMessage 

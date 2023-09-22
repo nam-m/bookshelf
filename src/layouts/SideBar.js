@@ -2,18 +2,12 @@ import React, { useState } from 'react';
 import styled from 'styled-components/macro';
 import { nanoid } from 'nanoid';
 
+import SHELVES from '../data/ShelfData';
 import ShelfForm from '../features/bookshelf/shelf/ShelfForm';
 import ShelfView from '../features/bookshelf/shelf/ShelfView';
 
-const SideBar = ({shelves, setShelves}) => {
-  // Hooks for use when creating a new shelf
-  const [isEditing, setEditing] = useState(false);
-  // const [shelf, setShelf] = useState({
-  //   id: '',
-  //   name: '',
-  //   isEditing: false,
-  //   books: [] 
-  // });
+const SideBar = () => {
+  const [shelves, setShelves] = useState(SHELVES);
 
   const addShelf = () => {
     const newEmptyShelf = { 
@@ -22,7 +16,7 @@ const SideBar = ({shelves, setShelves}) => {
       isEditing: true,
       books: ''
     };
-    console.log('All shelves after adding: ', [...shelves, newEmptyShelf]);
+    // console.log('All shelves after adding: ', [...shelves, newEmptyShelf]);
     setShelves([...shelves, newEmptyShelf]);
   } 
 
@@ -57,20 +51,24 @@ const SideBar = ({shelves, setShelves}) => {
         >
           Create new shelf
         </CreateShelf>
-        {shelves.map(currentShelf =>
+        {shelves.map(shelf =>
           <Shelf
-            key={currentShelf.id}
+            key={shelf.id}
           >
-            {currentShelf.isEditing 
-            ? 
-            <ShelfForm 
-              // shelf={shelf}
-              // setShelf={setShelf}
-              currentShelf={{...currentShelf}}
-              shelves={shelves}
-              setShelves={setShelves}
-            /> 
-            : <ShelfView shelfName={currentShelf.name}/>}
+            {shelf.isEditing 
+              ? 
+              <ShelfForm 
+                shelf={{...shelf}}
+                shelves={shelves}
+                setShelves={setShelves}
+              /> 
+              : 
+              <ShelfView 
+                shelf={{...shelf}}
+                shelves={shelves}
+                setShelves={setShelves}
+              />
+            }
           </Shelf>
         )}
       </NavGroup>

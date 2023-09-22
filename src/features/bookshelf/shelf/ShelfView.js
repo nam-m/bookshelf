@@ -3,20 +3,31 @@ import styled from 'styled-components/macro';
 
 import Icon from '../../../components/common/Icon';
 import IconButton from '../../../components/common/IconButton';
+import { updateObjectInArray } from '../../../utils/utils';
 
-const ShelfView = ({shelfName}) => {
+const ShelfView = ({shelf, shelves, setShelves}) => {
   return (
     <Wrapper>
       <ShelfName>
-        {shelfName}
+        {shelf.name}
       </ShelfName>
       <ShelfAction>
-        <EditShelf>
+        <EditShelf
+          onClick={() => 
+          setShelves(updateObjectInArray(
+            [...shelves], shelf.id, 'isEditing', true)
+          )}
+        >
           <Icon id='edit' strokeWidth={2}/>
         </EditShelf>
-        <DeleteShelf>
+        <CancelEditShelf
+          onClick={() => 
+          setShelves(updateObjectInArray(
+            [...shelves], shelf.id, 'isEditing', false)
+          )}
+        >
           <Icon id='cancel' color='red' strokeWidth={2} />
-        </DeleteShelf>
+        </CancelEditShelf>
       </ShelfAction>
       
     </Wrapper>
@@ -36,8 +47,10 @@ const ShelfAction = styled.div`
 
 const ShelfName = styled.span``;
 
-const EditShelf = styled(IconButton)``;
+const EditShelf = styled(IconButton)`
+  /* background-color: white; */
+`;
 
-const DeleteShelf = styled(IconButton)``;
+const CancelEditShelf = styled(IconButton)``;
 
 export default ShelfView;
