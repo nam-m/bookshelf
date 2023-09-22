@@ -1,6 +1,9 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 
+import Icon from '../../../components/common/Icon';
+import IconButton from '../../../components/common/IconButton';
+
 const ShelfView = ({shelfName}) => {
   return (
     <Wrapper>
@@ -9,10 +12,10 @@ const ShelfView = ({shelfName}) => {
       </ShelfName>
       <ShelfAction>
         <EditShelf>
-          Edit
+          <Icon id='edit' strokeWidth={2}/>
         </EditShelf>
         <DeleteShelf>
-          Delete
+          <Icon id='cancel' color='red' strokeWidth={2} />
         </DeleteShelf>
       </ShelfAction>
       
@@ -33,8 +36,8 @@ const ShelfAction = styled.div`
 
 const ShelfName = styled.span``;
 
-const EditShelf = styled.button``;
+const EditShelf = styled(IconButton)``;
 
-const DeleteShelf = styled.button``;
+const DeleteShelf = styled(IconButton)``;
 
 export default ShelfView;

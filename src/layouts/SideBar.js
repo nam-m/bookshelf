@@ -1,23 +1,30 @@
 import React, { useState } from 'react';
 import styled from 'styled-components/macro';
 import { nanoid } from 'nanoid';
-import CreateButton from '../components/common/CreateButton';
+
 import ShelfForm from '../features/bookshelf/shelf/ShelfForm';
 import ShelfView from '../features/bookshelf/shelf/ShelfView';
 
 const SideBar = ({shelves, setShelves}) => {
+  // Hooks for use when creating a new shelf
   const [isEditing, setEditing] = useState(false);
+  // const [shelf, setShelf] = useState({
+  //   id: '',
+  //   name: '',
+  //   isEditing: false,
+  //   books: [] 
+  // });
 
   const addShelf = () => {
-    const newShelf = { 
-      id: `shelf-${nanoid()}`,
+    const newEmptyShelf = { 
       name: '',
+      id: `shelf-${nanoid()}`,
       isEditing: true,
-      books: [] 
+      books: ''
     };
-
-    setShelves([...shelves, newShelf]);
-  }
+    console.log('All shelves after adding: ', [...shelves, newEmptyShelf]);
+    setShelves([...shelves, newEmptyShelf]);
+  } 
 
   const deleteShelf = (id) => {
     const remainingShelves = shelves.filter(shelf => id !== shelf.id);
@@ -50,11 +57,20 @@ const SideBar = ({shelves, setShelves}) => {
         >
           Create new shelf
         </CreateShelf>
-        {shelves.map(shelf =>
+        {shelves.map(currentShelf =>
           <Shelf
-            key={shelf.id}
+            key={currentShelf.id}
           >
-            {shelf.isEditing ? <ShelfForm /> : <ShelfView shelfName={shelf.name}/>}
+            {currentShelf.isEditing 
+            ? 
+            <ShelfForm 
+              // shelf={shelf}
+              // setShelf={setShelf}
+              currentShelf={{...currentShelf}}
+              shelves={shelves}
+              setShelves={setShelves}
+            /> 
+            : <ShelfView shelfName={currentShelf.name}/>}
           </Shelf>
         )}
       </NavGroup>
@@ -63,6 +79,7 @@ const SideBar = ({shelves, setShelves}) => {
 };
 
 const Wrapper = styled.aside`
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
