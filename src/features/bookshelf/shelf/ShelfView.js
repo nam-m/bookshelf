@@ -11,24 +11,24 @@ const ShelfView = ({shelf, shelves, setShelves}) => {
       <ShelfName>
         {shelf.name}
       </ShelfName>
-      <ShelfAction>
-        <EditShelf
+      <ButtonGroup>
+        <EditButton
           onClick={() => 
           setShelves(updateObjectInArray(
             [...shelves], shelf.id, 'isEditing', true)
           )}
         >
-          <Icon id='edit' strokeWidth={2}/>
-        </EditShelf>
-        <CancelEditShelf
+          <Icon id='edit' size={24} strokeWidth={2}/>
+        </EditButton>
+        <CancelButton
           onClick={() => 
           setShelves(updateObjectInArray(
             [...shelves], shelf.id, 'isEditing', false)
           )}
         >
-          <Icon id='cancel' color='red' strokeWidth={2} />
-        </CancelEditShelf>
-      </ShelfAction>
+          <Icon id='cancel' color='red' size={24} strokeWidth={2} />
+        </CancelButton>
+      </ButtonGroup>
       
     </Wrapper>
   );
@@ -40,17 +40,20 @@ const Wrapper = styled.div`
   align-items: center;
 `;
 
-const ShelfAction = styled.div`
+const ButtonGroup = styled.div`
   display: flex;
-  justify-content: center;
+  height: 80%;
+  right: 0;
+  transform: translateX(-10%);
+  top: 10%;
 `;
 
 const ShelfName = styled.span``;
 
-const EditShelf = styled(IconButton)`
+const EditButton = styled(IconButton)`
   /* background-color: white; */
 `;
 
-const CancelEditShelf = styled(IconButton)``;
+const CancelButton = styled(IconButton)``;
 
 export default ShelfView;

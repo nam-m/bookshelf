@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 
 // Retrieve previous books, return defaultValue if not found any
-const getStorageData = (key, defaultValue) =>{
+const getStorageData = (key, defaultValue) => {
   const savedItem = localStorage.getItem(key);
 return JSON.parse(savedItem) || defaultValue;
 }
