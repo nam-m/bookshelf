@@ -8,7 +8,8 @@ import ViewBook from './ViewBook';
 import AddBook from './AddBook';
 
 const Bookshelf = ({
-  sortId, setSortId, 
+  sortId, setSortId,
+  selectedShelf, 
   books, setBooks,
   viewBooks, setViewBooks,
   setShowPreview,
@@ -18,7 +19,7 @@ const Bookshelf = ({
   const compareName = (name) => {
     return name.toLowerCase().split(" ").toReversed().join(" ");
   }
-
+ 
   const sortBooksById = (sortValue) => {
     let sortedBooks;
     if (sortValue === 'author') {
@@ -75,15 +76,23 @@ const Bookshelf = ({
       <BookGrid $viewBooks={viewBooks}>
         {/* Map fields of each instance `book` in books to <BookWrapper />
           , which contains <Book /> */}
-        {books.map(book => 
-          <Book
-            book={{...book}}
-            key={`${book.title}-${nanoid()}`}
-            viewBooks={viewBooks}
-            setShowPreview={setShowPreview}
-            setBookPreview={setBookPreview}
-          />
-        )}
+        {books
+          .filter(book => {
+              if (selectedShelf['books'] !== undefined) {
+                console.log('Books in selected shelf', selectedShelf['books']);
+                return selectedShelf['books'].includes(book.title);
+              }
+          })
+          .map(book => 
+            <Book
+              book={{...book}}
+              key={`${book.title}-${nanoid()}`}
+              viewBooks={viewBooks}
+              setShowPreview={setShowPreview}
+              setBookPreview={setBookPreview}
+            />
+          )
+        }
       </BookGrid>
     </Wrapper>
   );

@@ -6,9 +6,9 @@ import SHELVES from '../data/ShelfData';
 import ShelfForm from '../features/bookshelf/shelf/ShelfForm';
 import ShelfView from '../features/bookshelf/shelf/ShelfView';
 
-const SideBar = () => {
+const SideBar = ({setSelectedShelf}) => {
   const [shelves, setShelves] = useState(SHELVES);
-
+  
   const addShelf = () => {
     const newEmptyShelf = { 
       name: '',
@@ -34,7 +34,12 @@ const SideBar = () => {
     })
     setShelves(editedShelves);
   }
-  
+
+  const handleSelectShelf = (shelfId) => {
+    const selectedShelf = shelves.find(shelf => shelf.id === shelfId);
+    setSelectedShelf(selectedShelf);
+  }
+
   return (
     <Wrapper>
       <NavGroup>
@@ -54,6 +59,7 @@ const SideBar = () => {
         {shelves.map(shelf =>
           <Shelf
             key={shelf.id}
+            onClick={() => handleSelectShelf(shelf.id)}
           >
             {shelf.isEditing 
               ? 

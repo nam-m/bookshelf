@@ -19,6 +19,8 @@ const App = () => {
   const [addBook, setAddBook] = useState(false);
   const [books, setBooks] = useLocalStorage('books', []);
 
+  const [selectedShelf, setSelectedShelf] = useState({});
+
   const previewRef = useRef();
   const addRef = useRef();
   
@@ -33,7 +35,9 @@ const App = () => {
 
       </LeftColumnTop>
       <LeftColumnBot>
-        <SideBar />
+        <SideBar 
+          setSelectedShelf={setSelectedShelf}
+        />
       </LeftColumnBot>
       <MainColumnTop>
         <Header />
@@ -44,6 +48,7 @@ const App = () => {
           setShowPreview={setShowPreview}
           setBookPreview={setBookPreview}
           setAddBook={setAddBook}
+          selectedShelf={selectedShelf}
           books={books}
           setBooks={setBooks}
         />
