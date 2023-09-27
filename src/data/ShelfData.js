@@ -9,7 +9,7 @@ const SHELVES = [
     id: 'shelf-1',
     name: 'Shelf 1',
     isEditing: false,
-    books: ['Quality design', 'Passing Clouds of Silver'],
+    books: ['Fascination', 'Quality design', 'Passing Clouds of Silver'],
   },
   {
     id: 'shelf-2',

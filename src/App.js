@@ -19,7 +19,7 @@ const App = () => {
   const [addBook, setAddBook] = useState(false);
   const [books, setBooks] = useLocalStorage('books', []);
 
-  const [selectedShelf, setSelectedShelf] = useState({});
+  const [selectedShelf, setSelectedShelf] = useLocalStorage('selectedShelf', {});
 
   const previewRef = useRef();
   const addRef = useRef();

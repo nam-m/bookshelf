@@ -35,11 +35,6 @@ const SideBar = ({setSelectedShelf}) => {
     setShelves(editedShelves);
   }
 
-  const handleSelectShelf = (shelfId) => {
-    const selectedShelf = shelves.find(shelf => shelf.id === shelfId);
-    setSelectedShelf(selectedShelf);
-  }
-
   return (
     <Wrapper>
       <NavGroup>
@@ -59,7 +54,7 @@ const SideBar = ({setSelectedShelf}) => {
         {shelves.map(shelf =>
           <Shelf
             key={shelf.id}
-            onClick={() => handleSelectShelf(shelf.id)}
+            onClick={() => setSelectedShelf(shelf)}
           >
             {shelf.isEditing 
               ? 
