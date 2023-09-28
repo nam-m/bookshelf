@@ -3,11 +3,12 @@ import styled from 'styled-components/macro';
 import { nanoid } from 'nanoid';
 
 import SHELVES from '../data/ShelfData';
-import ShelfForm from '../features/bookshelf/shelf/ShelfForm';
-import ShelfView from '../features/bookshelf/shelf/ShelfView';
+import ShelfDiv from '../features/bookshelf/shelf/ShelfStyle';
+import Shelf from '../features/bookshelf/shelf/Shelf';
 
-const SideBar = ({setSelectedShelf}) => {
+const SideBar = ({selectedShelf, setSelectedShelf}) => {
   const [shelves, setShelves] = useState(SHELVES);
+  // const [isEditing, setIsEditing] = useState(false);
   
   const addShelf = () => {
     const newEmptyShelf = { 
@@ -18,12 +19,12 @@ const SideBar = ({setSelectedShelf}) => {
     };
     // console.log('All shelves after adding: ', [...shelves, newEmptyShelf]);
     setShelves([...shelves, newEmptyShelf]);
-  } 
+  }; 
 
   const deleteShelf = (id) => {
     const remainingShelves = shelves.filter(shelf => id !== shelf.id);
     setShelves(remainingShelves);
-  }
+  };
 
   const editShelf = (id, newShelfName) => {
     const editedShelves = shelves.map(shelf => {
@@ -33,7 +34,14 @@ const SideBar = ({setSelectedShelf}) => {
         return shelf;
     })
     setShelves(editedShelves);
-  }
+  };
+
+  const handleSelectedShelf = (shelf) => {
+    if (selectedShelf === shelf)
+      setSelectedShelf();
+    else
+      setSelectedShelf(shelf);
+  };
 
   return (
     <Wrapper>
@@ -51,26 +59,15 @@ const SideBar = ({setSelectedShelf}) => {
         >
           Create new shelf
         </CreateShelf>
-        {shelves.map(shelf =>
+        {shelves.map((shelf) =>
           <Shelf
+            shelf={{...shelf}}
             key={shelf.id}
-            onClick={() => setSelectedShelf(shelf)}
-          >
-            {shelf.isEditing 
-              ? 
-              <ShelfForm 
-                shelf={{...shelf}}
-                shelves={shelves}
-                setShelves={setShelves}
-              /> 
-              : 
-              <ShelfView 
-                shelf={{...shelf}}
-                shelves={shelves}
-                setShelves={setShelves}
-              />
-            }
-          </Shelf>
+            shelves={shelves}
+            setShelves={setShelves}
+            selectedShelf={selectedShelf}
+            handleSelectedShelf={handleSelectedShelf}
+          />
         )}
       </NavGroup>
     </Wrapper>
@@ -87,33 +84,12 @@ const Wrapper = styled.aside`
 
 const NavGroup = styled.nav``;
 
-const Item = styled.div`
-  --item-width: 8em;
-
-  display: block;
-  text-decoration: none;
-  color: black;
-  /* line-height: 1; */
-  width: 100%;
-  padding: 16px;
-  border-radius: 0 calc(var(--item-width)/2) calc(var(--item-width)/2) 0;
-  border: none;
-  cursor: pointer;
-  
-  &:hover {
-    background-color: hsl(16deg, 100%, 60%);
-    color: white;
-  }
-`;
-
-const CreateShelf = styled(Item)`
+const CreateShelf = styled(ShelfDiv)`
   text-align: start;
 `;
 
-const AllBooks = styled(Item)`
+const AllBooks = styled(ShelfDiv)`
   font-weight: 600;
 `;
-
-const Shelf = styled(Item)``;
 
 export default SideBar;

@@ -7,7 +7,8 @@ import BookInfo from './BookInfo';
 const Book = ({
   book, viewBooks, 
   showPreview, setShowPreview, 
-  setBookPreview}) => {
+  setBookPreview
+}) => {
   const[popover, setPopover] = useState(false);
 
   return (
