@@ -83,7 +83,10 @@ const Bookshelf = ({
                 return selectedShelf['books'].includes(book.title);
               }
             }
-            return; 
+            // If no shelf is selected, display all books
+            else {
+              return true;
+            }
           })
           .map(book => 
             <Book
