@@ -11,24 +11,24 @@ const Shelf = ({
   selectedShelf,
   handleSelectedShelf
 }) => {
+  
   return (
     <ShelfWrapper
       $selectedShelf={selectedShelf}
       $shelf={shelf}
       onClick={() => {
-        handleSelectedShelf(shelf);
-      }}
+        handleSelectedShelf(shelf);}}
     >
       {shelf.isEditing 
         ? 
         <ShelfForm 
-          shelf={{...shelf}}
+          shelf={shelf}
           shelves={shelves}
           setShelves={setShelves}
         /> 
         : 
         <ShelfView 
-          shelf={{...shelf}}
+          shelf={shelf}
           shelves={shelves}
           setShelves={setShelves}
         />

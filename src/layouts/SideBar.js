@@ -21,10 +21,6 @@ const SideBar = ({selectedShelf, setSelectedShelf}) => {
     setShelves([...shelves, newEmptyShelf]);
   }; 
 
-  const deleteShelf = (id) => {
-    const remainingShelves = shelves.filter(shelf => id !== shelf.id);
-    setShelves(remainingShelves);
-  };
 
   const editShelf = (id, newShelfName) => {
     const editedShelves = shelves.map(shelf => {
@@ -36,12 +32,11 @@ const SideBar = ({selectedShelf, setSelectedShelf}) => {
     setShelves(editedShelves);
   };
 
-  const handleSelectedShelf = (shelf) => {
-    if (selectedShelf === shelf)
-      setSelectedShelf();
-    else
-      setSelectedShelf(shelf);
-  };
+  // Select shelf if not selected, and unselect it
+  const handleSelectedShelf = (shelf) => 
+    (selectedShelf === shelf)
+      ? setSelectedShelf() 
+      : setSelectedShelf(shelf);
 
   return (
     <Wrapper>
@@ -53,9 +48,7 @@ const SideBar = ({selectedShelf, setSelectedShelf}) => {
       <NavGroup>
         <CreateShelf 
           as='button'
-          onClick={() => {
-            addShelf();
-          }}
+          onClick={() => addShelf()}
         >
           Create new shelf
         </CreateShelf>
