@@ -31,7 +31,6 @@ const ShelfView = ({shelf, shelves, setShelves}) => {
           <Icon id='cancel' color='red' size={24} strokeWidth={2} />
         </CancelButton>
       </ButtonGroup>
-      
     </Wrapper>
   );
 };
@@ -52,9 +51,7 @@ const ButtonGroup = styled.div`
 
 const ShelfName = styled.span``;
 
-const EditButton = styled(IconButton)`
-  /* background-color: white; */
-`;
+const EditButton = styled(IconButton)``;
 
 const CancelButton = styled(IconButton)``;
 

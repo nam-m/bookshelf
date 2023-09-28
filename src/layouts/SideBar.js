@@ -5,6 +5,9 @@ import { nanoid } from 'nanoid';
 import SHELVES from '../data/ShelfData';
 import ShelfDiv from '../features/bookshelf/shelf/ShelfStyle';
 import Shelf from '../features/bookshelf/shelf/Shelf';
+import HomeShelf from '../features/bookshelf/shelf/HomeShelf';
+import Icon from '../components/common/Icon';
+import IconButton from '../components/common/IconButton';
 
 const SideBar = ({selectedShelf, setSelectedShelf}) => {
   const [shelves, setShelves] = useState(SHELVES);
@@ -20,7 +23,6 @@ const SideBar = ({selectedShelf, setSelectedShelf}) => {
     // console.log('All shelves after adding: ', [...shelves, newEmptyShelf]);
     setShelves([...shelves, newEmptyShelf]);
   }; 
-
 
   const editShelf = (id, newShelfName) => {
     const editedShelves = shelves.map(shelf => {
@@ -41,16 +43,27 @@ const SideBar = ({selectedShelf, setSelectedShelf}) => {
   return (
     <Wrapper>
       <NavGroup>
-        <AllBooks>
-          All books
-        </AllBooks>
+        <HomeShelf
+          setSelectedShelf={setSelectedShelf}
+        />
       </NavGroup>
       <NavGroup>
         <CreateShelf 
           as='button'
           onClick={() => addShelf()}
         >
-          Create new shelf
+          <CreateShelfTitle>
+            Create new shelf
+          </CreateShelfTitle>
+          <CreateShelfIconWrapper
+            as='div'
+          >
+            <CreateShelfIcon
+              id='add'
+              size={24}
+              strokeWidth={2}
+            />
+          </CreateShelfIconWrapper>
         </CreateShelf>
         {shelves.map((shelf) =>
           <Shelf
@@ -75,10 +88,31 @@ const Wrapper = styled.aside`
   gap: 16px;
 `;
 
-const NavGroup = styled.nav``;
+const NavGroup = styled.nav`
+  display: flex;
+  flex-direction: column;
+`;
 
 const CreateShelf = styled(ShelfDiv)`
-  text-align: start;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+const CreateShelfTitle = styled.span``;
+
+const CreateShelfIconWrapper = styled(IconButton)`
+  transform: translateX(-60%);
+
+  &:hover {
+    background-color: hsl(16deg, 100%, 60%);
+  }
+`;
+
+const CreateShelfIcon = styled(Icon)`
+  &:hover {
+    color: white;
+  }
 `;
 
 const AllBooks = styled(ShelfDiv)`

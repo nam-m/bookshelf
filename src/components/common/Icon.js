@@ -3,13 +3,15 @@ import styled from 'styled-components/macro';
 import {
   Check,
   X,
-  Edit2
+  Edit2,
+  PlusCircle
 } from 'react-feather';
 
 const icons = {
   check: Check,
   cancel: X,
-  edit: Edit2
+  edit: Edit2,
+  add: PlusCircle
 };
 
 const Icon = ({ id, color, size, strokeWidth, ...delegated }) => {
