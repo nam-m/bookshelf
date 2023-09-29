@@ -35,11 +35,11 @@ const SideBar = ({selectedShelf, setSelectedShelf}) => {
   };
 
   // Select shelf if not selected, and unselect it
-  const handleSelectedShelf = (shelf) => 
-    (selectedShelf === shelf)
-      ? setSelectedShelf() 
-      : setSelectedShelf(shelf);
-
+  const handleSelectedShelf = (shelf) => {
+    if (selectedShelf !== shelf)
+      setSelectedShelf(shelf);
+  }
+    
   return (
     <Wrapper>
       <NavGroup>
@@ -91,6 +91,7 @@ const Wrapper = styled.aside`
 const NavGroup = styled.nav`
   display: flex;
   flex-direction: column;
+  gap: 2px;
 `;
 
 const CreateShelf = styled(ShelfDiv)`

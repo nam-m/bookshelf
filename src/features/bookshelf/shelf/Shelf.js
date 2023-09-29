@@ -16,7 +16,10 @@ const Shelf = ({
     <ShelfWrapper
       $selectedShelf={selectedShelf}
       $shelf={shelf}
-      onClick={() => handleSelectedShelf(shelf)}
+      onClick={() => {
+        handleSelectedShelf(shelf);
+        console.log('Current shelf', shelf);
+        }}
     >
       {shelf.isEditing 
         ? 
@@ -41,14 +44,12 @@ const ShelfWrapper = styled(ShelfDiv)`
   `
     background-color: hsl(16deg, 100%, 60%);
     color: white;
-    border: solid 1px black;
     font-weight: 700;
   ` 
   : 
   `
     background-color: revert;
     color: revert;
-    border: revert;
     font-weight: revert;
   `
   };

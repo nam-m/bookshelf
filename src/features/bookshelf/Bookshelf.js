@@ -82,7 +82,7 @@ const Bookshelf = ({
               if (selectedShelf['books'].length > 0)
                 return selectedShelf['books'].includes(book.title);
               else
-                return false
+                return false;
             }
             else {
               return true;
