@@ -16,6 +16,7 @@ const ShelfDiv = styled.div`
    &:hover {
      background-color: hsl(16deg, 100%, 60%);
      color: white;
+     font-weight: 700;
    }
 `;
 

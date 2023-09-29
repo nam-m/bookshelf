@@ -78,15 +78,15 @@ const Bookshelf = ({
           , which contains <Book /> */}
         {books
           .filter(book => {
-            if (selectedShelf) {
-              if (selectedShelf['books'] !== undefined) {
+            if (Object.keys(selectedShelf).length > 0) {
+              if (selectedShelf['books'].length > 0)
                 return selectedShelf['books'].includes(book.title);
-              }
+              else
+                return false
             }
-            // If no shelf is selected, display all books
             else {
               return true;
-            }
+            } 
           })
           .map(book => 
             <Book

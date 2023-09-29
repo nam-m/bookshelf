@@ -5,7 +5,7 @@ import ShelfDiv from './ShelfStyle';
 
 const HomeShelf = ({setSelectedShelf}) => {
   const handleHomeShelf = () => {
-    setSelectedShelf({})
+    setSelectedShelf({});
   };
 
   return (
