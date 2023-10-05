@@ -44,6 +44,7 @@ const SideBar = ({selectedShelf, setSelectedShelf}) => {
     <Wrapper>
       <NavGroup>
         <HomeShelf
+          selectedShelf={selectedShelf}
           setSelectedShelf={setSelectedShelf}
         />
       </NavGroup>
