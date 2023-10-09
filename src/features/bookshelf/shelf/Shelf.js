@@ -18,8 +18,7 @@ const Shelf = ({
       $shelf={shelf}
       onClick={() => {
         handleSelectedShelf(shelf);
-        console.log('Current shelf', shelf);
-        }}
+      }}
     >
       {shelf.isEditing 
         ? 

@@ -31,7 +31,7 @@ const App = () => {
   return (
     <Wrapper>
       <LeftColumnTop>
-
+        Bookshelf
       </LeftColumnTop>
       <LeftColumnBot>
         <SideBar 
@@ -82,7 +82,9 @@ const Wrapper = styled.div`
   grid-template-rows: 100px 1fr;
 `;
 
-const LeftColumnTop = styled.div`
+const LeftColumnTop = styled.h1`
+  padding-top: 32px;
+  padding-left: 16px;
   border-right: 1px solid hsl(120deg 5% 5%);
 `;
 
