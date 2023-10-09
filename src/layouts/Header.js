@@ -3,7 +3,7 @@ import styled from 'styled-components/macro'
 
 const Header = () => {
   return (
-    <HeaderWrapper>
+    <Wrapper>
       <Nav>
         <NavItem href='/Home'>Home</NavItem>
         <NavItem href='/Collections'>Collections</NavItem>
@@ -14,11 +14,11 @@ const Header = () => {
         <SearchBar type='text' id='search' placeholder='Search...'/>
         <Profile>Profile</Profile>
       </UserGroup>
-    </HeaderWrapper>
+    </Wrapper>
   );
 };
 
-const HeaderWrapper = styled.header`
+const Wrapper = styled.header`
   padding-top: 32px;
   padding-bottom: 16px;
   display: flex;

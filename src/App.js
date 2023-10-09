@@ -1,6 +1,8 @@
 import React from 'react';
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef } from 'react';
 import styled from 'styled-components/macro'
+
+import { QUERIES } from './utils/constants';
 
 import Header from './layouts/Header';
 import Main from './layouts/Main';
@@ -30,19 +32,17 @@ const App = () => {
 
   return (
     <Wrapper>
-      <LeftColumnTop>
-        Bookshelf
-      </LeftColumnTop>
-      <LeftColumnBot>
+      <LeftColumn>
+        <SideBarTitle>
+          Bookshelf
+        </SideBarTitle>
         <SideBar 
           selectedShelf={selectedShelf}
           setSelectedShelf={setSelectedShelf}
         />
-      </LeftColumnBot>
-      <MainColumnTop>
+      </LeftColumn>
+      <MainColumn>
         <Header />
-      </MainColumnTop>
-      <MainColumnBot>
         <Main
           showPreview={showPreview} 
           setShowPreview={setShowPreview}
@@ -53,7 +53,7 @@ const App = () => {
           setBooks={setBooks}
         />
         <Footer />
-      </MainColumnBot>
+      </MainColumn>
       <PreviewWrapper $showPreview={showPreview}>
         <BookPreview 
           bookPreview={bookPreview}
@@ -79,28 +79,28 @@ const Wrapper = styled.div`
   display: grid;
   grid-auto-flow: column;
   grid-template-columns: 280px 1fr;
-  grid-template-rows: 100px 1fr;
+
+  @media ${QUERIES.mobileAndDown} {
+    grid-template-columns: revert;
+  }
 `;
 
-const LeftColumnTop = styled.h1`
-  padding-top: 32px;
-  padding-left: 16px;
-  border-right: 1px solid hsl(120deg 5% 5%);
-`;
-
-const LeftColumnBot = styled.div`
-  /* flex: 1 1 400px; */
-  padding-top: 16px;
+const LeftColumn = styled.div`
   padding-right: 16px;
   border-right: 1px solid hsl(120deg 5% 5%);
+
+  @media ${QUERIES.mobileAndDown} {
+    display: none;
+  }
 `;
 
-const MainColumnTop = styled.div`
-  padding-left: 40px;
-  padding-right: 40px;
+const SideBarTitle = styled.h1`
+  padding-top: 32px;
+  padding-left: 16px;
+  padding-bottom: 32px;
 `;
 
-const MainColumnBot = styled.div`
+const MainColumn = styled.div`
   min-height: 100%;
   display: flex;
   flex-direction: column;
