@@ -1,8 +1,9 @@
 import styled from 'styled-components/macro';
+import { WEIGHTS } from '../../utils/constants';
 
 const CreateButton = styled.button`
-  --toggle-width: 8em;
-  --toggle-height: 3em;
+  --toggle-width: 8rem;
+  --toggle-height: 3rem;
   --toggle-padding: 4px;
 
   position: relative;
@@ -12,7 +13,7 @@ const CreateButton = styled.button`
   padding: var(--toggle-padding);
   border: none;
   background-color: hsl(16deg, 100%, 50%);
-  font-weight: 700;
+  font-weight: ${WEIGHTS.bold};
   color: white;
   cursor: pointer;
 

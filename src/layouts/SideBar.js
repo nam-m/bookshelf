@@ -47,6 +47,15 @@ const SideBar = ({selectedShelf, setSelectedShelf}) => {
           selectedShelf={selectedShelf}
           setSelectedShelf={setSelectedShelf}
         />
+        {/* <WantToReadShelf>
+
+        </WantToReadShelf>
+        <ReadingShelf>
+
+        </ReadingShelf>
+        <FinishedReadingShelf>
+
+        </FinishedReadingShelf> */}
       </NavGroup>
       <NavGroup>
         <CreateShelf 

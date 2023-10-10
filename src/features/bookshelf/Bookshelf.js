@@ -5,7 +5,7 @@ import { nanoid } from 'nanoid';
 import Book from './book/Book';
 import SortBook from './SortBook';
 import ViewBook from './ViewBook';
-import AddBook from './AddBook';
+import AddBookButton from './AddBookButton';
 
 const Bookshelf = ({
   sortId, setSortId,
@@ -13,8 +13,7 @@ const Bookshelf = ({
   books, setBooks,
   viewBooks, setViewBooks,
   setShowPreview,
-  setBookPreview,
-  setAddBook}) => {
+  setBookPreview}) => {
 
   const compareName = (name) => {
     return name.toLowerCase().split(" ").toReversed().join(" ");
@@ -52,7 +51,6 @@ const Bookshelf = ({
           {books.length} {(books.length > 1) ? 'books' : 'book'}
         </BookStatus>
         <ViewOptions>
-          <AddBook setAddBook={setAddBook}/>
           <SortBook
             label='Sort'
             value={sortId}
@@ -113,8 +111,8 @@ const ViewTray = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: baseline;
+  padding-top: 16px;
   padding-bottom: 16px;
-  border-bottom: 1px solid hsl(120deg 5% 5%);
 `;
 
 const ViewOptions = styled.div`

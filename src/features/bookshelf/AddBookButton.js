@@ -2,7 +2,7 @@ import React from "react";
 import styled from 'styled-components/macro';
 import CreateButton from "../../components/common/CreateButton";
 
-const AddBook = ({setAddBook}) => {
+const AddBookButton = ({setAddBook}) => {
   return (
     <Wrapper>
       <Button
@@ -18,4 +18,4 @@ const Wrapper = styled.div``;
 
 const Button = styled(CreateButton)``;
 
-export default AddBook;
+export default AddBookButton;

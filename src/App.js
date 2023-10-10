@@ -42,12 +42,13 @@ const App = () => {
         />
       </LeftColumn>
       <MainColumn>
-        <Header />
+        <Header 
+          setAddBook={setAddBook}
+        />
         <Main
           showPreview={showPreview} 
           setShowPreview={setShowPreview}
           setBookPreview={setBookPreview}
-          setAddBook={setAddBook}
           selectedShelf={selectedShelf}
           books={books}
           setBooks={setBooks}

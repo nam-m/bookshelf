@@ -1,35 +1,29 @@
-import React from 'react'
-import styled from 'styled-components/macro'
+import React from 'react';
+import styled from 'styled-components/macro';
 
-const Header = () => {
+import AddBookButton from '../features/bookshelf/AddBookButton';
+
+const Header = ({setAddBook}) => {
   return (
     <Wrapper>
-      <Nav>
-        <NavItem href='/Home'>Home</NavItem>
-        <NavItem href='/Collections'>Collections</NavItem>
-        <NavItem href='/Notes'>Notes</NavItem>
-      </Nav>
-      <UserGroup>
-        <SearchLabel htmlFor='search'/>
-        <SearchBar type='text' id='search' placeholder='Search...'/>
+      <SearchLabel htmlFor='search'/>
+      <SearchBar type='text' id='search' placeholder='Search...'/>
+      <SideGroup>
+        <AddBookButton setAddBook={setAddBook}/>
         <Profile>Profile</Profile>
-      </UserGroup>
+      </SideGroup>
     </Wrapper>
   );
 };
 
 const Wrapper = styled.header`
-  padding-top: 32px;
-  padding-bottom: 16px;
   display: flex;
+  gap: 16px;
   justify-content: space-between;
   align-items: baseline;
-  font-size: 1.25rem;
-`;
-
-const Nav = styled.nav`
-  display: flex;
-  gap: 48px;
+  padding-top: 16px;
+  padding-bottom: 32px;
+  border-bottom: 1px solid hsl(120deg 5% 5%);
 `;
 
 const NavItem = styled.a`
@@ -37,9 +31,10 @@ const NavItem = styled.a`
   color: black;
 `;
 
-const UserGroup = styled.div`
+const SideGroup = styled.div`
   display: flex;
-  gap: 32px;
+  gap: 8px;
+  align-items: baseline;
 `;
 
 const SearchLabel = styled.label`
@@ -47,7 +42,7 @@ const SearchLabel = styled.label`
 `;
 
 const SearchBar = styled.input`
-  font-size: 1rem;
+  flex: 1;
   line-height: 1.5rem;
   padding: 8px;
   border: none;
@@ -57,9 +52,7 @@ const SearchBar = styled.input`
 `;
 
 const Profile = styled.a`
-  /* font-size: 1.5rem; */
   text-decoration: none;
-  color: black;
 `;
 
 export default Header;
