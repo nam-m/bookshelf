@@ -4,14 +4,16 @@ import {
   Check,
   X,
   Edit2,
-  PlusCircle
+  Plus,
+  Search
 } from 'react-feather';
 
 const icons = {
   check: Check,
   cancel: X,
   edit: Edit2,
-  add: PlusCircle
+  add: Plus,
+  search: Search
 };
 
 const Icon = ({ id, color, size, strokeWidth, ...delegated }) => {
