@@ -2,12 +2,16 @@ import React from 'react';
 import styled from 'styled-components/macro';
 
 import AddBookButton from '../features/bookshelf/AddBookButton';
+import Icon from "../components/common/Icon";
 
 const Header = ({setAddBook}) => {
   return (
     <Wrapper>
-      <SearchLabel htmlFor='search'/>
-      <SearchBar type='text' id='search' placeholder='Search...'/>
+      <SearchLabel htmlFor='search'>
+        <SearchBar type='text' id='search' placeholder='Search...'/>
+        <SearchIcon id='search' size={16} strokeWidth={2}/>
+      </SearchLabel>
+      
       <SideGroup>
         <AddBookButton setAddBook={setAddBook}/>
         <Profile>Profile</Profile>
@@ -18,17 +22,12 @@ const Header = ({setAddBook}) => {
 
 const Wrapper = styled.header`
   display: flex;
-  gap: 16px;
+  column-gap: clamp(0.5rem, 10%, 4rem);
   justify-content: space-between;
   align-items: baseline;
   padding-top: 16px;
   padding-bottom: 32px;
   border-bottom: 1px solid hsl(120deg 5% 5%);
-`;
-
-const NavItem = styled.a`
-  text-decoration: none;
-  color: black;
 `;
 
 const SideGroup = styled.div`
@@ -38,17 +37,29 @@ const SideGroup = styled.div`
 `;
 
 const SearchLabel = styled.label`
-  display: none;
+  //Set position to relative to contain absolute-positioned search icon
+  position: relative;
+  flex-grow: 1;
 `;
 
 const SearchBar = styled.input`
-  flex: 1;
   line-height: 1.5rem;
+  width: 100%;
   padding: 8px;
+  padding-left: 32px;
   border: none;
   border-radius: 8px;
   background-color: hsl(185deg, 10%, 95%);
   outline-offset: 4px;
+`;
+
+const SearchIcon = styled(Icon)`
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  margin: auto;
+  margin-left: 8px;
 `;
 
 const Profile = styled.a`
