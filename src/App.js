@@ -79,9 +79,9 @@ const Wrapper = styled.div`
   min-height: 100%;
   display: grid;
   grid-auto-flow: column;
-  grid-template-columns: 280px 1fr;
+  grid-template-columns: minmax(224px, 1fr) 4fr;
 
-  @media ${QUERIES.mobileAndDown} {
+  @media ${QUERIES.tabletAndDown} {
     grid-template-columns: revert;
   }
 `;
@@ -90,7 +90,7 @@ const LeftColumn = styled.div`
   padding-right: 16px;
   border-right: 1px solid hsl(120deg 5% 5%);
 
-  @media ${QUERIES.mobileAndDown} {
+  @media ${QUERIES.tabletAndDown} {
     display: none;
   }
 `;

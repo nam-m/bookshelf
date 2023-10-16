@@ -22,7 +22,7 @@ const Header = ({setAddBook}) => {
 
 const Wrapper = styled.header`
   display: flex;
-  column-gap: clamp(0.5rem, 10%, 4rem);
+  gap: clamp(0.25rem, 5%, 4rem);
   justify-content: space-between;
   align-items: baseline;
   padding-top: 16px;

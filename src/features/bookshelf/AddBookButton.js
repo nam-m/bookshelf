@@ -28,7 +28,7 @@ const Button = styled(CreateButton)`
     justify-content: center;
     align-items: center;
   
-    --toggle-width: 4rem;
+    --toggle-width: 3.5rem;
     --toggle-height: 2.5rem;
     /* --toggle-padding: 4px; */
   }
