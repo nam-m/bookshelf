@@ -17,3 +17,16 @@ export const WEIGHTS = {
   medium: 550,
   bold: 700
 }
+
+export const COLORS = {
+  white: 'hsl(0deg, 0%, 100%)',
+  gray: {
+    100: 'hsl(185deg, 5%, 95%)',
+    300: 'hsl(190deg, 5%, 80%)',
+    500: 'hsl(196deg, 4%, 60%)',
+    700: 'hsl(220deg, 5%, 40%)',
+    900: 'hsl(220deg, 3%, 20%)',
+  },
+  primary: 'hsl(16deg, 100%, 50%)',
+  secondary: 'hsl(16deg, 100%, 60%)',
+};
