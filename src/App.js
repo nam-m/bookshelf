@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState, useRef } from 'react';
-import styled from 'styled-components/macro'
+import styled from 'styled-components/macro';
 
 import { QUERIES } from './utils/constants';
 
