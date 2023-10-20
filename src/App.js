@@ -3,7 +3,6 @@ import { useState, useRef } from 'react';
 import styled from 'styled-components/macro';
 
 import { QUERIES } from './utils/constants';
-
 import Header from './layouts/Header';
 import Main from './layouts/Main';
 import Footer from './layouts/Footer';
@@ -79,7 +78,7 @@ const Wrapper = styled.div`
   min-height: 100%;
   display: grid;
   grid-auto-flow: column;
-  grid-template-columns: minmax(224px, 1fr) 4fr;
+  grid-template-columns: minmax(14rem, 1fr) 5fr;
 
   @media ${QUERIES.tabletAndDown} {
     grid-template-columns: revert;
