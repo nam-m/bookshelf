@@ -1,6 +1,8 @@
 import React, { forwardRef } from 'react';
 import styled from 'styled-components/macro';
 
+import { QUERIES } from '../../../utils/constants';
+
 const BookPreview = forwardRef(function BookPreview({bookPreview, showPreview}, ref) {
   return (showPreview) ? (
     <Wrapper ref={ref}>
@@ -45,6 +47,10 @@ const Wrapper = styled.div`
   inset: 18%;
   border-radius: 4px;
   background-color: white;
+
+  @media ${QUERIES.tabletAndDown} {
+    display: none;
+  }
 `;
 
 const PreviewContent = styled.article`

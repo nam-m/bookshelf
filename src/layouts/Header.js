@@ -24,7 +24,7 @@ const Wrapper = styled.header`
   display: flex;
   gap: clamp(0.25rem, 5%, 4rem);
   justify-content: space-between;
-  align-items: baseline;
+  align-items: flex-end;
   padding-top: 16px;
   padding-bottom: 32px;
   border-bottom: 1px solid hsl(120deg 5% 5%);

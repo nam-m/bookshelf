@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components/macro';
+
 import popoverBackground from '../../../utils/PopoverBackground';
+import { QUERIES } from '../../../utils/constants';
 
 const BookPopover = ({
   popover, 
@@ -37,6 +39,10 @@ const Wrapper = styled.div`
   /* Center popover wrapper by setting left and width */
   left: 5%;
   width: 90%;
+
+  @media ${QUERIES.tabletAndDown} {
+    display: none;
+  }
 `;
 
 const PopoverInput = styled.input`
