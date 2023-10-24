@@ -15,7 +15,9 @@ const Header = ({setAddBook}) => {
       
       <SideGroup>
         <AddBookButton setAddBook={setAddBook}/>
-        <Profile>Profile</Profile>
+        <ProfileButton>
+          <Icon id='user' size={32} strokeWidth={2}/>
+        </ProfileButton>
       </SideGroup>
     </Wrapper>
   );
@@ -25,7 +27,7 @@ const Wrapper = styled.header`
   display: flex;
   gap: clamp(0.25rem, 5%, 4rem);
   justify-content: space-between;
-  align-items: flex-end;
+  align-items: center;
   padding-top: 16px;
   padding-bottom: 32px;
   border-bottom: 1px solid hsl(120deg 5% 5%);
@@ -34,7 +36,7 @@ const Wrapper = styled.header`
 const SideGroup = styled.div`
   display: flex;
   gap: 8px;
-  align-items: baseline;
+  align-items: center;
 `;
 
 const SearchLabel = styled.label`
@@ -63,8 +65,9 @@ const SearchIcon = styled(Icon)`
   margin-left: 8px;
 `;
 
-const Profile = styled.a`
-  text-decoration: none;
+const ProfileButton = styled(IconButton)`
+  border-radius: 50%;
+  background: transparent;
 `;
 
 export default Header;
