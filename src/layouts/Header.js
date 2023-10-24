@@ -1,8 +1,9 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 
-import AddBookButton from '../features/bookshelf/AddBookButton';
+import AddBookButton from '../components/buttons/AddBookButton';
 import Icon from "../components/common/Icon";
+import IconButton from '../components/buttons/IconButton';
 
 const Header = ({setAddBook}) => {
   return (

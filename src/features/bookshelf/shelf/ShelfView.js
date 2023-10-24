@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components/macro';
 
 import Icon from '../../../components/common/Icon';
-import IconButton from '../../../components/common/IconButton';
+import IconButton from '../../../components/buttons/IconButton';
 import { updateObjectInArray } from '../../../utils/utils';
 
 const ShelfView = ({shelf, shelves, setShelves}) => {

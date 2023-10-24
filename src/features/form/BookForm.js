@@ -1,7 +1,7 @@
 import React, { forwardRef, useState } from 'react';
 import styled from 'styled-components/macro';
 
-import CreateButton from '../../components/common/CreateButton';
+import CreateButton from '../../components/buttons/CreateButton';
 import BookFormRow from './BookFormRow';
 import { Book } from '../bookshelf/BookStorage';
 

@@ -7,7 +7,7 @@ import ShelfDiv from '../features/bookshelf/shelf/ShelfStyle';
 import Shelf from '../features/bookshelf/shelf/Shelf';
 import HomeShelf from '../features/bookshelf/shelf/HomeShelf';
 import Icon from '../components/common/Icon';
-import IconButton from '../components/common/IconButton';
+import IconButton from '../components/buttons/IconButton';
 
 const SideBar = ({selectedShelf, setSelectedShelf}) => {
   const [shelves, setShelves] = useState(SHELVES);

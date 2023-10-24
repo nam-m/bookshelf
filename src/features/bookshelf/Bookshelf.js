@@ -5,7 +5,7 @@ import { nanoid } from 'nanoid';
 import Book from './book/Book';
 import SortBook from './SortBook';
 import ViewBook from './ViewBook';
-import AddBookButton from './AddBookButton';
+import AddBookButton from '../../components/buttons/AddBookButton';
 
 const Bookshelf = ({
   sortId, setSortId,
