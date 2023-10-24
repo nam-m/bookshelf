@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 
-import CreateButton from "../../components/common/CreateButton";
-import Icon from "../../components/common/Icon";
+import CreateButton from "./CreateButton";
+import Icon from "../common/Icon";
 import { QUERIES } from '../../utils/constants';
 
 const AddBookButton = ({setAddBook}) => {
