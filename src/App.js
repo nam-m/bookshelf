@@ -13,6 +13,7 @@ import PopoverWrapper from './components/common/PopoverWrapper';
 import BookForm from './features/form/BookForm';
 import useLocalStorage from './utils/UseLocalStorage';
 import SideBar from './layouts/SideBar';
+import MobileNavBar from './layouts/MobileNavBar';
 
 const App = () => {
   const [bookPreview, setBookPreview] = useState({});
@@ -53,6 +54,7 @@ const App = () => {
           setBooks={setBooks}
         />
         <Footer />
+        <MobileNavBar />
       </MainColumn>
       <PreviewWrapper $showPreview={showPreview}>
         <BookPreview 
