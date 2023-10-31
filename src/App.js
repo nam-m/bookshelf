@@ -31,50 +31,56 @@ const App = () => {
   popoverBackground(showPreview);
 
   return (
-    <Wrapper>
-      <LeftColumn>
-        <SideBarTitle>
-          Bookshelf
-        </SideBarTitle>
-        <SideBar 
-          selectedShelf={selectedShelf}
-          setSelectedShelf={setSelectedShelf}
-        />
-      </LeftColumn>
-      <MainColumn>
-        <Header 
-          setAddBook={setAddBook}
-        />
-        <Main
-          showPreview={showPreview} 
-          setShowPreview={setShowPreview}
-          setBookPreview={setBookPreview}
-          selectedShelf={selectedShelf}
-          books={books}
-          setBooks={setBooks}
-        />
-        <Footer />
-        <MobileNavBar />
-      </MainColumn>
-      <PreviewWrapper $showPreview={showPreview}>
-        <BookPreview 
-          bookPreview={bookPreview}
-          showPreview={showPreview}
-          ref={previewRef}
-        />
-      </PreviewWrapper>
-      <AddBookWrapper $addBook={addBook}>
-        <BookForm 
-          books={books}
-          setBooks={setBooks}
-          addBook={addBook}
-          setAddBook={setAddBook}
-          ref={addRef}
-        />
-      </AddBookWrapper>
-    </Wrapper>
+    <AppWrapper>
+      <Wrapper>
+        <LeftColumn>
+          <SideBarTitle>
+            Bookshelf
+          </SideBarTitle>
+          <SideBar 
+            selectedShelf={selectedShelf}
+            setSelectedShelf={setSelectedShelf}
+          />
+        </LeftColumn>
+        <MainColumn>
+          <Header 
+            setAddBook={setAddBook}
+          />
+          <Main
+            showPreview={showPreview} 
+            setShowPreview={setShowPreview}
+            setBookPreview={setBookPreview}
+            selectedShelf={selectedShelf}
+            books={books}
+            setBooks={setBooks}
+          />
+          <Footer />
+        </MainColumn>
+        <PreviewWrapper $showPreview={showPreview}>
+          <BookPreview 
+            bookPreview={bookPreview}
+            showPreview={showPreview}
+            ref={previewRef}
+          />
+        </PreviewWrapper>
+        <AddBookWrapper $addBook={addBook}>
+          <BookForm 
+            books={books}
+            setBooks={setBooks}
+            addBook={addBook}
+            setAddBook={setAddBook}
+            ref={addRef}
+          />
+        </AddBookWrapper>
+      </Wrapper>
+      <MobileNavBar />
+    </AppWrapper>
   );
 };
+
+const AppWrapper = styled.div`
+  position: relative;
+`;
 
 const Wrapper = styled.div`
   min-height: 100%;
