@@ -34,12 +34,12 @@ const MobileNavBar = () => {
 const Wrapper = styled.div`
   display: none;
 
-  @media ${QUERIES.mobileAndDown} {
+  @media ${QUERIES.tabletAndDown} {
     display: revert;
     position: fixed;
     width: 100%;
     bottom: 0;
-    border-top: 1px solid ;
+    border-top: 1px solid ${COLORS.gray[300]};
     isolation: isolate;
     background-color: ${COLORS.white};
   }
@@ -47,7 +47,7 @@ const Wrapper = styled.div`
 
 const NavBar = styled.nav`
   display: flex;
-  padding: 8px 4px 10px;
+  padding: 8px 4px;
 `;
 
 const NavLink = styled.a`
@@ -55,14 +55,15 @@ const NavLink = styled.a`
   display: flex;
   flex-direction: column;
   cursor: pointer;
-  text-decoration: none;
+  color: inherit;
 
   &:link, &:visited {
     text-decoration: none;
   }
 `;
 
-const NavLinkName = styled.span`
+const NavLinkName = styled.p`
+  font-size: 0.875rem;
   margin-left: auto;
   margin-right: auto;
 `;
