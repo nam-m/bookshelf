@@ -80,11 +80,14 @@ const App = () => {
 
 const AppWrapper = styled.div`
   position: relative;
+  height: 100%;
+  overflow: auto;
 `;
 
 const Wrapper = styled.div`
-  min-height: 100%;
   display: grid;
+  height: inherit;
+  overflow: inherit;
   grid-auto-flow: column;
   grid-template-columns: minmax(14rem, 1fr) 5fr;
 
@@ -109,7 +112,6 @@ const SideBarTitle = styled.h1`
 `;
 
 const MainColumn = styled.div`
-  min-height: 100%;
   display: flex;
   flex-direction: column;
   padding-top: 16px;
