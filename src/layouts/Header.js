@@ -5,7 +5,7 @@ import AddBookButton from '../components/buttons/AddBookButton';
 import Icon from "../components/common/Icon";
 import IconButton from '../components/buttons/IconButton';
 
-const Header = ({setAddBook}) => {
+const Header = ({addBook, setAddBook, addRef}) => {
   return (
     <Wrapper>
       <SearchLabel htmlFor='search'>
@@ -14,7 +14,11 @@ const Header = ({setAddBook}) => {
       </SearchLabel>
       
       <SideGroup>
-        <AddBookButton setAddBook={setAddBook}/>
+        <AddBookButton 
+          addBook={addBook} 
+          setAddBook={setAddBook}
+          addRef={addRef}
+        />
         <ProfileButton>
           <Icon id='user' size={32} strokeWidth={2}/>
         </ProfileButton>
@@ -37,6 +41,7 @@ const SideGroup = styled.div`
   display: flex;
   gap: 8px;
   align-items: center;
+  /* container-type: inline-size; */
 `;
 
 const SearchLabel = styled.label`

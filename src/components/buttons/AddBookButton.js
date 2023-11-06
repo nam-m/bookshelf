@@ -4,17 +4,28 @@ import styled from 'styled-components/macro';
 import CreateButton from "./CreateButton";
 import Icon from "../common/Icon";
 import { QUERIES } from '../../utils/constants';
+import BookForm from '../../features/form/BookForm';
 
-const AddBookButton = ({setAddBook}) => {
+const AddBookButton = ({addBook, setAddBook, addRef}) => {
   return (
-    <Wrapper>
-      <Button
-        onClick={() => setAddBook(true)}
-      >
-        <AddBookText>Add book</AddBookText>
-        <AddBookIcon id='add' size={16} strokeWidth={4} />
-      </Button>
-    </Wrapper>
+    <>
+      <Wrapper>
+        <Button
+          onClick={() => {
+            setAddBook(true);
+            console.log(`Add book state: ${addBook}`)
+            }}
+        >
+          <AddBookText>Add book</AddBookText>
+          <AddBookIcon id='add' size={16} strokeWidth={4} />
+        </Button>
+      </Wrapper>
+      {addBook && 
+        <BookForm 
+          ref={addRef}
+        />
+      }
+    </>
   );
 };
 
@@ -23,6 +34,11 @@ const Wrapper = styled.div`
 `;
 
 const Button = styled(CreateButton)`
+
+  /* @container ${QUERIES.tabletAndDown} {
+    border: 1px solid;
+  } */
+
   @media ${QUERIES.mobileAndDown} {
     display: flex;
     justify-content: center;

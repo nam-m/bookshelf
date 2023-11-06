@@ -44,7 +44,9 @@ const App = () => {
         </LeftColumn>
         <MainColumn>
           <Header 
+            addBook={addBook}
             setAddBook={setAddBook}
+            addRef={addRef}
           />
           <Main
             showPreview={showPreview} 
@@ -56,7 +58,7 @@ const App = () => {
           />
           <Footer />
         </MainColumn>
-        <PreviewWrapper $showPreview={showPreview}>
+        {/* <PreviewWrapper $showPreview={showPreview}>
           <BookPreview 
             bookPreview={bookPreview}
             showPreview={showPreview}
@@ -71,7 +73,7 @@ const App = () => {
             setAddBook={setAddBook}
             ref={addRef}
           />
-        </AddBookWrapper>
+        </AddBookWrapper> */}
       </Wrapper>
       <MobileNavBar />
     </AppWrapper>
