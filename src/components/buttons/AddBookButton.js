@@ -6,22 +6,26 @@ import Icon from "../common/Icon";
 import { QUERIES } from '../../utils/constants';
 import BookForm from '../../features/form/BookForm';
 
-const AddBookButton = ({addBook, setAddBook, addRef}) => {
+const AddBookButton = ({books, setBooks, addBook, setAddBook, addRef}) => {
   return (
     <>
       <Wrapper>
         <Button
           onClick={() => {
             setAddBook(true);
-            console.log(`Add book state: ${addBook}`)
             }}
         >
           <AddBookText>Add book</AddBookText>
           <AddBookIcon id='add' size={16} strokeWidth={4} />
         </Button>
       </Wrapper>
-      {addBook && 
+      {
+        addBook && 
         <BookForm 
+          books={books}
+          setBooks={setBooks}
+          addBook={addBook}
+          setAddBook={setAddBook}
           ref={addRef}
         />
       }

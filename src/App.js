@@ -25,10 +25,9 @@ const App = () => {
   const previewRef = useRef();
   const addRef = useRef();
   
-  /* Prevent setShowPreview re-rendering by using arrow function */
   useClickOutside(previewRef, () => setShowPreview(false));
   useClickOutside(addRef, () => setAddBook(false));
-  popoverBackground(showPreview);
+  // popoverBackground(showPreview);
 
   return (
     <AppWrapper>
@@ -43,7 +42,9 @@ const App = () => {
           />
         </LeftColumn>
         <MainColumn>
-          <Header 
+          <Header
+            books={books}
+            setBooks={setBooks} 
             addBook={addBook}
             setAddBook={setAddBook}
             addRef={addRef}
@@ -51,10 +52,12 @@ const App = () => {
           <Main
             showPreview={showPreview} 
             setShowPreview={setShowPreview}
+            bookPreview={bookPreview}
             setBookPreview={setBookPreview}
             selectedShelf={selectedShelf}
             books={books}
             setBooks={setBooks}
+            previewRef={previewRef}
           />
           <Footer />
         </MainColumn>

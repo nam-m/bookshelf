@@ -6,15 +6,16 @@ import Book from './book/Book';
 import SortBook from './SortBook';
 import ViewBook from './ViewBook';
 import AddBookButton from '../../components/buttons/AddBookButton';
+import BookPreview from './book/BookPreview';
 
 const Bookshelf = ({
   sortId, setSortId,
   selectedShelf, 
   books, setBooks,
   viewBooks, setViewBooks,
-  setShowPreview,
-  setBookPreview}) => {
-
+  showPreview, setShowPreview,
+  bookPreview, setBookPreview,
+  previewRef}) => {
   const compareName = (name) => {
     return name.toLowerCase().split(" ").toReversed().join(" ");
   }
@@ -91,12 +92,19 @@ const Bookshelf = ({
               book={{...book}}
               key={`${book.title}-${nanoid()}`}
               viewBooks={viewBooks}
+              showPreview={showPreview}
               setShowPreview={setShowPreview}
               setBookPreview={setBookPreview}
+              previewRef={previewRef}
             />
           )
         }
       </BookGrid>
+      {showPreview && 
+        <BookPreview 
+          ref={previewRef}
+        />
+      }
     </Wrapper>
   );
 };

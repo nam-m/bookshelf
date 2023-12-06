@@ -233,8 +233,6 @@ const BookForm = forwardRef(function BookForm({books, setBooks, addBook, setAddB
 });
 
 const AddBookWrapper = styled(PopoverWrapper)`
-  /* Make it visible when passed prop is true and vice versa*/
-  /* visibility: ${p => p.$addBook ? 'visible' : 'hidden'}; */
 `;
 
 const Wrapper = styled.div`

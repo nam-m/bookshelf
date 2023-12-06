@@ -5,7 +5,7 @@ import AddBookButton from '../components/buttons/AddBookButton';
 import Icon from "../components/common/Icon";
 import IconButton from '../components/buttons/IconButton';
 
-const Header = ({addBook, setAddBook, addRef}) => {
+const Header = ({books, setBooks, addBook, setAddBook, addRef}) => {
   return (
     <Wrapper>
       <SearchLabel htmlFor='search'>
@@ -15,6 +15,8 @@ const Header = ({addBook, setAddBook, addRef}) => {
       
       <SideGroup>
         <AddBookButton 
+          books={books}
+          setBooks={setBooks} 
           addBook={addBook} 
           setAddBook={setAddBook}
           addRef={addRef}
