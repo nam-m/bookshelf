@@ -5,7 +5,6 @@ import { nanoid } from 'nanoid';
 import Book from './book/Book';
 import SortBook from './SortBook';
 import ViewBook from './ViewBook';
-import AddBookButton from '../../components/buttons/AddBookButton';
 import BookPreview from './book/BookPreview';
 
 const Bookshelf = ({
@@ -45,67 +44,71 @@ const Bookshelf = ({
   }
   
   return (
-    <Wrapper>
-      {/* Tray on top of book grid to provide status & viewing options */}
-      <ViewTray>
-        <BookStatus>
-          {books.length} {(books.length > 1) ? 'books' : 'book'}
-        </BookStatus>
-        <ViewOptions>
-          <SortBook
-            label='Sort'
-            value={sortId}
-            onChange={e => {
-              setSortId(e.target.value);
-              sortBooksById(e.target.value);
-            }}
-          >
-            <option value='time'>Recent</option>
-            <option value='title'>Title</option>
-            <option value='author'>Author</option>
-            <option value='manual'>Manually</option>
-          </SortBook>
-          <ViewBook 
-            viewBooks={viewBooks} 
-            setViewBooks={setViewBooks}
-          />
-        </ViewOptions>
-      </ViewTray>
-      {/* Pass state `viewBooks` to change book view based on <ViewBook /> */}
-      <BookGrid $viewBooks={viewBooks}>
-        {/* Map fields of each instance `book` in books to <BookWrapper />
-          , which contains <Book /> */}
-        {books
-          .filter(book => {
-            if (Object.keys(selectedShelf).length > 0) {
-              if (selectedShelf['books'].length > 0)
-                return selectedShelf['books'].includes(book.title);
-              else
-                return false;
-            }
-            else {
-              return true;
-            } 
-          })
-          .map(book => 
-            <Book
-              book={{...book}}
-              key={`${book.title}-${nanoid()}`}
-              viewBooks={viewBooks}
-              showPreview={showPreview}
-              setShowPreview={setShowPreview}
-              setBookPreview={setBookPreview}
-              previewRef={previewRef}
+    <>
+      <Wrapper>
+        {/* Tray on top of book grid to provide status & viewing options */}
+        <ViewTray>
+          <BookStatus>
+            {books.length} {(books.length > 1) ? 'books' : 'book'}
+          </BookStatus>
+          <ViewOptions>
+            <SortBook
+              label='Sort'
+              value={sortId}
+              onChange={e => {
+                setSortId(e.target.value);
+                sortBooksById(e.target.value);
+              }}
+            >
+              <option value='time'>Recent</option>
+              <option value='title'>Title</option>
+              <option value='author'>Author</option>
+              <option value='manual'>Manually</option>
+            </SortBook>
+            <ViewBook 
+              viewBooks={viewBooks} 
+              setViewBooks={setViewBooks}
             />
-          )
-        }
-      </BookGrid>
+          </ViewOptions>
+        </ViewTray>
+        {/* Pass state `viewBooks` to change book view based on <ViewBook /> */}
+        <BookGrid $viewBooks={viewBooks}>
+          {/* Map fields of each instance `book` in books to <BookWrapper />
+            , which contains <Book /> */}
+          {books
+            .filter(book => {
+              if (Object.keys(selectedShelf).length > 0) {
+                if (selectedShelf['books'].length > 0)
+                  return selectedShelf['books'].includes(book.title);
+                else
+                  return false;
+              }
+              else {
+                return true;
+              } 
+            })
+            .map(book => 
+              <Book
+                book={{...book}}
+                key={`${book.title}-${nanoid()}`}
+                viewBooks={viewBooks}
+                showPreview={showPreview}
+                setShowPreview={setShowPreview}
+                setBookPreview={setBookPreview}
+                previewRef={previewRef}
+              />
+            )
+          }
+        </BookGrid>
+      </Wrapper>
       {showPreview && 
-        <BookPreview 
+        <BookPreview
+          bookPreview={bookPreview}
+          showPreview={showPreview}
           ref={previewRef}
         />
       }
-    </Wrapper>
+    </>
   );
 };
 

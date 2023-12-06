@@ -7,15 +7,16 @@ import BookInfo from './BookInfo';
 const Book = ({
   book, viewBooks, 
   showPreview, setShowPreview, 
-  setBookPreview
+  setBookPreview,
+  previewRef
 }) => {
-  const[popover, setPopover] = useState(false);
+  const[showPopover, setShowPopover] = useState(false);
 
   return (
     <Wrapper 
       $viewBooks={viewBooks}
-      onMouseOver={() => setPopover(true)}
-      onMouseOut={() => setPopover(false)}
+      onMouseOver={() => setShowPopover(true)}
+      onMouseOut={() => setShowPopover(false)}
     >
       <BookCover>
         <Link>
@@ -23,21 +24,21 @@ const Book = ({
           <Image alt='' src={book.imageSrc} />
         </ImageWrapper>
         </Link>
-        <BookPopover 
-          viewBooks={viewBooks}
-          popover={popover}
-          showPreview={showPreview}
-          setShowPreview={setShowPreview}
-          setBookPreview={setBookPreview}
-          book={book}
+        {!viewBooks && showPopover && 
+          <BookPopover 
+            showPreview={showPreview}
+            setShowPreview={setShowPreview}
+            setBookPreview={setBookPreview}
+            book={book}
+            previewRef={previewRef}
           />
+        }
       </BookCover>
       <BookInfo
         viewBooks={viewBooks}
         book={book}
       />
     </Wrapper>
-    
   );
 };
 
@@ -78,7 +79,7 @@ const Link = styled.a`
 const ImageWrapper = styled.div`
   /* position: relative; */
   border-radius: 8px;
-  /* Hide image that extends beyong this wrapper
+  /* Hide image that extends beyond this wrapper
      to apply border-radius effect */
   overflow: hidden;
 

@@ -1,46 +1,60 @@
 import React, { forwardRef } from 'react';
+import { createPortal } from 'react-dom';
 import styled from 'styled-components/macro';
 
+import PopoverWrapper from '../../../components/common/PopoverWrapper';
 import { QUERIES } from '../../../utils/constants';
 
 const BookPreview = forwardRef(function BookPreview({bookPreview, showPreview}, ref) {
-  return (showPreview) ? (
-    <Wrapper ref={ref}>
-      <PreviewContent>
-        <MainInfo>
-          <ImageWrapper>
-            <Image alt='' src={bookPreview.imageSrc}/>
-          </ImageWrapper>
-          <BookInfo>
-            <Row>
-              <strong>{bookPreview.title}</strong>
-            </Row>
-            <Row>
-              {bookPreview.author}
-            </Row>
-            <NoteWrapper>
-              <Label htmlFor="notes">Notes</Label>
-              <NoteArea id="notes" name="notes" rows="5" cols="33"></NoteArea>
-            </NoteWrapper>
-          </BookInfo>
-        </MainInfo>
-        <Description>
-          This is the book&apos;s description
-        </Description>
-        <Review>
-          User&apos;s review
-        </Review>
-        <Footnote>
-          <FootnoteItem>Genre</FootnoteItem>
-          <FootnoteItem>{bookPreview.pages} pages</FootnoteItem>
-          <FootnoteItem>Edition</FootnoteItem>
-          <FootnoteItem>Released Date</FootnoteItem>
-          <FootnoteItem>Publisher</FootnoteItem>
-        </Footnote>
-      </PreviewContent>
-    </Wrapper>
-  ) : null;
+  return (
+    <>
+      {createPortal(
+        <PreviewWrapper $showPreview={showPreview}>
+          <Wrapper ref={ref}>
+            <PreviewContent>
+              <MainInfo>
+                <ImageWrapper>
+                  <Image alt='' src={bookPreview.imageSrc}/>
+                </ImageWrapper>
+                <BookInfo>
+                  <Row>
+                    <strong>{bookPreview.title}</strong>
+                  </Row>
+                  <Row>
+                    {bookPreview.author}
+                  </Row>
+                  <NoteWrapper>
+                    <Label htmlFor="notes">Notes</Label>
+                    <NoteArea id="notes" name="notes" rows="5" cols="33"></NoteArea>
+                  </NoteWrapper>
+                </BookInfo>
+              </MainInfo>
+              <Description>
+                This is the book&apos;s description
+              </Description>
+              <Review>
+                User&apos;s review
+              </Review>
+              <Footnote>
+                <FootnoteItem>Genre</FootnoteItem>
+                <FootnoteItem>{bookPreview.pages} pages</FootnoteItem>
+                <FootnoteItem>Edition</FootnoteItem>
+                <FootnoteItem>Released Date</FootnoteItem>
+                <FootnoteItem>Publisher</FootnoteItem>
+              </Footnote>
+            </PreviewContent>
+          </Wrapper>
+        </PreviewWrapper>,
+        document.body
+      )}
+    </> 
+  )
 });
+
+const PreviewWrapper = styled(PopoverWrapper)`
+  /* Make it visible when passed prop is true and vice versa*/
+  /* visibility: ${p => p.$showPreview ? 'visible' : 'hidden'}; */
+`;
 
 const Wrapper = styled.div`
   position: absolute;
@@ -72,7 +86,7 @@ const MainInfo = styled.header`
 
 const ImageWrapper = styled.div`
   border-radius: 8px;
-  /* Hide image that extends beyong this wrapper
+  /* Hide image that extends beyond this wrapper
      to apply border-radius effect */
   overflow: hidden;
   flex-basis: 200px;
