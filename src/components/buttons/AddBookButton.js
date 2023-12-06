@@ -19,8 +19,7 @@ const AddBookButton = ({books, setBooks, addBook, setAddBook, addRef}) => {
           <AddBookIcon id='add' size={16} strokeWidth={4} />
         </Button>
       </Wrapper>
-      {
-        addBook && 
+      {addBook && 
         <BookForm 
           books={books}
           setBooks={setBooks}

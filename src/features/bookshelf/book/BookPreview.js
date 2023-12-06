@@ -52,8 +52,6 @@ const BookPreview = forwardRef(function BookPreview({bookPreview, showPreview}, 
 });
 
 const PreviewWrapper = styled(PopoverWrapper)`
-  /* Make it visible when passed prop is true and vice versa*/
-  /* visibility: ${p => p.$showPreview ? 'visible' : 'hidden'}; */
 `;
 
 const Wrapper = styled.div`
