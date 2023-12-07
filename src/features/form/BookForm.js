@@ -1,9 +1,11 @@
 import React, { forwardRef, useState } from 'react';
+import { createPortal } from 'react-dom';
 import styled from 'styled-components/macro';
 
-import CreateButton from '../../components/common/CreateButton';
+import CreateButton from '../../components/buttons/CreateButton';
 import BookFormRow from './BookFormRow';
 import { Book } from '../bookshelf/BookStorage';
+import PopoverWrapper from '../../components/common/PopoverWrapper';
 
 const BookForm = forwardRef(function BookForm({books, setBooks, addBook, setAddBook}, ref) {
   // State and set state of form input fields
@@ -154,74 +156,84 @@ const BookForm = forwardRef(function BookForm({books, setBooks, addBook, setAddB
     }
   };
 
-  return (addBook) ? (
-    <Wrapper ref={ref}>
-      <Form 
-        action='https://httpbin.org/post' 
-        method='post'
-        // Open a new page on submit
-        target='_blank'
-        noValidate
-        onSubmit={(e) => handleSubmit(e)}
-      >
-        <BookFormRow 
-          name='title'
-          type='text'
-          form={form}
-          setForm={setForm}
-          handleUpdateForm={handleUpdateForm}
-          submitted={submitted}
-        />
-        <BookFormRow 
-          name='author'
-          type='text'
-          form={form}
-          setForm={setForm} 
-          handleUpdateForm={handleUpdateForm}
-          submitted={submitted}
-        />
-        <BookFormRow 
-          name='pages'
-          type='text'
-          form={form} 
-          setForm={setForm} 
-          handleUpdateForm={handleUpdateForm}
-          submitted={submitted}
-        />
-        <BookFormRow 
-          name='image'
-          type='url'
-          placeholder='Enter book cover image URL..'
-          form={form} 
-          setForm={setForm} 
-          handleUpdateForm={handleUpdateForm}
-          submitted={submitted}
-        />
-        <Row>
-          <NoteLabel 
-            htmlFor='notes'
+  return (
+    <>
+      {createPortal(
+        <AddBookWrapper $addBook={addBook}>
+          <Wrapper ref={ref}>
+          <Form 
+            action='https://httpbin.org/post' 
+            method='post'
+            // Open a new page on submit
+            target='_blank'
+            noValidate
+            onSubmit={(e) => handleSubmit(e)}
           >
-            Your Notes
-          </NoteLabel>
-          <NoteArea 
-            as='textarea'
-            id='notes' 
-            name='notes' 
-            rows='5' cols='33'
-          >
-          </NoteArea>
-        </Row>
-        <Row>
-          <SubmitButton 
-            type='submit'
-          >
-            Add book
-          </SubmitButton>
-        </Row>
-      </Form>
-    </Wrapper>
-  ) : null;
+            <BookFormRow 
+              name='title'
+              type='text'
+              form={form}
+              setForm={setForm}
+              handleUpdateForm={handleUpdateForm}
+              submitted={submitted}
+            />
+            <BookFormRow 
+              name='author'
+              type='text'
+              form={form}
+              setForm={setForm} 
+              handleUpdateForm={handleUpdateForm}
+              submitted={submitted}
+            />
+            <BookFormRow 
+              name='pages'
+              type='text'
+              form={form} 
+              setForm={setForm} 
+              handleUpdateForm={handleUpdateForm}
+              submitted={submitted}
+            />
+            <BookFormRow 
+              name='image'
+              type='url'
+              placeholder='Enter book cover image URL..'
+              form={form} 
+              setForm={setForm} 
+              handleUpdateForm={handleUpdateForm}
+              submitted={submitted}
+            />
+            <Row>
+              <NoteLabel 
+                htmlFor='notes'
+              >
+                Your Notes
+              </NoteLabel>
+              <NoteArea 
+                as='textarea'
+                id='notes' 
+                name='notes' 
+                rows='5' cols='33'
+              >
+              </NoteArea>
+            </Row>
+            <Row>
+              <SubmitButton 
+                type='submit'
+              >
+                Add book
+              </SubmitButton>
+            </Row>
+          </Form>
+          </Wrapper>
+        </AddBookWrapper>,
+        document.body
+      )}
+    </>
+  );
 });
+
+const AddBookWrapper = styled(PopoverWrapper)`
+`;
 
 const Wrapper = styled.div`
   position: absolute;

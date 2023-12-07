@@ -5,7 +5,11 @@ import {
   X,
   Edit2,
   Plus,
-  Search
+  Search,
+  User,
+  Home,
+  Layers,
+  Trello
 } from 'react-feather';
 
 const icons = {
@@ -13,7 +17,11 @@ const icons = {
   cancel: X,
   edit: Edit2,
   add: Plus,
-  search: Search
+  search: Search,
+  user: User,
+  home: Home,
+  shelves: Layers,
+  feed: Trello
 };
 
 const Icon = ({ id, color, size, strokeWidth, ...delegated }) => {

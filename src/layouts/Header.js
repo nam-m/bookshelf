@@ -1,10 +1,11 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 
-import AddBookButton from '../features/bookshelf/AddBookButton';
+import AddBookButton from '../components/buttons/AddBookButton';
 import Icon from "../components/common/Icon";
+import IconButton from '../components/buttons/IconButton';
 
-const Header = ({setAddBook}) => {
+const Header = ({books, setBooks, addBook, setAddBook, addRef}) => {
   return (
     <Wrapper>
       <SearchLabel htmlFor='search'>
@@ -13,8 +14,16 @@ const Header = ({setAddBook}) => {
       </SearchLabel>
       
       <SideGroup>
-        <AddBookButton setAddBook={setAddBook}/>
-        <Profile>Profile</Profile>
+        <AddBookButton 
+          books={books}
+          setBooks={setBooks} 
+          addBook={addBook} 
+          setAddBook={setAddBook}
+          addRef={addRef}
+        />
+        <ProfileButton>
+          <Icon id='user' size={32} strokeWidth={2}/>
+        </ProfileButton>
       </SideGroup>
     </Wrapper>
   );
@@ -24,7 +33,7 @@ const Wrapper = styled.header`
   display: flex;
   gap: clamp(0.25rem, 5%, 4rem);
   justify-content: space-between;
-  align-items: baseline;
+  align-items: center;
   padding-top: 16px;
   padding-bottom: 32px;
   border-bottom: 1px solid hsl(120deg 5% 5%);
@@ -33,7 +42,8 @@ const Wrapper = styled.header`
 const SideGroup = styled.div`
   display: flex;
   gap: 8px;
-  align-items: baseline;
+  align-items: center;
+  /* container-type: inline-size; */
 `;
 
 const SearchLabel = styled.label`
@@ -62,8 +72,9 @@ const SearchIcon = styled(Icon)`
   margin-left: 8px;
 `;
 
-const Profile = styled.a`
-  text-decoration: none;
+const ProfileButton = styled(IconButton)`
+  border-radius: 50%;
+  background: transparent;
 `;
 
 export default Header;

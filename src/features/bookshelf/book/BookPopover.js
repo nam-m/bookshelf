@@ -1,34 +1,31 @@
 import React from 'react';
 import styled from 'styled-components/macro';
-import popoverBackground from '../../../utils/PopoverBackground';
+
+import { QUERIES } from '../../../utils/constants';
+import BookPreview from './BookPreview';
 
 const BookPopover = ({
-  popover, 
-  viewBooks, 
   showPreview, setShowPreview, 
   setBookPreview, 
-  book}) => {  
-    if (viewBooks)
-      return null;
-    else
-      if (!popover)
-        return null;
-      else
-        return (
-          <Wrapper>
-            <PopoverInput 
-              type='submit' 
-              value='Quick look'
-              onClick={() => 
-                {
-                  setShowPreview(true);
-                  popoverBackground(showPreview);
-                  setBookPreview(book);
-                }
-              }
-            />
-          </Wrapper>
-        );
+  book,
+  previewRef
+}) => {  
+    return (
+    <>
+      <Wrapper>
+        <PopoverInput 
+          type='submit' 
+          value='Quick look'
+          onClick={() => 
+          {
+            setShowPreview(true);
+            // popoverBackground(showPreview);
+            setBookPreview(book);
+          }}
+        />
+      </Wrapper>
+    </>
+    );
   };
 
 const Wrapper = styled.div`
@@ -37,6 +34,10 @@ const Wrapper = styled.div`
   /* Center popover wrapper by setting left and width */
   left: 5%;
   width: 90%;
+
+  @media ${QUERIES.tabletAndDown} {
+    display: none;
+  }
 `;
 
 const PopoverInput = styled.input`

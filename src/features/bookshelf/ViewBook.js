@@ -46,7 +46,7 @@ const Label = styled.label`
 `;
 
 const Checkbox = styled.input`
-  /* Hide default box from layout completly */
+  /* Hide default box from layout completely */
   display: none;
 
   &:checked + ${Label}::after {

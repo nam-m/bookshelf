@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components/macro';
 
 import Icon from '../../../components/common/Icon';
-import IconButton from '../../../components/common/IconButton';
+import IconButton from '../../../components/buttons/IconButton';
 import { updateObjectInArray } from '../../../utils/utils';
 
 const ShelfView = ({shelf, shelves, setShelves}) => {
@@ -51,8 +51,18 @@ const ButtonGroup = styled.div`
 
 const ShelfName = styled.span``;
 
-const EditButton = styled(IconButton)``;
+const EditButton = styled(IconButton)`
+  /* border-radius: 50%; */
+  /* background: transparent; */
+  /* box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); */
 
-const CancelButton = styled(IconButton)``;
+  &:hover {
+  }
+`;
+
+const CancelButton = styled(IconButton)`
+  /* border-radius: 50%; */
+  /* background: transparent; */
+`;
 
 export default ShelfView;

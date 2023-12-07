@@ -1,9 +1,8 @@
 import React from 'react';
 import { useState, useRef } from 'react';
-import styled from 'styled-components/macro'
+import styled from 'styled-components/macro';
 
 import { QUERIES } from './utils/constants';
-
 import Header from './layouts/Header';
 import Main from './layouts/Main';
 import Footer from './layouts/Footer';
@@ -14,6 +13,7 @@ import PopoverWrapper from './components/common/PopoverWrapper';
 import BookForm from './features/form/BookForm';
 import useLocalStorage from './utils/UseLocalStorage';
 import SideBar from './layouts/SideBar';
+import MobileNavBar from './layouts/MobileNavBar';
 
 const App = () => {
   const [bookPreview, setBookPreview] = useState({});
@@ -25,61 +25,76 @@ const App = () => {
   const previewRef = useRef();
   const addRef = useRef();
   
-  /* Prevent setShowPreview re-rendering by using arrow function */
   useClickOutside(previewRef, () => setShowPreview(false));
   useClickOutside(addRef, () => setAddBook(false));
-  popoverBackground(showPreview);
+  // popoverBackground(showPreview);
 
   return (
-    <Wrapper>
-      <LeftColumn>
-        <SideBarTitle>
-          Bookshelf
-        </SideBarTitle>
-        <SideBar 
-          selectedShelf={selectedShelf}
-          setSelectedShelf={setSelectedShelf}
-        />
-      </LeftColumn>
-      <MainColumn>
-        <Header 
-          setAddBook={setAddBook}
-        />
-        <Main
-          showPreview={showPreview} 
-          setShowPreview={setShowPreview}
-          setBookPreview={setBookPreview}
-          selectedShelf={selectedShelf}
-          books={books}
-          setBooks={setBooks}
-        />
-        <Footer />
-      </MainColumn>
-      <PreviewWrapper $showPreview={showPreview}>
-        <BookPreview 
-          bookPreview={bookPreview}
-          showPreview={showPreview}
-          ref={previewRef}
-        />
-      </PreviewWrapper>
-      <AddBookWrapper $addBook={addBook}>
-        <BookForm 
-          books={books}
-          setBooks={setBooks}
-          addBook={addBook}
-          setAddBook={setAddBook}
-          ref={addRef}
-        />
-      </AddBookWrapper>
-    </Wrapper>
+    <AppWrapper>
+      <Wrapper>
+        <LeftColumn>
+          <SideBarTitle>
+            Bookshelf
+          </SideBarTitle>
+          <SideBar 
+            selectedShelf={selectedShelf}
+            setSelectedShelf={setSelectedShelf}
+          />
+        </LeftColumn>
+        <MainColumn>
+          <Header
+            books={books}
+            setBooks={setBooks} 
+            addBook={addBook}
+            setAddBook={setAddBook}
+            addRef={addRef}
+          />
+          <Main
+            showPreview={showPreview} 
+            setShowPreview={setShowPreview}
+            bookPreview={bookPreview}
+            setBookPreview={setBookPreview}
+            selectedShelf={selectedShelf}
+            books={books}
+            setBooks={setBooks}
+            previewRef={previewRef}
+          />
+          <Footer />
+        </MainColumn>
+        {/* <PreviewWrapper $showPreview={showPreview}>
+          <BookPreview 
+            bookPreview={bookPreview}
+            showPreview={showPreview}
+            ref={previewRef}
+          />
+        </PreviewWrapper>
+        <AddBookWrapper $addBook={addBook}>
+          <BookForm 
+            books={books}
+            setBooks={setBooks}
+            addBook={addBook}
+            setAddBook={setAddBook}
+            ref={addRef}
+          />
+        </AddBookWrapper> */}
+      </Wrapper>
+      <MobileNavBar />
+    </AppWrapper>
   );
 };
 
+const AppWrapper = styled.div`
+  position: relative;
+  height: 100%;
+  overflow: auto;
+`;
+
 const Wrapper = styled.div`
-  min-height: 100%;
   display: grid;
+  height: inherit;
+  overflow: inherit;
   grid-auto-flow: column;
-  grid-template-columns: minmax(224px, 1fr) 4fr;
+  grid-template-columns: minmax(14rem, 1fr) 5fr;
 
   @media ${QUERIES.tabletAndDown} {
     grid-template-columns: revert;
@@ -102,7 +117,6 @@ const SideBarTitle = styled.h1`
 `;
 
 const MainColumn = styled.div`
-  min-height: 100%;
   display: flex;
   flex-direction: column;
   padding-top: 16px;
