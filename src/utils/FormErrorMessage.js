@@ -1,19 +1,10 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 
-const FormErrorMessage = ({ 
-  message, submitted, inputError, inputValue 
-}) => {
-  return (
-    (submitted && (inputError ||inputValue === ''))
-    ? 
-    (
-      <Label htmlFor='error'>
-        {message}
-      </Label>
-    ) 
-    : null
-  );
+const FormErrorMessage = ({ message, submitted, inputError, inputValue }) => {
+  return submitted && (inputError || inputValue === '') ? (
+    <Label htmlFor="error">{message}</Label>
+  ) : null;
 };
 
 const Label = styled.label`

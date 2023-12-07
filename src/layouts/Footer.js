@@ -1,17 +1,13 @@
-import React from 'react'
-import styled from 'styled-components/macro'
+import React from 'react';
+import styled from 'styled-components/macro';
 import { QUERIES } from '../utils/constants';
 
 const Footer = () => {
   return (
     <FooterWrapper>
       <Info>
-        <span>
-          &copy;2023 Nam Mai
-        </span>
-        <span>
-          All Rights Reserved
-        </span>
+        <span>&copy;2023 Nam Mai</span>
+        <span>All Rights Reserved</span>
       </Info>
     </FooterWrapper>
   );
@@ -19,7 +15,7 @@ const Footer = () => {
 
 const FooterWrapper = styled.footer`
   /* Placeholder height */
-  height: 100px;  
+  height: 100px;
   border-top: 1px solid hsl(120deg 5% 5%);
   /* padding: 0 80px; */
   display: flex;

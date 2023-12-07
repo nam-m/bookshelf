@@ -1,23 +1,38 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 import styled from 'styled-components/macro';
-import Icon from "../../../components/common/Icon";
-import IconButton from "../../../components/buttons/IconButton";
-import { getObjectValueinArray, updateObjectInArray } from "../../../utils/utils";
+import Icon from '../../../components/common/Icon';
+import IconButton from '../../../components/buttons/IconButton';
+import {
+  getObjectValueinArray,
+  updateObjectInArray,
+} from '../../../utils/utils';
 
-const ShelfForm = ({shelf, shelves, setShelves}) => {
+const ShelfForm = ({ shelf, shelves, setShelves }) => {
   // const [submitted, setSubmitted] = useState(false);
-  const [originalShelfName] = useState(getObjectValueinArray(shelves, shelf.id, 'name'));
-  
+  const [originalShelfName] = useState(
+    getObjectValueinArray(shelves, shelf.id, 'name')
+  );
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    const updatedShelves = updateObjectInArray([...shelves], shelf.id, 'isEditing', false);
+    const updatedShelves = updateObjectInArray(
+      [...shelves],
+      shelf.id,
+      'isEditing',
+      false
+    );
     setShelves(updatedShelves);
-  }
+  };
 
   const handleNameChange = (e) => {
-    const updatedShelves = updateObjectInArray([...shelves], shelf.id, 'name', e.target.value);
+    const updatedShelves = updateObjectInArray(
+      [...shelves],
+      shelf.id,
+      'name',
+      e.target.value
+    );
     setShelves(updatedShelves);
-  }
+  };
 
   const handleUpdateForm = (e) => {
     let errorMessage;
@@ -25,39 +40,39 @@ const ShelfForm = ({shelf, shelves, setShelves}) => {
     if (!e.target.value) {
       errorMessage = '*' + e.target.name + ' input is required';
     }
-  }
+  };
 
   return (
     <Wrapper>
-      <Form
-        noValidate
-        onSubmit={(e) => handleSubmit(e)}
-      >
+      <Form noValidate onSubmit={(e) => handleSubmit(e)}>
         <InputWrapper>
-          <Label htmlFor='new_shelf'></Label>
+          <Label htmlFor="new_shelf"></Label>
           <Input
-            type='text'
-            id='new_shelf'
-            name='new_shelf'
+            type="text"
+            id="new_shelf"
+            name="new_shelf"
             value={shelf.name}
-            placeholder='Enter shelf name'
+            placeholder="Enter shelf name"
             autoFocus
-            onChange={e => handleNameChange(e)}
-          >
-          </Input>
+            onChange={(e) => handleNameChange(e)}
+          ></Input>
           <ButtonGroup>
-            <SubmitButton
-              type='submit'
-            >
-              <Icon id='check' color='green' size={24} strokeWidth={2} />
+            <SubmitButton type="submit">
+              <Icon id="check" color="green" size={24} strokeWidth={2} />
             </SubmitButton>
             <CancelButton
-              onClick={() => 
-              setShelves(updateObjectInArray(
-                [...shelves], shelf.id, 'name', originalShelfName)
-              )}
+              onClick={() =>
+                setShelves(
+                  updateObjectInArray(
+                    [...shelves],
+                    shelf.id,
+                    'name',
+                    originalShelfName
+                  )
+                )
+              }
             >
-              <Icon id='cancel' color='red' size={24} strokeWidth={2} />
+              <Icon id="cancel" color="red" size={24} strokeWidth={2} />
             </CancelButton>
           </ButtonGroup>
         </InputWrapper>

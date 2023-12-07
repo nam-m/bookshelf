@@ -1,43 +1,42 @@
-import React, { useState } from 'react'
-import styled from 'styled-components/macro'
+import React, { useState } from 'react';
+import styled from 'styled-components/macro';
 
 import BookPopover from './BookPopover';
 import BookInfo from './BookInfo';
 
 const Book = ({
-  book, viewBooks, 
-  showPreview, setShowPreview, 
+  book,
+  viewBooks,
+  showPreview,
+  setShowPreview,
   setBookPreview,
-  previewRef
+  previewRef,
 }) => {
-  const[showPopover, setShowPopover] = useState(false);
+  const [showPopover, setShowPopover] = useState(false);
 
   return (
-    <Wrapper 
+    <Wrapper
       $viewBooks={viewBooks}
       onMouseOver={() => setShowPopover(true)}
       onMouseOut={() => setShowPopover(false)}
     >
       <BookCover>
         <Link>
-        <ImageWrapper>
-          <Image alt='' src={book.imageSrc} />
-        </ImageWrapper>
+          <ImageWrapper>
+            <Image alt="" src={book.imageSrc} />
+          </ImageWrapper>
         </Link>
-        {!viewBooks && showPopover && 
-          <BookPopover 
+        {!viewBooks && showPopover && (
+          <BookPopover
             showPreview={showPreview}
             setShowPreview={setShowPreview}
             setBookPreview={setBookPreview}
             book={book}
             previewRef={previewRef}
           />
-        }
+        )}
       </BookCover>
-      <BookInfo
-        viewBooks={viewBooks}
-        book={book}
-      />
+      <BookInfo viewBooks={viewBooks} book={book} />
     </Wrapper>
   );
 };
@@ -46,8 +45,9 @@ const Wrapper = styled.div`
   position: relative;
   display: grid;
 
-  ${p => p.$viewBooks ?
-  ` 
+  ${(p) =>
+    p.$viewBooks
+      ? ` 
     grid-auto-flow: column;
     grid-template-columns: 200px minmax(300px, 1fr);
     gap: 16px;
@@ -58,13 +58,11 @@ const Wrapper = styled.div`
       margin-bottom: 16px;
     }
   `
-  :
-  `
+      : `
     grid-auto-flow: row;
     grid-template-rows: min-content min-content;
     gap: 4px 0;
-  `
-  };
+  `};
 `;
 
 const BookCover = styled.div`
@@ -92,7 +90,7 @@ const ImageWrapper = styled.div`
 `;
 
 const Image = styled.img`
-  /* Set to block to cover all parent container space*/  
+  /* Set to block to cover all parent container space*/
   display: block;
   /* Set width to be the same as parent content's */
   max-width: 100%;

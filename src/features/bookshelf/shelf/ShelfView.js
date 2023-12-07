@@ -5,30 +5,27 @@ import Icon from '../../../components/common/Icon';
 import IconButton from '../../../components/buttons/IconButton';
 import { updateObjectInArray } from '../../../utils/utils';
 
-const ShelfView = ({shelf, shelves, setShelves}) => {
+const ShelfView = ({ shelf, shelves, setShelves }) => {
   const deleteShelf = (id) => {
-    const remainingShelves = shelves.filter(shelf => id !== shelf.id);
+    const remainingShelves = shelves.filter((shelf) => id !== shelf.id);
     setShelves(remainingShelves);
   };
 
   return (
     <Wrapper>
-      <ShelfName>
-        {shelf.name}
-      </ShelfName>
+      <ShelfName>{shelf.name}</ShelfName>
       <ButtonGroup>
         <EditButton
-          onClick={() => 
-          setShelves(updateObjectInArray(
-            [...shelves], shelf.id, 'isEditing', true)
-          )}
+          onClick={() =>
+            setShelves(
+              updateObjectInArray([...shelves], shelf.id, 'isEditing', true)
+            )
+          }
         >
-          <Icon id='edit' size={24} strokeWidth={2}/>
+          <Icon id="edit" size={24} strokeWidth={2} />
         </EditButton>
-        <CancelButton
-          onClick={() => deleteShelf(shelf.id)}
-        >
-          <Icon id='cancel' color='red' size={24} strokeWidth={2} />
+        <CancelButton onClick={() => deleteShelf(shelf.id)}>
+          <Icon id="cancel" color="red" size={24} strokeWidth={2} />
         </CancelButton>
       </ButtonGroup>
     </Wrapper>

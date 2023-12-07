@@ -1,36 +1,43 @@
-import React from "react";
+import React from 'react';
 import styled from 'styled-components/macro';
 
 import FormErrorMessage from '../../utils/FormErrorMessage';
 
-const BookFormRow = ({name, type, form, setForm, handleUpdateForm, placeholder, submitted}) => {
+const BookFormRow = ({
+  name,
+  type,
+  form,
+  setForm,
+  handleUpdateForm,
+  placeholder,
+  submitted,
+}) => {
   // Label name for each row
-  const key = Object.keys(form).find(key => key === name);
+  const key = Object.keys(form).find((key) => key === name);
   const labelName = name.charAt(0).toUpperCase() + name.slice(1);
 
   return (
     <Row>
       <Label htmlFor={name}>{labelName}</Label>
-      <Input 
-        type={type} 
-        id={name} 
+      <Input
+        type={type}
+        id={name}
         name={name}
         value={form[key].value}
         placeholder={placeholder}
         $showError={!!form[key].message}
         onClick={() => {
           setForm({
-            ...form, 
+            ...form,
             [key]: {
               ...form[key],
-              dirty: true
-            }
+              dirty: true,
+            },
           });
         }}
-        onChange={e => handleUpdateForm(e)}
-        >
-      </Input>
-      <FormErrorMessage 
+        onChange={(e) => handleUpdateForm(e)}
+      ></Input>
+      <FormErrorMessage
         submitted={submitted}
         message={form[key].message}
         inputDirty={form[key].dirty}
@@ -57,13 +64,12 @@ const Input = styled.input`
   border-radius: 8px;
   background-color: hsl(185deg, 10%, 95%);
 
-  ${p => p.$showError ?
-  `
+  ${(p) =>
+    p.$showError
+      ? `
     outline: 1px solid red;
   `
-  :
-  ``
-  };
+      : ``};
 `;
 
 export default BookFormRow;

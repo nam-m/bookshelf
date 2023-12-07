@@ -1,22 +1,26 @@
-import React from 'react'
+import React from 'react';
 import { useState } from 'react';
-import styled from 'styled-components/macro'
+import styled from 'styled-components/macro';
 
 import Bookshelf from '../features/bookshelf/Bookshelf';
 
 const Main = ({
-  showPreview, setShowPreview, 
-  bookPreview, setBookPreview, 
-  selectedShelf, 
-  books, setBooks, 
-  previewRef}) => {
+  showPreview,
+  setShowPreview,
+  bookPreview,
+  setBookPreview,
+  selectedShelf,
+  books,
+  setBooks,
+  previewRef,
+}) => {
   const [sortId, setSortId] = useState('manual');
   const [viewBooks, setViewBooks] = useState(false);
 
   return (
     <MainWrapper>
-      <Bookshelf 
-        sortId={sortId} 
+      <Bookshelf
+        sortId={sortId}
         setSortId={setSortId}
         selectedShelf={selectedShelf}
         books={books}
@@ -30,7 +34,7 @@ const Main = ({
         previewRef={previewRef}
       />
     </MainWrapper>
-    );
+  );
 };
 
 const MainWrapper = styled.main`

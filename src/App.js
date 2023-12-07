@@ -20,11 +20,14 @@ const App = () => {
   const [showPreview, setShowPreview] = useState(false);
   const [addBook, setAddBook] = useState(false);
   const [books, setBooks] = useLocalStorage('books', []);
-  const [selectedShelf, setSelectedShelf] = useLocalStorage('selectedShelf', {});
+  const [selectedShelf, setSelectedShelf] = useLocalStorage(
+    'selectedShelf',
+    {}
+  );
 
   const previewRef = useRef();
   const addRef = useRef();
-  
+
   useClickOutside(previewRef, () => setShowPreview(false));
   useClickOutside(addRef, () => setAddBook(false));
   // popoverBackground(showPreview);
@@ -33,10 +36,8 @@ const App = () => {
     <AppWrapper>
       <Wrapper>
         <LeftColumn>
-          <SideBarTitle>
-            Bookshelf
-          </SideBarTitle>
-          <SideBar 
+          <SideBarTitle>Bookshelf</SideBarTitle>
+          <SideBar
             selectedShelf={selectedShelf}
             setSelectedShelf={setSelectedShelf}
           />
@@ -44,13 +45,13 @@ const App = () => {
         <MainColumn>
           <Header
             books={books}
-            setBooks={setBooks} 
+            setBooks={setBooks}
             addBook={addBook}
             setAddBook={setAddBook}
             addRef={addRef}
           />
           <Main
-            showPreview={showPreview} 
+            showPreview={showPreview}
             setShowPreview={setShowPreview}
             bookPreview={bookPreview}
             setBookPreview={setBookPreview}
@@ -126,12 +127,12 @@ const MainColumn = styled.div`
 
 const PreviewWrapper = styled(PopoverWrapper)`
   /* Make it visible when passed prop is true and vice versa*/
-  visibility: ${p => p.$showPreview ? 'visible' : 'hidden'};
+  visibility: ${(p) => (p.$showPreview ? 'visible' : 'hidden')};
 `;
 
 const AddBookWrapper = styled(PopoverWrapper)`
   /* Make it visible when passed prop is true and vice versa*/
-  visibility: ${p => p.$addBook ? 'visible' : 'hidden'};
+  visibility: ${(p) => (p.$addBook ? 'visible' : 'hidden')};
 `;
 
 export default App;

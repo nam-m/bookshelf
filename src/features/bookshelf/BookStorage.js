@@ -1,14 +1,8 @@
 import React from 'react';
 import { useState } from 'react';
 
-
 export class Book {
-  constructor(
-    title = '',
-    author = '',
-    pages = '',
-    imageSrc= ''
-  ) {
+  constructor(title = '', author = '', pages = '', imageSrc = '') {
     this.title = title;
     this.author = author;
     this.pages = pages;
@@ -16,8 +10,8 @@ export class Book {
   }
 }
 
-export class BookStorage {  
-  constructor (){
+export class BookStorage {
+  constructor() {
     this.books = [];
   }
 
@@ -26,23 +20,27 @@ export class BookStorage {
       this.books.push(newBook);
       // Add new book to localStorage with key as <title-author>
       localStorage.setItem(
-        newBook.title.concat('-', newBook.title)
-        , JSON.stringify(newBook));
+        newBook.title.concat('-', newBook.title),
+        JSON.stringify(newBook)
+      );
     }
   }
 
   removeBook(title, author) {
-    this.books = this.books.filter((book) => 
-      book.title !== title && book.author !== author);
+    this.books = this.books.filter(
+      (book) => book.title !== title && book.author !== author
+    );
   }
 
   getBook(title, author) {
-    return this.books.find((book) => 
-      book.title === title && book.author === author);
+    return this.books.find(
+      (book) => book.title === title && book.author === author
+    );
   }
 
   hasBook(newBook) {
-    return this.books.some((book) => 
-      book.title === newBook.title && book.author === newBook.author);
+    return this.books.some(
+      (book) => book.title === newBook.title && book.author === newBook.author
+    );
   }
 }

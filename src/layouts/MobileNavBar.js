@@ -1,34 +1,28 @@
-import React from "react";
-import styled from "styled-components/macro";
-import { COLORS, QUERIES } from "../utils/constants";
+import React from 'react';
+import styled from 'styled-components/macro';
+import { COLORS, QUERIES } from '../utils/constants';
 
-import Icon from "../components/common/Icon";
+import Icon from '../components/common/Icon';
 
 const MobileNavBar = () => {
   return (
     <Wrapper>
       <NavBar>
-        <FeedNavLink href='/feed'>
-          <Icon id='feed' />
-          <NavLinkName>
-            Discover
-          </NavLinkName>
+        <FeedNavLink href="/feed">
+          <Icon id="feed" />
+          <NavLinkName>Discover</NavLinkName>
         </FeedNavLink>
-        <HomeNavLink href='/home'>
-          <Icon id='home' />
-          <NavLinkName>
-            Home
-          </NavLinkName>
+        <HomeNavLink href="/home">
+          <Icon id="home" />
+          <NavLinkName>Home</NavLinkName>
         </HomeNavLink>
-        <ShelvesNavLink href='/shelves'>
-          <Icon id='shelves' />
-          <NavLinkName>
-            Shelves
-          </NavLinkName>
+        <ShelvesNavLink href="/shelves">
+          <Icon id="shelves" />
+          <NavLinkName>Shelves</NavLinkName>
         </ShelvesNavLink>
       </NavBar>
     </Wrapper>
-  )
+  );
 };
 
 const Wrapper = styled.div`
@@ -57,7 +51,8 @@ const NavLink = styled.a`
   cursor: pointer;
   color: inherit;
 
-  &:link, &:visited {
+  &:link,
+  &:visited {
     text-decoration: none;
   }
 `;

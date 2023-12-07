@@ -1,16 +1,16 @@
 import React from 'react';
-import styled from 'styled-components/macro';
 import {
   Check,
-  X,
   Edit2,
-  Plus,
-  Search,
-  User,
   Home,
   Layers,
-  Trello
+  Plus,
+  Search,
+  Trello,
+  User,
+  X,
 } from 'react-feather';
+import styled from 'styled-components/macro';
 
 const icons = {
   check: Check,
@@ -21,7 +21,7 @@ const icons = {
   user: User,
   home: Home,
   shelves: Layers,
-  feed: Trello
+  feed: Trello,
 };
 
 const Icon = ({ id, color, size, strokeWidth, ...delegated }) => {

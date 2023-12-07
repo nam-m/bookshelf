@@ -9,7 +9,7 @@ const CreateButton = styled.button`
   position: relative;
   width: var(--toggle-width);
   height: var(--toggle-height);
-  border-radius: calc(var(--toggle-width)/2);
+  border-radius: calc(var(--toggle-width) / 2);
   padding: var(--toggle-padding);
   border: none;
   background-color: hsl(16deg, 100%, 50%);

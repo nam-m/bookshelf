@@ -2,27 +2,27 @@ import React from 'react';
 import styled from 'styled-components/macro';
 
 import AddBookButton from '../components/buttons/AddBookButton';
-import Icon from "../components/common/Icon";
+import Icon from '../components/common/Icon';
 import IconButton from '../components/buttons/IconButton';
 
-const Header = ({books, setBooks, addBook, setAddBook, addRef}) => {
+const Header = ({ books, setBooks, addBook, setAddBook, addRef }) => {
   return (
     <Wrapper>
-      <SearchLabel htmlFor='search'>
-        <SearchBar type='text' id='search' placeholder='Search...'/>
-        <SearchIcon id='search' size={16} strokeWidth={2}/>
+      <SearchLabel htmlFor="search">
+        <SearchBar type="text" id="search" placeholder="Search..." />
+        <SearchIcon id="search" size={16} strokeWidth={2} />
       </SearchLabel>
-      
+
       <SideGroup>
-        <AddBookButton 
+        <AddBookButton
           books={books}
-          setBooks={setBooks} 
-          addBook={addBook} 
+          setBooks={setBooks}
+          addBook={addBook}
           setAddBook={setAddBook}
           addRef={addRef}
         />
         <ProfileButton>
-          <Icon id='user' size={32} strokeWidth={2}/>
+          <Icon id="user" size={32} strokeWidth={2} />
         </ProfileButton>
       </SideGroup>
     </Wrapper>

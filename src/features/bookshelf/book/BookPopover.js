@@ -5,19 +5,19 @@ import { QUERIES } from '../../../utils/constants';
 import BookPreview from './BookPreview';
 
 const BookPopover = ({
-  showPreview, setShowPreview, 
-  setBookPreview, 
+  showPreview,
+  setShowPreview,
+  setBookPreview,
   book,
-  previewRef
-}) => {  
-    return (
+  previewRef,
+}) => {
+  return (
     <>
       <Wrapper>
-        <PopoverInput 
-          type='submit' 
-          value='Quick look'
-          onClick={() => 
-          {
+        <PopoverInput
+          type="submit"
+          value="Quick look"
+          onClick={() => {
             setShowPreview(true);
             // popoverBackground(showPreview);
             setBookPreview(book);
@@ -25,8 +25,8 @@ const BookPopover = ({
         />
       </Wrapper>
     </>
-    );
-  };
+  );
+};
 
 const Wrapper = styled.div`
   position: absolute;

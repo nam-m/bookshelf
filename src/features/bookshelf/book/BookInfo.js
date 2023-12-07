@@ -1,11 +1,13 @@
-import React from "react";
-import styled from "styled-components/macro";
+import React from 'react';
+import styled from 'styled-components/macro';
 
-const BookInfo = ({book, viewBooks}) => {
+const BookInfo = ({ book, viewBooks }) => {
   return (
     <Wrapper $viewBooks={viewBooks}>
       <Title>{book.title}</Title>
-      <Author><em>{book.author}</em></Author>
+      <Author>
+        <em>{book.author}</em>
+      </Author>
       <Pages>{book.pages} pages</Pages>
     </Wrapper>
   );
