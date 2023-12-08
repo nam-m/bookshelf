@@ -1,19 +1,20 @@
 import React, { useState } from 'react';
 import styled from 'styled-components/macro';
 
-import BookPopover from './BookPopover';
+import Dropdown from '../../../components/Dropdown';
 import BookInfo from './BookInfo';
+import BookPopover from './BookPopover';
 
 const Book = ({
   book,
   viewBooks,
   showPreview,
   setShowPreview,
-  setBookPreview,
+  setBookToPreview,
   previewRef,
 }) => {
   const [showPopover, setShowPopover] = useState(false);
-
+  const [isOpen, setIsOpen] = useState(false);
   return (
     <Wrapper
       $viewBooks={viewBooks}
@@ -27,13 +28,16 @@ const Book = ({
           </ImageWrapper>
         </Link>
         {!viewBooks && showPopover && (
-          <BookPopover
-            showPreview={showPreview}
-            setShowPreview={setShowPreview}
-            setBookPreview={setBookPreview}
-            book={book}
-            previewRef={previewRef}
-          />
+          <BookPopoverWrapper>
+            <Dropdown isOpen={isOpen} setIsOpen={setIsOpen} />
+            <BookPopover
+              showPreview={showPreview}
+              setShowPreview={setShowPreview}
+              setBookToPreview={setBookToPreview}
+              book={book}
+              previewRef={previewRef}
+            />
+          </BookPopoverWrapper>
         )}
       </BookCover>
       <BookInfo viewBooks={viewBooks} book={book} />
@@ -97,5 +101,7 @@ const Image = styled.img`
   max-height: 100%;
   line-height: 0;
 `;
+
+const BookPopoverWrapper = styled.div``;
 
 export default Book;

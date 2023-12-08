@@ -4,6 +4,7 @@ import {
   Edit2,
   Home,
   Layers,
+  Menu,
   Plus,
   Search,
   Trello,
@@ -22,6 +23,7 @@ const icons = {
   home: Home,
   shelves: Layers,
   feed: Trello,
+  menu: Menu,
 };
 
 const Icon = ({ id, color, size, strokeWidth, ...delegated }) => {
