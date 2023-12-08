@@ -2,15 +2,8 @@ import React from 'react';
 import styled from 'styled-components/macro';
 
 import { QUERIES } from '../../../utils/constants';
-import BookPreview from './BookPreview';
 
-const BookPopover = ({
-  showPreview,
-  setShowPreview,
-  setBookPreview,
-  book,
-  previewRef,
-}) => {
+const BookPopover = ({ setShowPreview, setBookToPreview, book }) => {
   return (
     <>
       <Wrapper>
@@ -19,8 +12,7 @@ const BookPopover = ({
           value="Quick look"
           onClick={() => {
             setShowPreview(true);
-            // popoverBackground(showPreview);
-            setBookPreview(book);
+            setBookToPreview(book);
           }}
         />
       </Wrapper>

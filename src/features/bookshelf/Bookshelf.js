@@ -1,10 +1,10 @@
+import { nanoid } from 'nanoid';
 import React from 'react';
 import styled from 'styled-components/macro';
-import { nanoid } from 'nanoid';
 
-import Book from './book/Book';
 import SortBook from './SortBook';
 import ViewBook from './ViewBook';
+import Book from './book/Book';
 import BookPreview from './book/BookPreview';
 
 const Bookshelf = ({
@@ -17,8 +17,8 @@ const Bookshelf = ({
   setViewBooks,
   showPreview,
   setShowPreview,
-  bookPreview,
-  setBookPreview,
+  bookToPreview,
+  setBookToPreview,
   previewRef,
 }) => {
   const compareName = (name) => {
@@ -96,7 +96,7 @@ const Bookshelf = ({
                 viewBooks={viewBooks}
                 showPreview={showPreview}
                 setShowPreview={setShowPreview}
-                setBookPreview={setBookPreview}
+                setBookToPreview={setBookToPreview}
                 previewRef={previewRef}
               />
             ))}
@@ -104,7 +104,7 @@ const Bookshelf = ({
       </Wrapper>
       {showPreview && (
         <BookPreview
-          bookPreview={bookPreview}
+          bookToPreview={bookToPreview}
           showPreview={showPreview}
           ref={previewRef}
         />

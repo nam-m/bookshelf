@@ -6,7 +6,7 @@ import PopoverWrapper from '../../../components/common/PopoverWrapper';
 import { QUERIES } from '../../../utils/constants';
 
 const BookPreview = forwardRef(function BookPreview(
-  { bookPreview, showPreview },
+  { bookToPreview, showPreview },
   ref
 ) {
   return (
@@ -17,13 +17,13 @@ const BookPreview = forwardRef(function BookPreview(
             <PreviewContent>
               <MainInfo>
                 <ImageWrapper>
-                  <Image alt="" src={bookPreview.imageSrc} />
+                  <Image alt="" src={bookToPreview.imageSrc} />
                 </ImageWrapper>
                 <BookInfo>
                   <Row>
-                    <strong>{bookPreview.title}</strong>
+                    <strong>{bookToPreview.title}</strong>
                   </Row>
-                  <Row>{bookPreview.author}</Row>
+                  <Row>{bookToPreview.author}</Row>
                   <NoteWrapper>
                     <Label htmlFor="notes">Notes</Label>
                     <NoteArea
@@ -39,7 +39,7 @@ const BookPreview = forwardRef(function BookPreview(
               <Review>User&apos;s review</Review>
               <Footnote>
                 <FootnoteItem>Genre</FootnoteItem>
-                <FootnoteItem>{bookPreview.pages} pages</FootnoteItem>
+                <FootnoteItem>{bookToPreview.pages} pages</FootnoteItem>
                 <FootnoteItem>Edition</FootnoteItem>
                 <FootnoteItem>Released Date</FootnoteItem>
                 <FootnoteItem>Publisher</FootnoteItem>

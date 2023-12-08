@@ -5,8 +5,8 @@
   "files.autoSave": "onFocusChange",
   "files.insertFinalNewline": true,
   "editor.codeActionsOnSave": {
-    "source.fixAll": true,
-    "source.sortImports": true
+    "source.fixAll": "explicit",
+    "source.sortImports": "explicit"
   },
   "editor.tabSize": 2,
   "editor.defaultFormatter": "esbenp.prettier-vscode",

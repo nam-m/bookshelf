@@ -1,22 +1,19 @@
-import React from 'react';
-import { useState, useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import styled from 'styled-components/macro';
 
-import { QUERIES } from './utils/constants';
+import PopoverWrapper from './components/common/PopoverWrapper';
+
+import Footer from './layouts/Footer';
 import Header from './layouts/Header';
 import Main from './layouts/Main';
-import Footer from './layouts/Footer';
-import BookPreview from './features/bookshelf/book/BookPreview';
-import useClickOutside from './utils/UseClickOutside';
-import popoverBackground from './utils/PopoverBackground';
-import PopoverWrapper from './components/common/PopoverWrapper';
-import BookForm from './features/form/BookForm';
-import useLocalStorage from './utils/UseLocalStorage';
-import SideBar from './layouts/SideBar';
 import MobileNavBar from './layouts/MobileNavBar';
+import SideBar from './layouts/SideBar';
+import useClickOutside from './utils/UseClickOutside';
+import useLocalStorage from './utils/UseLocalStorage';
+import { QUERIES } from './utils/constants';
 
 const App = () => {
-  const [bookPreview, setBookPreview] = useState({});
+  const [bookToPreview, setBookToPreview] = useState({});
   const [showPreview, setShowPreview] = useState(false);
   const [addBook, setAddBook] = useState(false);
   const [books, setBooks] = useLocalStorage('books', []);
@@ -30,7 +27,6 @@ const App = () => {
 
   useClickOutside(previewRef, () => setShowPreview(false));
   useClickOutside(addRef, () => setAddBook(false));
-  // popoverBackground(showPreview);
 
   return (
     <AppWrapper>
@@ -53,8 +49,8 @@ const App = () => {
           <Main
             showPreview={showPreview}
             setShowPreview={setShowPreview}
-            bookPreview={bookPreview}
-            setBookPreview={setBookPreview}
+            bookToPreview={bookToPreview}
+            setBookToPreview={setBookToPreview}
             selectedShelf={selectedShelf}
             books={books}
             setBooks={setBooks}
@@ -62,22 +58,6 @@ const App = () => {
           />
           <Footer />
         </MainColumn>
-        {/* <PreviewWrapper $showPreview={showPreview}>
-          <BookPreview 
-            bookPreview={bookPreview}
-            showPreview={showPreview}
-            ref={previewRef}
-          />
-        </PreviewWrapper>
-        <AddBookWrapper $addBook={addBook}>
-          <BookForm 
-            books={books}
-            setBooks={setBooks}
-            addBook={addBook}
-            setAddBook={setAddBook}
-            ref={addRef}
-          />
-        </AddBookWrapper> */}
       </Wrapper>
       <MobileNavBar />
     </AppWrapper>
@@ -123,16 +103,6 @@ const MainColumn = styled.div`
   padding-top: 16px;
   padding-left: 40px;
   padding-right: 40px;
-`;
-
-const PreviewWrapper = styled(PopoverWrapper)`
-  /* Make it visible when passed prop is true and vice versa*/
-  visibility: ${(p) => (p.$showPreview ? 'visible' : 'hidden')};
-`;
-
-const AddBookWrapper = styled(PopoverWrapper)`
-  /* Make it visible when passed prop is true and vice versa*/
-  visibility: ${(p) => (p.$addBook ? 'visible' : 'hidden')};
 `;
 
 export default App;

@@ -1,5 +1,4 @@
-import React from 'react';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components/macro';
 
 import Bookshelf from '../features/bookshelf/Bookshelf';
@@ -7,8 +6,8 @@ import Bookshelf from '../features/bookshelf/Bookshelf';
 const Main = ({
   showPreview,
   setShowPreview,
-  bookPreview,
-  setBookPreview,
+  bookToPreview,
+  setBookToPreview,
   selectedShelf,
   books,
   setBooks,
@@ -29,8 +28,8 @@ const Main = ({
         setViewBooks={setViewBooks}
         showPreview={showPreview}
         setShowPreview={setShowPreview}
-        bookPreview={bookPreview}
-        setBookPreview={setBookPreview}
+        bookToPreview={bookToPreview}
+        setBookToPreview={setBookToPreview}
         previewRef={previewRef}
       />
     </MainWrapper>
