@@ -36,7 +36,7 @@ const Dropdown = ({ isOpen, setIsOpen, book, removeBook }) => {
               removeBook(book);
             }}
           >
-            Delete
+            Remove book
           </DropdownItem>
           <DropdownItem>Add to shelf</DropdownItem>
         </DropdownMenu>
