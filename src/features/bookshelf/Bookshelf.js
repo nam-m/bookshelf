@@ -97,6 +97,8 @@ const Bookshelf = ({
                 showPreview={showPreview}
                 setShowPreview={setShowPreview}
                 setBookToPreview={setBookToPreview}
+                books={books}
+                setBooks={setBooks}
                 previewRef={previewRef}
               />
             ))}

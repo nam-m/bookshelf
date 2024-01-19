@@ -32,9 +32,7 @@ const AddBookButton = ({ books, setBooks, addBook, setAddBook, addRef }) => {
   );
 };
 
-const Wrapper = styled.div`
-  /* height: 100%; */
-`;
+const Wrapper = styled.div``;
 
 const Button = styled(CreateButton)`
   /* @container ${QUERIES.tabletAndDown} {

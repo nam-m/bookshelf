@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
 import styled from 'styled-components/macro';
-import Icon from '../../../components/common/Icon';
 import IconButton from '../../../components/buttons/IconButton';
+import Icon from '../../../components/common/Icon';
 import {
-  getObjectValueinArray,
+  getObjectValueInArray,
   updateObjectInArray,
-} from '../../../utils/utils';
+} from '../../../utils/ArrayUtils';
 
 const ShelfForm = ({ shelf, shelves, setShelves }) => {
   // const [submitted, setSubmitted] = useState(false);
   const [originalShelfName] = useState(
-    getObjectValueinArray(shelves, shelf.id, 'name')
+    getObjectValueInArray(shelves, shelf.id, 'name')
   );
 
   const handleSubmit = (e) => {

@@ -7,6 +7,6 @@ export function updateObjectInArray(array, id, key, newValue) {
   });
 }
 
-export function getObjectValueinArray(array, id, key) {
+export function getObjectValueInArray(array, id, key) {
   return array.find((item) => item.id === id)[key];
 }

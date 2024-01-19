@@ -112,8 +112,4 @@ const CreateShelfIcon = styled(Icon)`
   }
 `;
 
-const AllBooks = styled(ShelfDiv)`
-  font-weight: 600;
-`;
-
 export default SideBar;
