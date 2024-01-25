@@ -20,6 +20,7 @@ const Bookshelf = ({
   bookToPreview,
   setBookToPreview,
   previewRef,
+  areAllBooksSelected,
 }) => {
   const compareName = (name) => {
     return name.toLowerCase().split(' ').toReversed().join(' ');
@@ -81,12 +82,14 @@ const Bookshelf = ({
             , which contains <Book /> */}
           {books
             .filter((book) => {
-              if (Object.keys(selectedShelf).length > 0) {
-                if (selectedShelf['books'].length > 0)
-                  return selectedShelf['books'].includes(book.title);
-                else return false;
-              } else {
+              if (areAllBooksSelected) {
                 return true;
+              } else if (Object.keys(selectedShelf).length > 0) {
+                if (selectedShelf['books'].length > 0) {
+                  return selectedShelf['books'].includes(book.title);
+                } else {
+                  return false;
+                }
               }
             })
             .map((book) => (

@@ -32,7 +32,7 @@ const Dropdown = ({ isOpen, setIsOpen, book, removeBook }) => {
           <DropdownItem
             as="button"
             onClick={() => {
-              selectDropdownItem();
+              // selectDropdownItem();
               removeBook(book);
             }}
           >

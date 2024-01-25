@@ -20,11 +20,14 @@ const Book = ({
   const [isOpen, setIsOpen] = useState(false);
 
   const removeBook = (bookToRemove) => {
-    const newBooks = books.filter(
-      (book) =>
-        book.title !== bookToRemove.title && book.author !== bookToRemove.author
-    );
-    setBooks(newBooks);
+    if (window.confirm('Do you want to delete this book?')) {
+      const newBooks = books.filter(
+        (book) =>
+          book.title !== bookToRemove.title &&
+          book.author !== bookToRemove.author
+      );
+      setBooks(newBooks);
+    }
   };
 
   const addBookToShelf = () => {};

@@ -12,6 +12,7 @@ const Main = ({
   books,
   setBooks,
   previewRef,
+  areAllBooksSelected,
 }) => {
   const [sortId, setSortId] = useState('manual');
   const [viewBooks, setViewBooks] = useState(false);
@@ -31,6 +32,7 @@ const Main = ({
         bookToPreview={bookToPreview}
         setBookToPreview={setBookToPreview}
         previewRef={previewRef}
+        areAllBooksSelected={areAllBooksSelected}
       />
     </MainWrapper>
   );

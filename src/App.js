@@ -21,6 +21,7 @@ const App = () => {
     'selectedShelf',
     {}
   );
+  const [areAllBooksSelected, setAreAllBooksSelected] = useState(false);
 
   const previewRef = useRef();
   const addRef = useRef();
@@ -36,6 +37,8 @@ const App = () => {
           <SideBar
             selectedShelf={selectedShelf}
             setSelectedShelf={setSelectedShelf}
+            areAllBooksSelected={areAllBooksSelected}
+            setAreAllBooksSelected={setAreAllBooksSelected}
           />
         </LeftColumn>
         <MainColumn>
@@ -55,6 +58,7 @@ const App = () => {
             books={books}
             setBooks={setBooks}
             previewRef={previewRef}
+            areAllBooksSelected={areAllBooksSelected}
           />
           <Footer />
         </MainColumn>

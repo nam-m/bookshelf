@@ -1,15 +1,20 @@
+import { nanoid } from 'nanoid';
 import React, { useState } from 'react';
 import styled from 'styled-components/macro';
-import { nanoid } from 'nanoid';
 
-import SHELVES from '../data/ShelfData';
-import ShelfDiv from '../features/bookshelf/shelf/ShelfStyle';
-import Shelf from '../features/bookshelf/shelf/Shelf';
-import HomeShelf from '../features/bookshelf/shelf/HomeShelf';
-import Icon from '../components/common/Icon';
 import IconButton from '../components/buttons/IconButton';
+import Icon from '../components/common/Icon';
+import SHELVES from '../data/ShelfData';
+import HomeShelf from '../features/bookshelf/shelf/HomeShelf';
+import Shelf from '../features/bookshelf/shelf/Shelf';
+import ShelfDiv from '../features/bookshelf/shelf/ShelfStyle';
 
-const SideBar = ({ selectedShelf, setSelectedShelf }) => {
+const SideBar = ({
+  selectedShelf,
+  setSelectedShelf,
+  areAllBooksSelected,
+  setAreAllBooksSelected,
+}) => {
   const [shelves, setShelves] = useState(SHELVES);
   // const [isEditing, setIsEditing] = useState(false);
 
@@ -34,7 +39,10 @@ const SideBar = ({ selectedShelf, setSelectedShelf }) => {
 
   // Select shelf if not selected, and unselect it
   const handleSelectedShelf = (shelf) => {
-    if (selectedShelf !== shelf) setSelectedShelf(shelf);
+    setAreAllBooksSelected(false);
+    if (selectedShelf !== shelf) {
+      setSelectedShelf(shelf);
+    }
   };
 
   return (
@@ -43,6 +51,8 @@ const SideBar = ({ selectedShelf, setSelectedShelf }) => {
         <HomeShelf
           selectedShelf={selectedShelf}
           setSelectedShelf={setSelectedShelf}
+          areAllBooksSelected={areAllBooksSelected}
+          setAreAllBooksSelected={setAreAllBooksSelected}
         />
         {/* <WantToReadShelf>
 
