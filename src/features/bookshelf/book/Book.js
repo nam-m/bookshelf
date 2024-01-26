@@ -4,7 +4,9 @@ import styled from 'styled-components/macro';
 import Dropdown from '../../../components/Dropdown';
 import BookInfo from './BookInfo';
 import BookPopover from './BookPopover';
+import { updateObjectInArray } from '../../../utils/ArrayUtils';
 
+const _ = require('lodash');
 const Book = ({
   book,
   viewBooks,
@@ -30,7 +32,21 @@ const Book = ({
     }
   };
 
-  const addBookToShelf = (bookToAdd) => {};
+  const addBookToShelf = (shelfId, newBook) => {
+    const currentBooks = shelves.find((shelf) => shelf.id === shelfId)['books'];
+    if (_.find(currentBooks, newBook)) {
+      window.alert(`${newBook.title} is already in selected shelf`);
+    } else {
+      const newBooks = currentBooks.concat(newBook);
+      const updatedShelves = updateObjectInArray(
+        [...shelves],
+        shelfId,
+        'books',
+        newBooks
+      );
+      setShelves(updatedShelves);
+    }
+  };
 
   return (
     <Wrapper
@@ -49,6 +65,7 @@ const Book = ({
             <Dropdown
               book={book}
               removeBook={removeBook}
+              addBookToShelf={addBookToShelf}
               shelves={shelves}
               setShelves={setShelves}
             />

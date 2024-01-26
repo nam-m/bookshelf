@@ -7,7 +7,13 @@ import IconButton from './buttons/IconButton';
 import UnstyledButton from './buttons/UnstyledButton';
 import Icon from './common/Icon';
 
-const Dropdown = ({ book, removeBook, shelves, setShelves }) => {
+const Dropdown = ({
+  book,
+  removeBook,
+  addBookToShelf,
+  shelves,
+  setShelves,
+}) => {
   // Control dropdown menu state
   const [isOpen, setIsOpen] = useState(false);
   const [isShelfListOpen, setIsShelfListOpen] = useState(false);
@@ -27,11 +33,7 @@ const Dropdown = ({ book, removeBook, shelves, setShelves }) => {
       </DropdownButton>
       {isOpen && (
         <DropdownMenu>
-          <DropdownItem
-            onClick={() => {
-              removeBook(book);
-            }}
-          >
+          <DropdownItem onClick={() => removeBook(book)}>
             Remove book
           </DropdownItem>
           <DropdownButton onClick={() => toggleAddToShelfDropDown()}>
@@ -40,7 +42,11 @@ const Dropdown = ({ book, removeBook, shelves, setShelves }) => {
           {isShelfListOpen && (
             <DropdownMenu>
               {shelves.map((shelf) => (
-                <DropdownItem as="div" shelf={{ ...shelf }} key={shelf.id}>
+                <DropdownItem
+                  shelf={{ ...shelf }}
+                  key={shelf.id}
+                  onClick={() => addBookToShelf(shelf.id, book)}
+                >
                   {shelf.name}
                 </DropdownItem>
               ))}

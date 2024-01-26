@@ -7,6 +7,8 @@ import ViewBook from './ViewBook';
 import Book from './book/Book';
 import BookPreview from './book/BookPreview';
 
+const _ = require('lodash');
+
 const Bookshelf = ({
   sortId,
   setSortId,
@@ -88,7 +90,7 @@ const Bookshelf = ({
                 return true;
               } else if (Object.keys(selectedShelf).length > 0) {
                 if (selectedShelf['books'].length > 0) {
-                  return selectedShelf['books'].includes(book.title);
+                  return _.find(selectedShelf['books'], book);
                 } else {
                   return false;
                 }
