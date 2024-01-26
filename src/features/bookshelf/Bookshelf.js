@@ -21,6 +21,8 @@ const Bookshelf = ({
   setBookToPreview,
   previewRef,
   areAllBooksSelected,
+  shelves,
+  setShelves,
 }) => {
   const compareName = (name) => {
     return name.toLowerCase().split(' ').toReversed().join(' ');
@@ -103,6 +105,8 @@ const Bookshelf = ({
                 books={books}
                 setBooks={setBooks}
                 previewRef={previewRef}
+                shelves={shelves}
+                setShelves={setShelves}
               />
             ))}
         </BookGrid>

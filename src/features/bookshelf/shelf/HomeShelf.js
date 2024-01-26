@@ -18,6 +18,7 @@ const HomeShelf = ({
   return (
     <ShelfWrapper
       $selectedShelf={selectedShelf}
+      $areAllBooksSelected={areAllBooksSelected}
       onClick={() => handleHomeShelf()}
     >
       All books

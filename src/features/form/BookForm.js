@@ -3,9 +3,9 @@ import { createPortal } from 'react-dom';
 import styled from 'styled-components/macro';
 
 import CreateButton from '../../components/buttons/CreateButton';
-import BookFormRow from './BookFormRow';
-import { Book } from '../bookshelf/BookStorage';
 import PopoverWrapper from '../../components/common/PopoverWrapper';
+import { BookObj } from '../../dataModels/BookDataModel';
+import BookFormRow from './BookFormRow';
 
 const BookForm = forwardRef(function BookForm(
   { books, setBooks, addBook, setAddBook },
@@ -115,7 +115,7 @@ const BookForm = forwardRef(function BookForm(
       console.log('Valid form', form);
 
       //Store new book
-      const newBook = new Book(
+      const newBook = new BookObj(
         form.title.value,
         form.author.value,
         form.pages.value,

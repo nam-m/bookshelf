@@ -4,7 +4,7 @@ import styled from 'styled-components/macro';
 
 import IconButton from '../components/buttons/IconButton';
 import Icon from '../components/common/Icon';
-import SHELVES from '../data/ShelfData';
+import { ShelfObj } from '../dataModels/ShelfDataModel';
 import HomeShelf from '../features/bookshelf/shelf/HomeShelf';
 import Shelf from '../features/bookshelf/shelf/Shelf';
 import ShelfDiv from '../features/bookshelf/shelf/ShelfStyle';
@@ -14,18 +14,11 @@ const SideBar = ({
   setSelectedShelf,
   areAllBooksSelected,
   setAreAllBooksSelected,
+  shelves,
+  setShelves,
 }) => {
-  const [shelves, setShelves] = useState(SHELVES);
-  // const [isEditing, setIsEditing] = useState(false);
-
   const addShelf = () => {
-    const newEmptyShelf = {
-      name: '',
-      id: `shelf-${nanoid()}`,
-      isEditing: true,
-      books: '',
-    };
-    // console.log('All shelves after adding: ', [...shelves, newEmptyShelf]);
+    const newEmptyShelf = new ShelfObj('shelf-'.concat(nanoid()), '', true, []);
     setShelves([...shelves, newEmptyShelf]);
   };
 
@@ -54,15 +47,6 @@ const SideBar = ({
           areAllBooksSelected={areAllBooksSelected}
           setAreAllBooksSelected={setAreAllBooksSelected}
         />
-        {/* <WantToReadShelf>
-
-        </WantToReadShelf>
-        <ReadingShelf>
-
-        </ReadingShelf>
-        <FinishedReadingShelf>
-
-        </FinishedReadingShelf> */}
       </NavGroup>
       <NavGroup>
         <CreateShelf as="button" onClick={() => addShelf()}>

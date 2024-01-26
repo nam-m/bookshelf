@@ -17,6 +17,7 @@ const App = () => {
   const [showPreview, setShowPreview] = useState(false);
   const [addBook, setAddBook] = useState(false);
   const [books, setBooks] = useLocalStorage('books', []);
+  const [shelves, setShelves] = useLocalStorage('shelves', []);
   const [selectedShelf, setSelectedShelf] = useLocalStorage(
     'selectedShelf',
     {}
@@ -39,6 +40,8 @@ const App = () => {
             setSelectedShelf={setSelectedShelf}
             areAllBooksSelected={areAllBooksSelected}
             setAreAllBooksSelected={setAreAllBooksSelected}
+            shelves={shelves}
+            setShelves={setShelves}
           />
         </LeftColumn>
         <MainColumn>
@@ -59,6 +62,8 @@ const App = () => {
             setBooks={setBooks}
             previewRef={previewRef}
             areAllBooksSelected={areAllBooksSelected}
+            shelves={shelves}
+            setShelves={setShelves}
           />
           <Footer />
         </MainColumn>

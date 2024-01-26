@@ -14,10 +14,10 @@ const Book = ({
   books,
   setBooks,
   previewRef,
+  shelves,
+  setShelves,
 }) => {
   const [showPopover, setShowPopover] = useState(false);
-  // Control dropdown menu state
-  const [isOpen, setIsOpen] = useState(false);
 
   const removeBook = (bookToRemove) => {
     if (window.confirm('Do you want to delete this book?')) {
@@ -30,7 +30,7 @@ const Book = ({
     }
   };
 
-  const addBookToShelf = () => {};
+  const addBookToShelf = (bookToAdd) => {};
 
   return (
     <Wrapper
@@ -47,10 +47,10 @@ const Book = ({
         {!viewBooks && showPopover && (
           <BookPopoverWrapper>
             <Dropdown
-              isOpen={isOpen}
-              setIsOpen={setIsOpen}
               book={book}
               removeBook={removeBook}
+              shelves={shelves}
+              setShelves={setShelves}
             />
             <BookPopover
               showPreview={showPreview}
