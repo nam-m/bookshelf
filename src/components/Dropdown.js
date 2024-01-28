@@ -36,11 +36,11 @@ const Dropdown = ({
           <DropdownItem onClick={() => removeBook(book)}>
             Remove book
           </DropdownItem>
-          <DropdownButton onClick={() => toggleAddToShelfDropDown()}>
+          <ShelfDropdownButton onClick={() => toggleAddToShelfDropDown()}>
             Add to shelf
-          </DropdownButton>
-          {isShelfListOpen && (
-            <DropdownMenu>
+          </ShelfDropdownButton>
+          {isShelfListOpen && shelves.length > 0 && (
+            <ShelfDropdownMenu>
               {shelves.map((shelf) => (
                 <DropdownItem
                   shelf={{ ...shelf }}
@@ -50,7 +50,7 @@ const Dropdown = ({
                   {shelf.name}
                 </DropdownItem>
               ))}
-            </DropdownMenu>
+            </ShelfDropdownMenu>
           )}
         </DropdownMenu>
       )}
@@ -97,5 +97,9 @@ const DropdownItem = styled(UnstyledButton)`
     background-color: ${COLORS.gray[300]};
   }
 `;
+
+const ShelfDropdownButton = styled(DropdownItem)``;
+
+const ShelfDropdownMenu = styled(DropdownMenu)``;
 
 export default Dropdown;

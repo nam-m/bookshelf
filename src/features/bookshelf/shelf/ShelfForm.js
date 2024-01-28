@@ -7,7 +7,6 @@ import {
   getObjectValueInArray,
   updateObjectInArray,
 } from '../../../utils/ArrayUtils';
-import { Shelf } from '../../../dataModels/ShelfDataModel';
 
 const ShelfForm = ({ shelf, shelves, setShelves }) => {
   const [originalShelfName] = useState(
