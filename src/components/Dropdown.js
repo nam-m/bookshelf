@@ -37,18 +37,19 @@ const Dropdown = ({
             Remove book
           </DropdownItem>
           <ShelfDropdownButton onClick={() => toggleAddToShelfDropDown()}>
-            Add to shelf
+            <AddToShelfLabel>Add to shelf</AddToShelfLabel>
+            <Icon id="rightArrow" size={16} strokeWidth={2} />
           </ShelfDropdownButton>
           {isShelfListOpen && shelves.length > 0 && (
             <ShelfDropdownMenu>
               {shelves.map((shelf) => (
-                <DropdownItem
+                <ShelfDropdownItem
                   shelf={{ ...shelf }}
                   key={shelf.id}
                   onClick={() => addBookToShelf(shelf.id, book)}
                 >
                   {shelf.name}
-                </DropdownItem>
+                </ShelfDropdownItem>
               ))}
             </ShelfDropdownMenu>
           )}
@@ -87,7 +88,6 @@ const DropdownMenu = styled.div`
 `;
 
 const DropdownItem = styled(UnstyledButton)`
-  /* display: flex; */
   padding: 4px;
   border-radius: 4px;
   cursor: pointer;
@@ -98,8 +98,22 @@ const DropdownItem = styled(UnstyledButton)`
   }
 `;
 
-const ShelfDropdownButton = styled(DropdownItem)``;
+const ShelfDropdownButton = styled(DropdownItem)`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+`;
 
-const ShelfDropdownMenu = styled(DropdownMenu)``;
+const AddToShelfLabel = styled.label``;
+
+const ShelfDropdownMenu = styled(DropdownMenu)`
+  position: absolute;
+  bottom: 0;
+  right: -48px;
+  z-index: 2;
+`;
+
+const ShelfDropdownItem = styled(DropdownItem)``;
 
 export default Dropdown;

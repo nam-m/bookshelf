@@ -1,6 +1,7 @@
 import React from 'react';
 import {
   Check,
+  ChevronRight,
   Edit2,
   Home,
   Layers,
@@ -24,6 +25,7 @@ const icons = {
   shelves: Layers,
   feed: Trello,
   menu: Menu,
+  rightArrow: ChevronRight,
 };
 
 const Icon = ({ id, color, size, strokeWidth, ...delegated }) => {
