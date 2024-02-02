@@ -2,31 +2,23 @@ import React from 'react';
 import styled from 'styled-components/macro';
 
 import { QUERIES } from '../../../utils/constants';
-import BookPreview from './BookPreview';
 
-const BookPopover = ({
-  showPreview, setShowPreview, 
-  setBookPreview, 
-  book,
-  previewRef
-}) => {  
-    return (
+const BookPopover = ({ setShowPreview, setBookToPreview, book }) => {
+  return (
     <>
       <Wrapper>
-        <PopoverInput 
-          type='submit' 
-          value='Quick look'
-          onClick={() => 
-          {
+        <PopoverInput
+          type="submit"
+          value="Quick look"
+          onClick={() => {
             setShowPreview(true);
-            // popoverBackground(showPreview);
-            setBookPreview(book);
+            setBookToPreview(book);
           }}
         />
       </Wrapper>
     </>
-    );
-  };
+  );
+};
 
 const Wrapper = styled.div`
   position: absolute;

@@ -1,90 +1,70 @@
+import { nanoid } from 'nanoid';
 import React, { useState } from 'react';
 import styled from 'styled-components/macro';
-import { nanoid } from 'nanoid';
 
-import SHELVES from '../data/ShelfData';
-import ShelfDiv from '../features/bookshelf/shelf/ShelfStyle';
-import Shelf from '../features/bookshelf/shelf/Shelf';
-import HomeShelf from '../features/bookshelf/shelf/HomeShelf';
-import Icon from '../components/common/Icon';
 import IconButton from '../components/buttons/IconButton';
+import Icon from '../components/common/Icon';
+import { ShelfObj } from '../dataModels/ShelfDataModel';
+import HomeShelf from '../features/bookshelf/shelf/HomeShelf';
+import Shelf from '../features/bookshelf/shelf/Shelf';
+import ShelfDiv from '../features/bookshelf/shelf/ShelfStyle';
 
-const SideBar = ({selectedShelf, setSelectedShelf}) => {
-  const [shelves, setShelves] = useState(SHELVES);
-  // const [isEditing, setIsEditing] = useState(false);
-  
+const SideBar = ({
+  selectedShelf,
+  setSelectedShelf,
+  areAllBooksSelected,
+  setAreAllBooksSelected,
+  shelves,
+  setShelves,
+}) => {
   const addShelf = () => {
-    const newEmptyShelf = { 
-      name: '',
-      id: `shelf-${nanoid()}`,
-      isEditing: true,
-      books: ''
-    };
-    // console.log('All shelves after adding: ', [...shelves, newEmptyShelf]);
+    const newEmptyShelf = new ShelfObj('shelf-'.concat(nanoid()), '', true, []);
     setShelves([...shelves, newEmptyShelf]);
-  }; 
+  };
 
   const editShelf = (id, newShelfName) => {
-    const editedShelves = shelves.map(shelf => {
-      if (id === shelf.id)
-        return { ...shelf, name: newShelfName };
-      else
-        return shelf;
-    })
+    const editedShelves = shelves.map((shelf) => {
+      if (id === shelf.id) return { ...shelf, name: newShelfName };
+      else return shelf;
+    });
     setShelves(editedShelves);
   };
 
   // Select shelf if not selected, and unselect it
   const handleSelectedShelf = (shelf) => {
-    if (selectedShelf !== shelf)
+    setAreAllBooksSelected(false);
+    if (selectedShelf !== shelf) {
       setSelectedShelf(shelf);
-  }
-    
+    }
+  };
+
   return (
     <Wrapper>
       <NavGroup>
         <HomeShelf
           selectedShelf={selectedShelf}
           setSelectedShelf={setSelectedShelf}
+          areAllBooksSelected={areAllBooksSelected}
+          setAreAllBooksSelected={setAreAllBooksSelected}
         />
-        {/* <WantToReadShelf>
-
-        </WantToReadShelf>
-        <ReadingShelf>
-
-        </ReadingShelf>
-        <FinishedReadingShelf>
-
-        </FinishedReadingShelf> */}
       </NavGroup>
       <NavGroup>
-        <CreateShelf 
-          as='button'
-          onClick={() => addShelf()}
-        >
-          <CreateShelfTitle>
-            Create new shelf
-          </CreateShelfTitle>
-          <CreateShelfIconWrapper
-            as='div'
-          >
-            <CreateShelfIcon
-              id='add'
-              size={24}
-              strokeWidth={2}
-            />
+        <CreateShelf as="button" onClick={() => addShelf()}>
+          <CreateShelfTitle>Create new shelf</CreateShelfTitle>
+          <CreateShelfIconWrapper as="div">
+            <CreateShelfIcon id="add" size={24} strokeWidth={2} />
           </CreateShelfIconWrapper>
         </CreateShelf>
-        {shelves.map((shelf) =>
+        {shelves.map((shelf) => (
           <Shelf
-            shelf={{...shelf}}
+            shelf={{ ...shelf }}
             key={shelf.id}
             shelves={shelves}
             setShelves={setShelves}
             selectedShelf={selectedShelf}
             handleSelectedShelf={handleSelectedShelf}
           />
-        )}
+        ))}
       </NavGroup>
     </Wrapper>
   );
@@ -124,10 +104,6 @@ const CreateShelfIcon = styled(Icon)`
   &:hover {
     color: white;
   }
-`;
-
-const AllBooks = styled(ShelfDiv)`
-  font-weight: 600;
 `;
 
 export default SideBar;

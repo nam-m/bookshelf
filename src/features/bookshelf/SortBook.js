@@ -1,18 +1,14 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 
-const SortBook = ({label, value, children, ...props}) => {
+const SortBook = ({ label, value, children, ...props }) => {
   return (
     <Wrapper>
       <VisibleLabel>{label}</VisibleLabel>
       <SelectWrapper>
-        <NativeSelect {...props}>
-          {children}
-        </NativeSelect>
+        <NativeSelect {...props}>{children}</NativeSelect>
         <DisplayedSelect>
-          {children.find(child => (
-            child.props.value === value
-          ))}
+          {children.find((child) => child.props.value === value)}
         </DisplayedSelect>
       </SelectWrapper>
     </Wrapper>

@@ -1,0 +1,17 @@
+{
+  "files.autoSaveDelay": 400,
+  "editor.formatOnSave": true,
+  "editor.formatOnSaveMode": "file",
+  "files.autoSave": "onFocusChange",
+  "files.insertFinalNewline": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll": "explicit",
+    "source.sortImports": "explicit"
+  },
+  "editor.tabSize": 2,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "typescript.preferences.quoteStyle": "single",
+  "editor.wordWrap": "on",
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "files.eol": "\n"
+}

@@ -17,6 +17,6 @@ const SHELVES = [
     isEditing: false,
     books: ['The Great Azulene Casino'],
   },
-]
+];
 
 export default SHELVES;

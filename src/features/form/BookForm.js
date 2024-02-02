@@ -3,38 +3,41 @@ import { createPortal } from 'react-dom';
 import styled from 'styled-components/macro';
 
 import CreateButton from '../../components/buttons/CreateButton';
-import BookFormRow from './BookFormRow';
-import { Book } from '../bookshelf/BookStorage';
 import PopoverWrapper from '../../components/common/PopoverWrapper';
+import { BookObj } from '../../dataModels/BookDataModel';
+import BookFormRow from './BookFormRow';
 
-const BookForm = forwardRef(function BookForm({books, setBooks, addBook, setAddBook}, ref) {
+const BookForm = forwardRef(function BookForm(
+  { books, setBooks, addBook, setAddBook },
+  ref
+) {
   // State and set state of form input fields
   // Error state and set state when input is invalid
   const [form, setForm] = useState({
-    title: {  
+    title: {
       value: '',
       dirty: false,
       error: false,
-      message: ''
+      message: '',
     },
     author: {
       value: '',
       dirty: false,
       error: false,
-      message: ''
+      message: '',
     },
     pages: {
       value: '',
       dirty: false,
       error: false,
-      message: ''
+      message: '',
     },
     image: {
       value: '',
       dirty: false,
       error: false,
-      message: ''
-    }
+      message: '',
+    },
   });
 
   const [submitted, setSubmitted] = useState(false);
@@ -47,48 +50,48 @@ const BookForm = forwardRef(function BookForm({books, setBooks, addBook, setAddB
 
     if (!e.target.value && e.target.name !== 'image') {
       errorMessage = '*' + e.target.name + ' input is required';
-    }
-    else if (e.target.name === 'author') {
+    } else if (e.target.name === 'author') {
       re = new RegExp(/^[a-zA-Z.\-' ]+$/);
       if (!re.test(e.target.value))
         errorMessage = '*Name must not contain digits or special characters';
-    }
-    else if (e.target.name === 'pages') {
+    } else if (e.target.name === 'pages') {
       re = new RegExp(/^\d+$/);
       if (!re.test(e.target.value))
         errorMessage = '*Pages must be numbers only';
     }
-    
+
     setForm({
       ...form,
       [e.target.name]: {
         ...form[e.target.name],
         value: e.target.value,
         error: !!errorMessage,
-        message: errorMessage
-      }
+        message: errorMessage,
+      },
     });
-  }
+  };
 
   const isFormValid = () => {
-    const checkForm = Object.fromEntries(Object.entries(form).filter(([key]) => key !== 'image'));
+    const checkForm = Object.fromEntries(
+      Object.entries(form).filter(([key]) => key !== 'image')
+    );
     return Object.keys(checkForm).reduce((isValid, key) => {
       return isValid && !checkForm[key].error && checkForm[key].value;
     }, true);
-  }
+  };
 
   const checkEmptyField = () => {
     // Create a copy to setForm at the end if any state needs changes
     let formCopy = { ...form };
     let hasEmptyField = false;
-    
+
     for (const key in formCopy) {
       if (!formCopy[key].value && key !== 'image') {
         formCopy[key] = {
           ...formCopy[key],
           error: true,
-          message: '*' + key + ' must not be empty'
-        }
+          message: '*' + key + ' must not be empty',
+        };
         hasEmptyField = true;
       }
     }
@@ -96,15 +99,15 @@ const BookForm = forwardRef(function BookForm({books, setBooks, addBook, setAddB
     if (hasEmptyField) {
       setForm(formCopy);
     }
-  }
+  };
 
   const handleSubmit = (e) => {
     // Prevent default submit
-    e.preventDefault(); 
+    e.preventDefault();
 
     // Set submitted state
     setSubmitted(true);
-    
+
     checkEmptyField();
 
     // Reset all fields in form
@@ -112,13 +115,13 @@ const BookForm = forwardRef(function BookForm({books, setBooks, addBook, setAddB
       console.log('Valid form', form);
 
       //Store new book
-      const newBook = new Book(
+      const newBook = new BookObj(
         form.title.value,
         form.author.value,
         form.pages.value,
-        form.image.value 
+        form.image.value
       );
-      
+
       setBooks([...books, newBook]);
 
       // Reset form
@@ -127,31 +130,30 @@ const BookForm = forwardRef(function BookForm({books, setBooks, addBook, setAddB
           value: '',
           dirty: false,
           error: false,
-          message: ''
+          message: '',
         },
         author: {
           value: '',
           dirty: false,
           error: false,
-          message: ''
+          message: '',
         },
         pages: {
           value: '',
           dirty: false,
           error: false,
-          message: ''
+          message: '',
         },
         image: {
           value: '',
           dirty: false,
           error: false,
-          message: ''
-        }
+          message: '',
+        },
       });
       // Set addBook state to false to trigger useClickOutside in App.js to close form
       setAddBook(false);
-    }
-    else {
+    } else {
       console.log('Invalid form:', form);
     }
   };
@@ -161,69 +163,61 @@ const BookForm = forwardRef(function BookForm({books, setBooks, addBook, setAddB
       {createPortal(
         <AddBookWrapper $addBook={addBook}>
           <Wrapper ref={ref}>
-          <Form 
-            action='https://httpbin.org/post' 
-            method='post'
-            // Open a new page on submit
-            target='_blank'
-            noValidate
-            onSubmit={(e) => handleSubmit(e)}
-          >
-            <BookFormRow 
-              name='title'
-              type='text'
-              form={form}
-              setForm={setForm}
-              handleUpdateForm={handleUpdateForm}
-              submitted={submitted}
-            />
-            <BookFormRow 
-              name='author'
-              type='text'
-              form={form}
-              setForm={setForm} 
-              handleUpdateForm={handleUpdateForm}
-              submitted={submitted}
-            />
-            <BookFormRow 
-              name='pages'
-              type='text'
-              form={form} 
-              setForm={setForm} 
-              handleUpdateForm={handleUpdateForm}
-              submitted={submitted}
-            />
-            <BookFormRow 
-              name='image'
-              type='url'
-              placeholder='Enter book cover image URL..'
-              form={form} 
-              setForm={setForm} 
-              handleUpdateForm={handleUpdateForm}
-              submitted={submitted}
-            />
-            <Row>
-              <NoteLabel 
-                htmlFor='notes'
-              >
-                Your Notes
-              </NoteLabel>
-              <NoteArea 
-                as='textarea'
-                id='notes' 
-                name='notes' 
-                rows='5' cols='33'
-              >
-              </NoteArea>
-            </Row>
-            <Row>
-              <SubmitButton 
-                type='submit'
-              >
-                Add book
-              </SubmitButton>
-            </Row>
-          </Form>
+            <Form
+              action="https://httpbin.org/post"
+              method="post"
+              // Open a new page on submit
+              target="_blank"
+              noValidate
+              onSubmit={(e) => handleSubmit(e)}
+            >
+              <BookFormRow
+                name="title"
+                type="text"
+                form={form}
+                setForm={setForm}
+                handleUpdateForm={handleUpdateForm}
+                submitted={submitted}
+              />
+              <BookFormRow
+                name="author"
+                type="text"
+                form={form}
+                setForm={setForm}
+                handleUpdateForm={handleUpdateForm}
+                submitted={submitted}
+              />
+              <BookFormRow
+                name="pages"
+                type="text"
+                form={form}
+                setForm={setForm}
+                handleUpdateForm={handleUpdateForm}
+                submitted={submitted}
+              />
+              <BookFormRow
+                name="image"
+                type="url"
+                placeholder="Enter book cover image URL.."
+                form={form}
+                setForm={setForm}
+                handleUpdateForm={handleUpdateForm}
+                submitted={submitted}
+              />
+              <Row>
+                <NoteLabel htmlFor="notes">Your Notes</NoteLabel>
+                <NoteArea
+                  as="textarea"
+                  id="notes"
+                  name="notes"
+                  rows="5"
+                  cols="33"
+                ></NoteArea>
+              </Row>
+              <Row>
+                <SubmitButton type="submit">Add book</SubmitButton>
+              </Row>
+            </Form>
           </Wrapper>
         </AddBookWrapper>,
         document.body
@@ -232,8 +226,7 @@ const BookForm = forwardRef(function BookForm({books, setBooks, addBook, setAddB
   );
 });
 
-const AddBookWrapper = styled(PopoverWrapper)`
-`;
+const AddBookWrapper = styled(PopoverWrapper)``;
 
 const Wrapper = styled.div`
   position: absolute;
@@ -267,13 +260,12 @@ const Input = styled.input`
   border-radius: 8px;
   background-color: hsl(185deg, 10%, 95%);
 
-  ${p => p.$showError ?
-  `
+  ${(p) =>
+    p.$showError
+      ? `
     outline: 1px solid red;
   `
-  :
-  ``
-  };
+      : ``};
 `;
 
 const NoteLabel = styled.label``;

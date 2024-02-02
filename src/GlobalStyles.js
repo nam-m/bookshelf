@@ -1,4 +1,4 @@
-import {createGlobalStyle} from 'styled-components';
+import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyles = createGlobalStyle`
 	/* Apply border-box to all elements and pseudo-elements ::before, ::after */

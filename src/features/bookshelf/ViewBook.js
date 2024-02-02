@@ -1,18 +1,17 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const ViewBook = ({viewBooks, setViewBooks}) => {
+const ViewBook = ({ viewBooks, setViewBooks }) => {
   return (
     <Wrapper>
-      <Checkbox 
-        type="checkbox" 
-        id="view-toggle" 
-        className='toggle'
+      <Checkbox
+        type="checkbox"
+        id="view-toggle"
+        className="toggle"
         checked={viewBooks}
         onChange={(e) => setViewBooks(e.target.checked)}
       />
-      <Label htmlFor="view-toggle" className='toggle'>
-      </Label>
+      <Label htmlFor="view-toggle" className="toggle"></Label>
     </Wrapper>
   );
 };
@@ -29,7 +28,7 @@ const Label = styled.label`
   position: relative;
   width: var(--toggle-width);
   height: var(--toggle-height);
-  border-radius: calc(var(--toggle-width)/2);
+  border-radius: calc(var(--toggle-width) / 2);
   padding: var(--toggle-padding);
   background-color: hsl(185deg, 5%, 90%);
   cursor: pointer;
@@ -38,8 +37,8 @@ const Label = styled.label`
     content: '';
     position: absolute;
     background-color: orangered;
-    width: calc((var(--toggle-width) - var(--toggle-padding)*2)/2);
-    height: calc(var(--toggle-height) - var(--toggle-padding)*2);
+    width: calc((var(--toggle-width) - var(--toggle-padding) * 2) / 2);
+    height: calc(var(--toggle-height) - var(--toggle-padding) * 2);
     border-radius: 50%;
     transition: 0.3s;
   }

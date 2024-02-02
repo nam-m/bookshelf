@@ -5,7 +5,10 @@ import styled from 'styled-components/macro';
 import PopoverWrapper from '../../../components/common/PopoverWrapper';
 import { QUERIES } from '../../../utils/constants';
 
-const BookPreview = forwardRef(function BookPreview({bookPreview, showPreview}, ref) {
+const BookPreview = forwardRef(function BookPreview(
+  { bookToPreview, showPreview },
+  ref
+) {
   return (
     <>
       {createPortal(
@@ -14,30 +17,29 @@ const BookPreview = forwardRef(function BookPreview({bookPreview, showPreview}, 
             <PreviewContent>
               <MainInfo>
                 <ImageWrapper>
-                  <Image alt='' src={bookPreview.imageSrc}/>
+                  <Image alt="" src={bookToPreview.imageSrc} />
                 </ImageWrapper>
                 <BookInfo>
                   <Row>
-                    <strong>{bookPreview.title}</strong>
+                    <strong>{bookToPreview.title}</strong>
                   </Row>
-                  <Row>
-                    {bookPreview.author}
-                  </Row>
+                  <Row>{bookToPreview.author}</Row>
                   <NoteWrapper>
                     <Label htmlFor="notes">Notes</Label>
-                    <NoteArea id="notes" name="notes" rows="5" cols="33"></NoteArea>
+                    <NoteArea
+                      id="notes"
+                      name="notes"
+                      rows="5"
+                      cols="33"
+                    ></NoteArea>
                   </NoteWrapper>
                 </BookInfo>
               </MainInfo>
-              <Description>
-                This is the book&apos;s description
-              </Description>
-              <Review>
-                User&apos;s review
-              </Review>
+              <Description>This is the book&apos;s description</Description>
+              <Review>User&apos;s review</Review>
               <Footnote>
                 <FootnoteItem>Genre</FootnoteItem>
-                <FootnoteItem>{bookPreview.pages} pages</FootnoteItem>
+                <FootnoteItem>{bookToPreview.pages} pages</FootnoteItem>
                 <FootnoteItem>Edition</FootnoteItem>
                 <FootnoteItem>Released Date</FootnoteItem>
                 <FootnoteItem>Publisher</FootnoteItem>
@@ -47,12 +49,11 @@ const BookPreview = forwardRef(function BookPreview({bookPreview, showPreview}, 
         </PreviewWrapper>,
         document.body
       )}
-    </> 
-  )
+    </>
+  );
 });
 
-const PreviewWrapper = styled(PopoverWrapper)`
-`;
+const PreviewWrapper = styled(PopoverWrapper)``;
 
 const Wrapper = styled.div`
   position: absolute;
@@ -92,7 +93,7 @@ const ImageWrapper = styled.div`
 `;
 
 const Image = styled.img`
-  /* Set to block to cover all parent container space*/  
+  /* Set to block to cover all parent container space*/
   display: block;
   /* Set width to be the same as parent content's */
   max-width: 100%;

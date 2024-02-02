@@ -1,10 +1,10 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect } from 'react';
 
 // Retrieve previous books, return defaultValue if not found any
 const getStorageData = (key, defaultValue) => {
   const savedItem = localStorage.getItem(key);
-return JSON.parse(savedItem) || defaultValue;
-}
+  return JSON.parse(savedItem) || defaultValue;
+};
 
 // Set initialValue to savedItem or defaultValue in localStorage
 const useLocalStorage = (key, initialValue) => {
@@ -12,12 +12,12 @@ const useLocalStorage = (key, initialValue) => {
     return getStorageData(key, initialValue);
   });
 
-// Save new key-value pair to localStorage every time key or value changes
+  // Save new key-value pair to localStorage every time key or value changes
   useEffect(() => {
     localStorage.setItem(key, JSON.stringify(value));
   }, [key, value]);
-  
+
   return [value, setValue];
-}
+};
 
 export default useLocalStorage;
