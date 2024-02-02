@@ -77,7 +77,7 @@ const DropdownButton = styled(IconButton)`
   position: relative;
 `;
 
-const DropdownMenu = styled.div`
+const DropdownMenu = styled.menu`
   position: relative;
   display: flex;
   flex-direction: column;
@@ -109,9 +109,10 @@ const AddToShelfLabel = styled.label``;
 
 const ShelfDropdownMenu = styled(DropdownMenu)`
   position: absolute;
-  bottom: 0;
-  right: -48px;
+  top: 50%;
+  left: 100%;
   z-index: 2;
+  margin-top: -2px;
 `;
 
 const ShelfDropdownItem = styled(DropdownItem)``;
