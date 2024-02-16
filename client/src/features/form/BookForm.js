@@ -4,7 +4,7 @@ import styled from 'styled-components/macro';
 
 import CreateButton from '../../components/buttons/CreateButton';
 import PopoverWrapper from '../../components/common/PopoverWrapper';
-import { BookObj } from '../../dataModels/BookDataModel';
+import { BookModel } from '../../dataModels/BookDataModel';
 import BookFormRow from './BookFormRow';
 
 const BookForm = forwardRef(function BookForm(
@@ -115,7 +115,7 @@ const BookForm = forwardRef(function BookForm(
       console.log('Valid form', form);
 
       //Store new book
-      const newBook = new BookObj(
+      const newBook = new BookModel(
         form.title.value,
         form.author.value,
         form.pages.value,

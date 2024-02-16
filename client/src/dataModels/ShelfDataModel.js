@@ -1,4 +1,4 @@
-export class ShelfObj {
+export class ShelfModel {
   constructor(id = '', name = '', isEditing = false, books = []) {
     this.id = id;
     this.name = name;

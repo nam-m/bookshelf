@@ -4,7 +4,7 @@ import styled from 'styled-components/macro';
 
 import IconButton from '../components/buttons/IconButton';
 import Icon from '../components/common/Icon';
-import { ShelfObj } from '../dataModels/ShelfDataModel';
+import { ShelfModel } from '../dataModels/ShelfDataModel';
 import HomeShelf from '../features/bookshelf/shelf/HomeShelf';
 import Shelf from '../features/bookshelf/shelf/Shelf';
 import ShelfDiv from '../features/bookshelf/shelf/ShelfStyle';
@@ -18,7 +18,12 @@ const SideBar = ({
   setShelves,
 }) => {
   const addShelf = () => {
-    const newEmptyShelf = new ShelfObj('shelf-'.concat(nanoid()), '', true, []);
+    const newEmptyShelf = new ShelfModel(
+      'shelf-'.concat(nanoid()),
+      '',
+      true,
+      []
+    );
     setShelves([...shelves, newEmptyShelf]);
   };
 
