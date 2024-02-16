@@ -1,8 +1,6 @@
 import React, { useRef, useState } from 'react';
 import styled from 'styled-components/macro';
 
-import PopoverWrapper from './components/common/PopoverWrapper';
-
 import Footer from './layouts/Footer';
 import Header from './layouts/Header';
 import Main from './layouts/Main';
