@@ -38,6 +38,26 @@ const createBook = (newBook) => {
     });
 };
 
+const updateBook = (book_id, updatedBook) => {
+  const update_options = {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(updatedBook),
+  };
+
+  return fetch(`${baseUrl}/${book_id}`, update_options)
+    .then((response) => {
+      response_error_handler(response);
+      return response.json();
+    })
+    .catch((error) => {
+      console.error('Error updating book:', error);
+      return [];
+    });
+};
+
 const deleteBook = (book_id, book) => {
   const delete_options = {
     method: 'DELETE',
@@ -58,4 +78,4 @@ const deleteBook = (book_id, book) => {
     });
 };
 
-export default { getAllBooks, createBook, deleteBook };
+export default { getAllBooks, createBook, updateBook, deleteBook };
