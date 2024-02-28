@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import styled from 'styled-components/macro';
 
 import Dropdown from '../../../components/Dropdown';
+import deleteBook from '../../../services/BookServices';
+import { updateObjectInArray } from '../../../utils/ArrayUtils';
 import BookInfo from './BookInfo';
 import BookPopover from './BookPopover';
-import { updateObjectInArray } from '../../../utils/ArrayUtils';
-import deleteBook from '../../../services/BookServices';
 
 const _ = require('lodash');
 const Book = ({
@@ -14,8 +14,6 @@ const Book = ({
   showPreview,
   setShowPreview,
   setBookToPreview,
-  books,
-  setBooks,
   previewRef,
   shelves,
   setShelves,
@@ -24,12 +22,6 @@ const Book = ({
 
   const removeBook = (bookToRemove) => {
     if (window.confirm('Do you want to delete this book?')) {
-      // const newBooks = books.filter(
-      //   (book) =>
-      //     book.title !== bookToRemove.title &&
-      //     book.author !== bookToRemove.author
-      // );
-      // setBooks(newBooks);
       deleteBook(bookToRemove);
     }
   };

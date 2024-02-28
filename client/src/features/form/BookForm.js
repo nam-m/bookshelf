@@ -4,7 +4,7 @@ import styled from 'styled-components/macro';
 
 import CreateButton from '../../components/buttons/CreateButton';
 import PopoverWrapper from '../../components/common/PopoverWrapper';
-import { BookModel } from '../../dataModels/BookModel';
+import { BookModel } from '../../models/BookModel';
 import bookService from '../../services/BookServices';
 import BookFormRow from './BookFormRow';
 
