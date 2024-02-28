@@ -5,6 +5,7 @@ import Dropdown from '../../../components/Dropdown';
 import BookInfo from './BookInfo';
 import BookPopover from './BookPopover';
 import { updateObjectInArray } from '../../../utils/ArrayUtils';
+import deleteBook from '../../../services/BookServices';
 
 const _ = require('lodash');
 const Book = ({
@@ -23,12 +24,13 @@ const Book = ({
 
   const removeBook = (bookToRemove) => {
     if (window.confirm('Do you want to delete this book?')) {
-      const newBooks = books.filter(
-        (book) =>
-          book.title !== bookToRemove.title &&
-          book.author !== bookToRemove.author
-      );
-      setBooks(newBooks);
+      // const newBooks = books.filter(
+      //   (book) =>
+      //     book.title !== bookToRemove.title &&
+      //     book.author !== bookToRemove.author
+      // );
+      // setBooks(newBooks);
+      deleteBook(bookToRemove);
     }
   };
 

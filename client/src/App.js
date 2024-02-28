@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components/macro';
 
 import Footer from './layouts/Footer';
@@ -6,6 +6,7 @@ import Header from './layouts/Header';
 import Main from './layouts/Main';
 import MobileNavBar from './layouts/MobileNavBar';
 import SideBar from './layouts/SideBar';
+import bookService from './services/BookServices';
 import useClickOutside from './utils/UseClickOutside';
 import useLocalStorage from './utils/UseLocalStorage';
 import { QUERIES } from './utils/constants';
@@ -14,7 +15,7 @@ const App = () => {
   const [bookToPreview, setBookToPreview] = useState({});
   const [showPreview, setShowPreview] = useState(false);
   const [addBook, setAddBook] = useState(false);
-  const [books, setBooks] = useLocalStorage('books', []);
+  const [books, setBooks] = useState([]);
   const [shelves, setShelves] = useLocalStorage('shelves', []);
   const [selectedShelf, setSelectedShelf] = useLocalStorage(
     'selectedShelf',
@@ -27,6 +28,12 @@ const App = () => {
 
   useClickOutside(previewRef, () => setShowPreview(false));
   useClickOutside(addRef, () => setAddBook(false));
+
+  useEffect(() => {
+    bookService.getAllBooks().then((initialBooks) => {
+      setBooks(initialBooks);
+    });
+  }, []);
 
   return (
     <AppWrapper>

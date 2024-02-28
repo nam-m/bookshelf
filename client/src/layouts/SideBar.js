@@ -4,7 +4,7 @@ import styled from 'styled-components/macro';
 
 import IconButton from '../components/buttons/IconButton';
 import Icon from '../components/common/Icon';
-import { ShelfModel } from '../dataModels/ShelfDataModel';
+import { ShelfModel } from '../dataModels/ShelfModel';
 import HomeShelf from '../features/bookshelf/shelf/HomeShelf';
 import Shelf from '../features/bookshelf/shelf/Shelf';
 import ShelfDiv from '../features/bookshelf/shelf/ShelfStyle';

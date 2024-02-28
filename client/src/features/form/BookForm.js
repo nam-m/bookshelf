@@ -4,7 +4,8 @@ import styled from 'styled-components/macro';
 
 import CreateButton from '../../components/buttons/CreateButton';
 import PopoverWrapper from '../../components/common/PopoverWrapper';
-import { BookModel } from '../../dataModels/BookDataModel';
+import { BookModel } from '../../dataModels/BookModel';
+import bookService from '../../services/BookServices';
 import BookFormRow from './BookFormRow';
 
 const BookForm = forwardRef(function BookForm(
@@ -112,8 +113,6 @@ const BookForm = forwardRef(function BookForm(
 
     // Reset all fields in form
     if (isFormValid()) {
-      console.log('Valid form', form);
-
       //Store new book
       const newBook = new BookModel(
         form.title.value,
@@ -122,7 +121,10 @@ const BookForm = forwardRef(function BookForm(
         form.image.value
       );
 
-      setBooks([...books, newBook]);
+      console.log(newBook);
+      bookService
+        .createBook(newBook)
+        .then((newBook) => setBooks([...books, newBook]));
 
       // Reset form
       setForm({
@@ -154,7 +156,7 @@ const BookForm = forwardRef(function BookForm(
       // Set addBook state to false to trigger useClickOutside in App.js to close form
       setAddBook(false);
     } else {
-      console.log('Invalid form:', form);
+      console.warn('Invalid form:', form);
     }
   };
 
