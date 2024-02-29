@@ -1,4 +1,3 @@
-import { nanoid } from 'nanoid';
 import React from 'react';
 import styled from 'styled-components/macro';
 
@@ -98,8 +97,8 @@ const Bookshelf = ({
             })
             .map((book) => (
               <Book
-                book={{ ...book }}
-                key={`${book.title}-${nanoid()}`}
+                book={book}
+                key={book.id}
                 viewBooks={viewBooks}
                 showPreview={showPreview}
                 setShowPreview={setShowPreview}
