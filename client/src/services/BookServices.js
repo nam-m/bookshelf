@@ -1,4 +1,4 @@
-const baseUrl = 'http://localhost:3002/books';
+const baseUrl = '/api/books';
 
 const response_error_handler = (response) => {
   if (!response.ok) {
@@ -38,16 +38,16 @@ const createBook = (newBook) => {
     });
 };
 
-const updateBook = (book_id, updatedBook) => {
+const updateBook = (bookToUpdate) => {
   const update_options = {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify(updatedBook),
+    body: JSON.stringify(bookToUpdate),
   };
 
-  return fetch(`${baseUrl}/${book_id}`, update_options)
+  return fetch(`${baseUrl}/${bookToUpdate.id}`, update_options)
     .then((response) => {
       response_error_handler(response);
       return response.json();
@@ -58,16 +58,16 @@ const updateBook = (book_id, updatedBook) => {
     });
 };
 
-const deleteBook = (book_id, book) => {
+const deleteBook = (bookToDelete) => {
   const delete_options = {
     method: 'DELETE',
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify(book),
+    body: JSON.stringify(bookToDelete),
   };
 
-  return fetch(`${baseUrl}/${book_id}`, delete_options)
+  return fetch(`${baseUrl}/${bookToDelete.id}`, delete_options)
     .then((response) => {
       response_error_handler(response);
       return response.json();
