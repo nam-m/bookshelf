@@ -10,14 +10,14 @@ mongoose
     console.log("connected to MongoDB");
   })
   .catch((error) => {
-    console.log("error connecting ton MongoDB: ", error.message);
+    console.log("error connecting to MongoDB: ", error.message);
   });
 
 const bookSchema = new mongoose.Schema({
   title: String,
   author: String,
   pages: String,
-  bookCoverLink: String,
+  imageSrc: String,
 });
 
 // Use id instead of _id

@@ -35,12 +35,12 @@ app.post("/api/books", (request, response, next) => {
     });
   }
 
-  const book = {
+  const book = new Book({
     title: body.title,
     author: body.author,
     pages: body.pages,
     imageSrc: body.imageSrc,
-  };
+  });
 
   book
     .save()
@@ -51,7 +51,7 @@ app.post("/api/books", (request, response, next) => {
 });
 
 app.delete("/api/books/:id", (request, response, next) => {
-  Book.findByIdAndDelete(request.param.id)
+  Book.findByIdAndDelete(request.params.id)
     .then(() => {
       response.status(204).end();
     })
