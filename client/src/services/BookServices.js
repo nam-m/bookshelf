@@ -70,7 +70,7 @@ const deleteBook = (bookToDelete) => {
   return fetch(`${baseUrl}/${bookToDelete.id}`, delete_options)
     .then((response) => {
       response_error_handler(response);
-      return response.json();
+      // return response.json();
     })
     .catch((error) => {
       console.error('Error deleting book:', error);

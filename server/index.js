@@ -1,19 +1,38 @@
 require("dotenv").config();
+// const BOOKS = require("./data/BookData");
 const express = require("express");
 const cors = require("cors");
 const Book = require("./models/book");
 const PORT = process.env.PORT;
-
 const app = express();
 app.use(cors());
 app.use(express.json());
 
+const unknownEndpoint = (request, response) => {
+  response.status(404).send({ error: "unknown endpoint" });
+};
+
+const errorHandler = (error, request, response, next) => {
+  console.error(error.message);
+  if (error.name === "CastError") {
+    return response.status(400).send({ error: "malformatted id" });
+  } else if (error.name == "ValidationError") {
+    return response.status(400).json({ error: error.message });
+  }
+  next(error);
+};
+
+// // Insert all books
+// Book.insertMany(BOOKS).then(() => console.log("insert all books"));
+
+// Get all books
 app.get("/api/books", (request, response) => {
   Book.find({}).then((books) => {
     response.json(books);
   });
 });
 
+// Get book with specific id
 app.get("/api/books/:id", (request, response, next) => {
   Book.findById(request.params.id)
     .then((book) => {
@@ -56,26 +75,10 @@ app.delete("/api/books/:id", (request, response, next) => {
       response.status(204).end();
     })
     .catch((error) => next(error));
-
-  response.status(204).end();
 });
-
-const unknownEndpoint = (request, response) => {
-  response.status(404).send({ error: "unknown endpoint" });
-};
 
 // handler of requests with unknown endpoint
 app.use(unknownEndpoint);
-
-const errorHandler = (error, request, response, next) => {
-  console.error(error.message);
-  if (error.name === "CastError") {
-    return response.status(400).send({ error: "malformatted id" });
-  } else if (error.name == "ValidationError") {
-    return response.status(400).json({ error: error.message });
-  }
-  next(error);
-};
 
 app.use(errorHandler);
 

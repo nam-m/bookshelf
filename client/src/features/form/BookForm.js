@@ -121,7 +121,7 @@ const BookForm = forwardRef(function BookForm(
         form.image.value
       );
 
-      console.log(newBook);
+      // console.log(newBook);
       bookService
         .createBook(newBook)
         .then((newBook) => setBooks([...books, newBook]));
