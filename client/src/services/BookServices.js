@@ -14,6 +14,7 @@ const getAllBooks = () => {
     })
     .catch((error) => {
       console.error('Error fetching all books:', error);
+      return [];
     });
 };
 
