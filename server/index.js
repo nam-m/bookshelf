@@ -2,12 +2,14 @@ require("dotenv").config();
 // const BOOKS = require("./data/BookData");
 const express = require("express");
 const cors = require("cors");
+const path = require("path");
 const Book = require("./models/book");
 const PORT = process.env.PORT;
 
 const app = express();
 app.use(cors());
 app.use(express.json());
+app.use(express.static(path.join(__dirname, "build")));
 
 const unknownEndpoint = (request, response) => {
   response.status(404).send({ error: "unknown endpoint" });
@@ -27,7 +29,7 @@ const errorHandler = (error, request, response, next) => {
 // Book.insertMany(BOOKS).then(() => console.log("insert all books"));
 
 app.get("/", (request, response) => {
-  response.send();
+  response.sendFile(path.join(__dirname, "build", "index.html"));
 });
 
 // Get all books
