@@ -6,7 +6,11 @@ const Book = require("./models/book");
 const PORT = process.env.PORT;
 
 const app = express();
-app.use(cors());
+app.use(
+  cors({
+    origin: ["https://bookshelf-app-client.vercel.app/"],
+  })
+);
 app.use(express.json());
 
 const unknownEndpoint = (request, response) => {
@@ -25,6 +29,10 @@ const errorHandler = (error, request, response, next) => {
 
 // // Insert all books
 // Book.insertMany(BOOKS).then(() => console.log("insert all books"));
+
+app.get("/", (request, response) => {
+  response.send();
+});
 
 // Get all books
 app.get("/api/books", (request, response) => {
