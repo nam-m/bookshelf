@@ -6,11 +6,7 @@ const Book = require("./models/book");
 const PORT = process.env.PORT;
 
 const app = express();
-app.use(
-  cors({
-    origin: ["https://bookshelf-app-client.vercel.app/"],
-  })
-);
+app.use(cors());
 app.use(express.json());
 
 const unknownEndpoint = (request, response) => {
