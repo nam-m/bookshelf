@@ -1,3 +1,4 @@
+import { find } from 'lodash';
 import React from 'react';
 import styled from 'styled-components/macro';
 
@@ -5,8 +6,6 @@ import SortBook from './SortBook';
 import ViewBook from './ViewBook';
 import Book from './book/Book';
 import BookPreview from './book/BookPreview';
-
-const _ = require('lodash');
 
 const Bookshelf = ({
   sortId,
@@ -89,7 +88,7 @@ const Bookshelf = ({
                 return true;
               } else if (Object.keys(selectedShelf).length > 0) {
                 if (selectedShelf['books'].length > 0) {
-                  return _.find(selectedShelf['books'], book);
+                  return find(selectedShelf['books'], book);
                 } else {
                   return false;
                 }

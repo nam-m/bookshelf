@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components/macro';
+import { find } from 'lodash';
 
 import Dropdown from '../../../components/Dropdown';
 import bookService from '../../../services/BookServices';
@@ -7,7 +8,6 @@ import { updateObjectInArray } from '../../../utils/ArrayUtils';
 import BookInfo from './BookInfo';
 import BookPopover from './BookPopover';
 
-const _ = require('lodash');
 const Book = ({
   book,
   viewBooks,
@@ -28,7 +28,7 @@ const Book = ({
 
   const addBookToShelf = (shelfId, newBook) => {
     const currentBooks = shelves.find((shelf) => shelf.id === shelfId)['books'];
-    if (_.find(currentBooks, newBook)) {
+    if (find(currentBooks, newBook)) {
       window.alert(`${newBook.title} is already in selected shelf`);
     } else {
       const newBooks = currentBooks.concat(newBook);

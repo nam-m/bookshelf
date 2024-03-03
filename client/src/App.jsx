@@ -11,16 +11,14 @@ import useClickOutside from './utils/UseClickOutside';
 import useLocalStorage from './utils/UseLocalStorage';
 import { QUERIES } from './utils/constants';
 
+const title = 'react';
 const App = () => {
   const [bookToPreview, setBookToPreview] = useState({});
   const [showPreview, setShowPreview] = useState(false);
   const [addBook, setAddBook] = useState(false);
   const [books, setBooks] = useState([]);
   const [shelves, setShelves] = useLocalStorage('shelves', []);
-  const [selectedShelf, setSelectedShelf] = useLocalStorage(
-    'selectedShelf',
-    {}
-  );
+  const [selectedShelf, setSelectedShelf] = useState({});
   const [areAllBooksSelected, setAreAllBooksSelected] = useState(false);
 
   const previewRef = useRef();
