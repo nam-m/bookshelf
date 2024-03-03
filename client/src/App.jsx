@@ -11,7 +11,6 @@ import useClickOutside from './utils/UseClickOutside';
 import useLocalStorage from './utils/UseLocalStorage';
 import { QUERIES } from './utils/constants';
 
-const title = 'react';
 const App = () => {
   const [bookToPreview, setBookToPreview] = useState({});
   const [showPreview, setShowPreview] = useState(false);
