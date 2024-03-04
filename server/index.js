@@ -27,10 +27,6 @@ const errorHandler = (error, request, response, next) => {
 // // Insert all books
 // Book.insertMany(BOOKS).then(() => console.log("insert all books"));
 
-app.get("/", (request, response) => {
-  response.sendFile("build/index.html");
-});
-
 // Get all books
 app.get("/api/books", (request, response) => {
   Book.find({}).then((books) => {
