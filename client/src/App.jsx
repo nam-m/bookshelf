@@ -16,9 +16,9 @@ const App = () => {
   const [showPreview, setShowPreview] = useState(false);
   const [addBook, setAddBook] = useState(false);
   const [books, setBooks] = useState([]);
-  const [shelves, setShelves] = useLocalStorage('shelves', []);
+  const [shelves, setShelves] = useState([]);
   const [selectedShelf, setSelectedShelf] = useState({});
-  const [areAllBooksSelected, setAreAllBooksSelected] = useState(false);
+  const [areAllBooksSelected, setAreAllBooksSelected] = useState(true);
 
   const previewRef = useRef();
   const addRef = useRef();
