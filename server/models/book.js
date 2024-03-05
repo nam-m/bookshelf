@@ -13,7 +13,7 @@ mongoose
     console.log("error connecting to MongoDB: ", error.message);
   });
 
-const bookSchema = new mongoose.Schema({
+const BookSchema = new mongoose.Schema({
   title: String,
   author: String,
   pages: String,
@@ -22,7 +22,7 @@ const bookSchema = new mongoose.Schema({
 
 // Use id instead of _id
 // and remove auto-generated _id and __v for each object
-bookSchema.set("toJSON", {
+BookSchema.set("toJSON", {
   transform: (document, returnedObject) => {
     // document: the mongoose document being converted
     returnedObject.id = returnedObject._id.toString();
@@ -31,4 +31,4 @@ bookSchema.set("toJSON", {
   },
 });
 
-module.exports = mongoose.model("Book", bookSchema);
+module.exports = mongoose.model("Book", BookSchema);

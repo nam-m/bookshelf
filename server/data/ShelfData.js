@@ -1,22 +1,22 @@
 const SHELVES = [
   {
-    id: 'shelf-0',
-    name: 'Shelf 0',
+    id: "shelf-0",
+    name: "Shelf 0",
     isEditing: false,
-    books: ['Fascination'],
+    books: ["Fascination"],
   },
   {
-    id: 'shelf-1',
-    name: 'Shelf 1',
+    id: "shelf-1",
+    name: "Shelf 1",
     isEditing: false,
-    books: ['Fascination', 'Quality design', 'Passing Clouds of Silver'],
+    books: ["Fascination", "Quality design", "Passing Clouds of Silver"],
   },
   {
-    id: 'shelf-2',
-    name: 'Shelf 2',
+    id: "shelf-2",
+    name: "Shelf 2",
     isEditing: false,
-    books: ['The Great Azulene Casino'],
+    books: ["The Great Azulene Casino"],
   },
 ];
 
-export default SHELVES;
+module.exports = SHELVES;
