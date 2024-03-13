@@ -36,7 +36,7 @@ bookRouter.post("/", (request, response, next) => {
   book
     .save()
     .then((savedBook) => {
-      response.json(savedBook);
+      response.status(201).json(savedBook);
     })
     .catch((error) => next(error));
 });
