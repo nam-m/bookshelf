@@ -22,7 +22,7 @@ bookRouter.get("/:id", (request, response, next) => {
 bookRouter.post("/", (request, response, next) => {
   const body = request.body;
   if (!body.title || !body.author || !body.pages) {
-    return response.status(404).json({
+    return response.status(400).json({
       Error: "Missing book title/author/pages",
     });
   }

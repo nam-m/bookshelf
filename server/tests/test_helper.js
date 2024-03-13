@@ -1,6 +1,6 @@
 const Book = require("../models/book");
 
-const testBooks = [
+const initialBooks = [
   {
     title: "Test1",
     author: "Henry",
@@ -34,4 +34,4 @@ const booksInDb = async () => {
   return books.map((book) => book.toJSON());
 };
 
-module.exports = { testBooks, nonExistingBookId, booksInDb };
+module.exports = { initialBooks, nonExistingBookId, booksInDb };
