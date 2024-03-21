@@ -8,7 +8,7 @@ const app = require("../app");
 // const BOOKS = require("../data/BookData");
 const api = supertest(app);
 
-describe("with some initial books saved", () => {
+describe("Books api tests", () => {
   beforeEach(async () => {
     await Book.deleteMany({});
     await Book.insertMany(helper.initialBooks);
