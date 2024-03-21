@@ -1,4 +1,5 @@
 const Book = require("../models/book");
+const Shelf = require("../models/shelf");
 
 const initialBooks = [
   {
@@ -12,6 +13,15 @@ const initialBooks = [
     author: "Lily",
     pages: "456",
     imageSrc: "",
+  },
+];
+
+const initialShelves = [
+  {
+    name: "to read",
+  },
+  {
+    name: "reading",
   },
 ];
 
@@ -34,4 +44,25 @@ const booksInDb = async () => {
   return books.map((book) => book.toJSON());
 };
 
-module.exports = { initialBooks, nonExistingBookId, booksInDb };
+const nonExistingShelfId = async () => {
+  const shelf = new Shelf({
+    name: "to be removed",
+  });
+  await shelf.save();
+  await shelf.deleteOne();
+  return shelf._id.toString();
+};
+
+const shelvesInDb = async () => {
+  const shelves = await Shelf.find({});
+  return shelves.map((shelf) => shelf.toJSON());
+};
+
+module.exports = {
+  initialBooks,
+  initialShelves,
+  nonExistingBookId,
+  booksInDb,
+  nonExistingShelfId,
+  shelvesInDb,
+};
