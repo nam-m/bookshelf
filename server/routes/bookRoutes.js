@@ -1,25 +1,21 @@
 const bookRouter = require("express").Router();
 const Book = require("../models/book");
 
-bookRouter.get("/", (request, response) => {
-  Book.find({}).then((books) => {
-    response.json(books);
-  });
+bookRouter.get("/", async (request, response) => {
+  const books = await Book.find({});
+  response.json(books);
 });
 
-bookRouter.get("/:id", (request, response, next) => {
-  Book.findById(request.params.id)
-    .then((book) => {
-      if (book) {
-        response.json(book);
-      } else {
-        response.status(404).end();
-      }
-    })
-    .catch((error) => next(error));
+bookRouter.get("/:id", async (request, response) => {
+  const book = await Book.findById(request.params.id);
+  if (book) {
+    response.json(book);
+  } else {
+    response.status(404).end();
+  }
 });
 
-bookRouter.post("/", (request, response, next) => {
+bookRouter.post("/", async (request, response) => {
   const body = request.body;
   if (!body.title || !body.author || !body.pages) {
     return response.status(400).json({
@@ -33,20 +29,15 @@ bookRouter.post("/", (request, response, next) => {
     imageSrc: body.imageSrc,
   });
 
-  book
-    .save()
-    .then((savedBook) => {
-      response.status(201).json(savedBook);
-    })
-    .catch((error) => next(error));
+  const savedBook = await book.save();
+  if (savedBook) {
+    response.status(201).json(savedBook);
+  }
 });
 
-bookRouter.delete("/:id", (request, response, next) => {
-  Book.findByIdAndDelete(request.params.id)
-    .then(() => {
-      response.status(204).end();
-    })
-    .catch((error) => next(error));
+bookRouter.delete("/:id", async (request, response) => {
+  await Book.findByIdAndDelete(request.params.id);
+  response.status(204).end();
 });
 
 module.exports = bookRouter;

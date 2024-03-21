@@ -11,10 +11,10 @@ const api = supertest(app);
 describe("with some initial books saved", () => {
   beforeEach(async () => {
     await Book.deleteMany({});
-    // await Book.insertMany(BOOKS);
-    const initialBooks = helper.initialBooks.map((book) => new Book(book));
-    const promiseBooks = initialBooks.map((book) => book.save());
-    await Promise.all(promiseBooks);
+    await Book.insertMany(helper.initialBooks);
+    // const initialBooks = helper.initialBooks.map((book) => new Book(book));
+    // const promiseBooks = initialBooks.map((book) => book.save());
+    // await Promise.all(promiseBooks);
   });
 
   test("books are returned as json", async () => {
@@ -45,7 +45,7 @@ describe("with some initial books saved", () => {
     });
 
     test("fails with status code 400 if book id is invalid", async () => {
-      const invalidBookId = "65f15f34ccc4053144766";
+      const invalidBookId = "5a3d5da59070081a82a3445";
       await api.get(`/api/books/${invalidBookId}`).expect(400);
     });
   });
