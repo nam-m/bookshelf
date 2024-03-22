@@ -1,10 +1,27 @@
 const mongoose = require("mongoose");
 
 const BookSchema = new mongoose.Schema({
-  title: String,
-  author: String,
-  pages: String,
+  title: {
+    type: String,
+    required: true,
+  },
+  author: {
+    type: String,
+    required: true,
+  },
+  pages: {
+    type: String,
+    required: true,
+  },
   imageSrc: String,
+  shelf: {
+    type: mongoose.Schema.ObjectId,
+    ref: "Shelf",
+  },
+  user: {
+    type: mongoose.Schema.ObjectId,
+    ref: "User",
+  },
 });
 
 // Use id instead of _id
