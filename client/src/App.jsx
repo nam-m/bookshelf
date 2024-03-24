@@ -8,7 +8,6 @@ import MobileNavBar from './layouts/MobileNavBar';
 import SideBar from './layouts/SideBar';
 import bookService from './services/BookServices';
 import useClickOutside from './utils/UseClickOutside';
-import useLocalStorage from './utils/UseLocalStorage';
 import { QUERIES } from './utils/constants';
 
 const App = () => {

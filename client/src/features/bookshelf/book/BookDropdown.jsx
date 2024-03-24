@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
-import { COLORS, QUERIES } from '../utils/constants';
+import { COLORS, QUERIES } from '../../../utils/constants';
 
-import IconButton from './buttons/IconButton';
-import UnstyledButton from './buttons/UnstyledButton';
-import Icon from './common/Icon';
+import IconButton from '../../../components/buttons/IconButton';
+import UnstyledButton from '../../../components/buttons/UnstyledButton';
+import Icon from '../../../components/common/Icon';
 
-const Dropdown = ({
+const BookDropdownOptions = ({
   book,
   removeBook,
   addBookToShelf,
@@ -117,4 +117,4 @@ const ShelfDropdownMenu = styled(DropdownMenu)`
 
 const ShelfDropdownItem = styled(DropdownItem)``;
 
-export default Dropdown;
+export default BookDropdownOptions;

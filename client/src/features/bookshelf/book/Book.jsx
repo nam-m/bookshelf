@@ -1,16 +1,18 @@
+import { find } from 'lodash';
 import React, { useState } from 'react';
 import styled from 'styled-components/macro';
-import { find } from 'lodash';
 
-import Dropdown from '../../../components/Dropdown';
 import bookService from '../../../services/BookServices';
 import { updateObjectInArray } from '../../../utils/ArrayUtils';
+import BookDropdownOptions from './BookDropdown';
 import BookInfo from './BookInfo';
 import BookPopover from './BookPopover';
 
 const Book = ({
   book,
+  books,
   viewBooks,
+  setBooks,
   showPreview,
   setShowPreview,
   setBookToPreview,
@@ -22,7 +24,9 @@ const Book = ({
 
   const removeBook = (bookToRemove) => {
     if (window.confirm('Do you want to delete this book?')) {
-      bookService.deleteBook(bookToRemove);
+      bookService
+        .deleteBook(bookToRemove)
+        .then(setBooks(books.filter((book) => book.id !== bookToRemove.id)));
     }
   };
 
@@ -56,7 +60,7 @@ const Book = ({
         </Link>
         {!viewBooks && showPopover && (
           <BookPopoverWrapper>
-            <Dropdown
+            <BookDropdownOptions
               book={book}
               removeBook={removeBook}
               addBookToShelf={addBookToShelf}

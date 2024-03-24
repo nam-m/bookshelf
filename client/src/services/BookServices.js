@@ -1,20 +1,14 @@
 const baseUrl = 'https://bookshelf-va0d.onrender.com/api/books';
-
-const response_error_handler = (response) => {
-  if (!response.ok) {
-    throw new Error('Network response was not ok');
-  }
-};
+import responseErrorHandler from './ServiceErrorHandler';
 
 const getAllBooks = () => {
   return fetch(baseUrl)
     .then((response) => {
-      response_error_handler(response);
+      responseErrorHandler(response);
       return response.json();
     })
     .catch((error) => {
       console.error('Error fetching all books:', error);
-      return [];
     });
 };
 
@@ -29,12 +23,11 @@ const createBook = (newBook) => {
 
   return fetch(baseUrl, post_options)
     .then((response) => {
-      response_error_handler(response);
+      responseErrorHandler(response);
       return response.json();
     })
     .catch((error) => {
       console.error('Error creating new book:', error);
-      return [];
     });
 };
 
@@ -49,12 +42,11 @@ const updateBook = (bookToUpdate) => {
 
   return fetch(`${baseUrl}/${bookToUpdate.id}`, update_options)
     .then((response) => {
-      response_error_handler(response);
+      responseErrorHandler(response);
       return response.json();
     })
     .catch((error) => {
       console.error('Error updating book:', error);
-      return [];
     });
 };
 
@@ -69,12 +61,10 @@ const deleteBook = (bookToDelete) => {
 
   return fetch(`${baseUrl}/${bookToDelete.id}`, delete_options)
     .then((response) => {
-      response_error_handler(response);
-      // return response.json();
+      responseErrorHandler(response);
     })
     .catch((error) => {
       console.error('Error deleting book:', error);
-      return [];
     });
 };
 

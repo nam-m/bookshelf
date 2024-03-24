@@ -97,8 +97,10 @@ const Bookshelf = ({
             .map((book) => (
               <Book
                 book={book}
+                books={books}
                 key={book.id}
                 viewBooks={viewBooks}
+                setBooks={setBooks}
                 showPreview={showPreview}
                 setShowPreview={setShowPreview}
                 setBookToPreview={setBookToPreview}
