@@ -2,7 +2,7 @@ import styled from 'styled-components/macro';
 import { WEIGHTS } from '../../utils/constants';
 
 const CreateButton = styled.button`
-  --toggle-width: 8rem;
+  --toggle-width: 10rem;
   --toggle-height: 3rem;
   --toggle-padding: 4px;
 

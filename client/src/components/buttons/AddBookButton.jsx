@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 
-import CreateButton from './CreateButton';
-import Icon from '../common/Icon';
-import { QUERIES } from '../../utils/constants';
 import BookForm from '../../features/form/BookForm';
+import { QUERIES } from '../../utils/constants';
+import Icon from '../common/Icon';
+import CreateButton from './CreateButton';
 
 const AddBookButton = ({ books, setBooks, addBook, setAddBook, addRef }) => {
   return (
@@ -15,7 +15,7 @@ const AddBookButton = ({ books, setBooks, addBook, setAddBook, addRef }) => {
             setAddBook(true);
           }}
         >
-          <AddBookText>Add book</AddBookText>
+          <AddBookText>Upload book</AddBookText>
           <AddBookIcon id="add" size={16} strokeWidth={4} />
         </Button>
       </Wrapper>
