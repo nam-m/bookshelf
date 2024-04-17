@@ -9,7 +9,7 @@ import bookService from '../../services/BookServices';
 import BookFormRow from './BookFormRow';
 
 const BookForm = forwardRef(function BookForm(
-  { books, setBooks, addBook, setAddBook },
+  { books, setBooks, setAddBook },
   ref
 ) {
   // State and set state of form input fields
@@ -163,7 +163,7 @@ const BookForm = forwardRef(function BookForm(
   return (
     <>
       {createPortal(
-        <AddBookWrapper $addBook={addBook}>
+        <AddBookWrapper>
           <Wrapper ref={ref}>
             <Form
               action="https://httpbin.org/post"

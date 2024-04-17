@@ -1,19 +1,27 @@
 import React, { useState } from 'react';
 import styled from 'styled-components/macro';
-import Icon from '../../components/common/Icon';
-import bookService from '../../services/BookServices';
+import Icon from '../../../components/common/Icon';
+import bookService from '../../../services/BookServices';
+import SearchDropdown from './SearchDropdown';
 
 const SearchBook = () => {
   const [searchInput, setSearchInput] = useState('');
+  const [searchResults, setSearchResults] = useState([]);
+  const [showSearchResults, setShowSearchResults] = useState(false);
 
   const handleSubmitSearch = async (e) => {
     e.preventDefault(e);
     try {
-      const { items } = await bookService.searchBook(searchInput);
-      console.log(items);
+      const { results } = await bookService.searchBook(searchInput);
+      setSearchResults(results);
+      console.log(results);
     } catch (error) {
       console.log('error submitting search', error);
     }
+  };
+
+  const toggleShowSearchResults = () => {
+    setShowSearchResults(searchInput === '' ? false : true);
   };
 
   return (
@@ -24,23 +32,28 @@ const SearchBook = () => {
             type="text"
             id="search"
             placeholder="Search..."
-            onChange={(e) => setSearchInput(e.target.value)}
+            onChange={(e) => {
+              setSearchInput(e.target.value);
+              toggleShowSearchResults();
+            }}
           />
           <SearchIcon id="search" size={16} strokeWidth={2} />
         </SearchLabel>
+        {/* {showSearchResults && <SearchDropdown results={searchResults} />} */}
       </SearchForm>
     </Wrapper>
   );
 };
 
-const Wrapper = styled.div``;
+const Wrapper = styled.div`
+  flex-grow: 1;
+`;
 
 const SearchForm = styled.form``;
 
 const SearchLabel = styled.label`
   //Set position to relative to contain absolute-positioned search icon
   position: relative;
-  flex-grow: 1;
 `;
 
 const SearchInput = styled.input`

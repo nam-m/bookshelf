@@ -23,7 +23,6 @@ const AddBookButton = ({ books, setBooks, addBook, setAddBook, addRef }) => {
         <BookForm
           books={books}
           setBooks={setBooks}
-          addBook={addBook}
           setAddBook={setAddBook}
           ref={addRef}
         />
