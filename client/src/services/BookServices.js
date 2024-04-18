@@ -1,5 +1,7 @@
-const baseUrl = 'https://bookshelf-va0d.onrender.com/api/books';
 import responseErrorHandler from './ServiceErrorHandler';
+
+const baseUrl = 'https://bookshelf-va0d.onrender.com/api/books';
+const booksApiUrl = 'https://www.googleapis.com/books/v1/volumes';
 
 const getAllBooks = () => {
   return fetch(baseUrl)
@@ -68,4 +70,19 @@ const deleteBook = (bookToDelete) => {
     });
 };
 
-export default { getAllBooks, createBook, updateBook, deleteBook };
+const searchBook = (query, maxResults = 10) => {
+  const url = new URL(booksApiUrl);
+  url.searchParams.append('q', query);
+  url.searchParams.append('maxResults', maxResults);
+
+  return fetch(url)
+    .then((response) => {
+      responseErrorHandler(response);
+      return response.json();
+    })
+    .catch((error) => {
+      console.error('Error searching book:', error);
+    });
+};
+
+export default { getAllBooks, createBook, updateBook, deleteBook, searchBook };

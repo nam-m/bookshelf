@@ -4,12 +4,23 @@ import styled from 'styled-components/macro';
 import AddBookButton from '../components/buttons/AddBookButton';
 import IconButton from '../components/buttons/IconButton';
 import Icon from '../components/common/Icon';
-import SearchBook from '../features/bookshelf/SearchBook';
+import SearchBook from '../features/bookshelf/search/SearchBook';
 
-const Header = ({ books, setBooks, addBook, setAddBook, addRef }) => {
+const Header = ({
+  books,
+  setBooks,
+  addBook,
+  setAddBook,
+  addRef,
+  searchDropdownRef,
+  showSearchResults,
+}) => {
   return (
     <Wrapper>
-      <SearchBook />
+      <SearchBook
+        searchDropdownRef={searchDropdownRef}
+        showSearchResults={showSearchResults}
+      />
       <SideGroup>
         <AddBookButton
           books={books}
