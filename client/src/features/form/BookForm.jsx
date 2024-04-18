@@ -153,7 +153,6 @@ const BookForm = forwardRef(function BookForm(
           message: '',
         },
       });
-      // Set addBook state to false to trigger useClickOutside in App.js to close form
       setAddBook(false);
     } else {
       console.warn('Invalid form:', form);

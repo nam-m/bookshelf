@@ -101,7 +101,6 @@ const Bookshelf = ({
                 key={book.id}
                 viewBooks={viewBooks}
                 setBooks={setBooks}
-                showPreview={showPreview}
                 setShowPreview={setShowPreview}
                 setBookToPreview={setBookToPreview}
                 previewRef={previewRef}

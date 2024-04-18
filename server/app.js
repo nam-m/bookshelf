@@ -13,10 +13,10 @@ const loginRouter = require("./routes/loginRoutes");
 
 mongoose.set("strictQuery", false);
 
-const url = config.MONGODB_URI;
+const mongodb_url = config.MONGODB_URI;
 
 mongoose
-  .connect(url)
+  .connect(mongodb_url)
   .then(() => {
     logger.info("connected to MongoDB");
   })

@@ -13,10 +13,8 @@ const Book = ({
   books,
   viewBooks,
   setBooks,
-  showPreview,
   setShowPreview,
   setBookToPreview,
-  previewRef,
   shelves,
   setShelves,
 }) => {
@@ -68,11 +66,9 @@ const Book = ({
               setShelves={setShelves}
             />
             <BookPopover
-              showPreview={showPreview}
               setShowPreview={setShowPreview}
               setBookToPreview={setBookToPreview}
               book={book}
-              previewRef={previewRef}
             />
           </BookPopoverWrapper>
         )}

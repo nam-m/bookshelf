@@ -7,13 +7,7 @@ import IconButton from '../../../components/buttons/IconButton';
 import UnstyledButton from '../../../components/buttons/UnstyledButton';
 import Icon from '../../../components/common/Icon';
 
-const BookDropdownOptions = ({
-  book,
-  removeBook,
-  addBookToShelf,
-  shelves,
-  setShelves,
-}) => {
+const BookDropdownOptions = ({ book, removeBook, addBookToShelf, shelves }) => {
   // Control dropdown menu state
   const [isOpen, setIsOpen] = useState(false);
   const [isShelfListOpen, setIsShelfListOpen] = useState(false);
@@ -111,7 +105,7 @@ const ShelfDropdownMenu = styled(DropdownMenu)`
   position: absolute;
   top: 50%;
   left: 100%;
-  z-index: 2;
+  z-index: 1;
   margin-top: -2px;
 `;
 

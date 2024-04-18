@@ -18,12 +18,14 @@ const App = () => {
   const [shelves, setShelves] = useState([]);
   const [selectedShelf, setSelectedShelf] = useState({});
   const [areAllBooksSelected, setAreAllBooksSelected] = useState(true);
+  const [showSearchResults, setShowSearchResults] = useState(false);
 
-  const previewRef = useRef();
-  const addRef = useRef();
-
-  useClickOutside(previewRef, () => setShowPreview(false));
-  useClickOutside(addRef, () => setAddBook(false));
+  const ref = useRef();
+  useClickOutside(ref, () => {
+    setShowSearchResults(false);
+    setShowPreview(false);
+    setAddBook(false);
+  });
 
   useEffect(() => {
     bookService.getAllBooks().then((initialBooks) => {
@@ -51,7 +53,9 @@ const App = () => {
             setBooks={setBooks}
             addBook={addBook}
             setAddBook={setAddBook}
-            addRef={addRef}
+            addRef={ref}
+            searchDropdownRef={ref}
+            showSearchResults={showSearchResults}
           />
           <Main
             showPreview={showPreview}
@@ -61,7 +65,7 @@ const App = () => {
             selectedShelf={selectedShelf}
             books={books}
             setBooks={setBooks}
-            previewRef={previewRef}
+            previewRef={ref}
             areAllBooksSelected={areAllBooksSelected}
             shelves={shelves}
             setShelves={setShelves}
