@@ -16,7 +16,7 @@ const login = async (credentials) => {
       return response.json();
     })
     .catch((error) => {
-      console.error('Error creating new book:', error);
+      console.error('Error login:', error);
     });
 };
 
