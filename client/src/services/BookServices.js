@@ -1,6 +1,6 @@
 import responseErrorHandler from './ServiceErrorHandler';
 
-const baseUrl = 'https://bookshelf-va0d.onrender.com/api/books';
+const baseUrl = '/api/books';
 const booksApiUrl = 'https://www.googleapis.com/books/v1/volumes';
 
 const getAllBooks = () => {
