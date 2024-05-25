@@ -14,14 +14,14 @@ const BookSchema = new mongoose.Schema({
     required: true,
   },
   imageSrc: String,
-  shelf: {
-    type: mongoose.Schema.ObjectId,
-    ref: "Shelf",
-  },
-  user: {
-    type: mongoose.Schema.ObjectId,
-    ref: "User",
-  },
+  // shelf: {
+  //   type: mongoose.Schema.ObjectId,
+  //   ref: "Shelf",
+  // },
+  // user: {
+  //   type: mongoose.Schema.ObjectId,
+  //   ref: "User",
+  // },
 });
 
 // Use id instead of _id
