@@ -21,7 +21,7 @@ export default defineConfig(() => {
     server: {
       proxy: {
         '/api': {
-          target: 'http://localhost:3002',
+          target: 'https://bookshelf-va0d.onrender.com',
           changeOrigin: true,
         },
       },
