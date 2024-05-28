@@ -1,6 +1,6 @@
 import responseErrorHandler from './ServiceErrorHandler';
 
-const baseUrl = '/api/books';
+const baseUrl = import.meta.env.VITE_BOOKS_BASE_URL;
 const booksApiUrl = 'https://www.googleapis.com/books/v1/volumes';
 
 const getAllBooks = () => {
