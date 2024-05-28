@@ -7,9 +7,7 @@
     "start": "cross-env NODE_ENV=production node index.js",
     "dev": "cross-env NODE_ENV=development nodemon index.js",
     "lint": "eslint .",
-    "test": "cross-env NODE_ENV=test node --test",
-    "build:ui": "rm -rf build && cd ../client && npm run build && cp -r build ../server",
-    "deploy:full": "npm run build:ui && git add . && git commit -m build-ui-from-server && git push"
+    "test": "cross-env NODE_ENV=test node --test"
   },
   "keywords": [],
   "author": "",
