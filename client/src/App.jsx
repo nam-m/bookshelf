@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useReducer, useRef, useState } from 'react';
 import styled from 'styled-components/macro';
 
 import Footer from './layouts/Footer';
@@ -9,16 +9,25 @@ import SideBar from './layouts/SideBar';
 import bookService from './services/BookServices';
 import useClickOutside from './utils/UseClickOutside';
 import { QUERIES } from './utils/constants';
+import bookReducer from './reducers/BookReducer';
 
 const App = () => {
   const [bookToPreview, setBookToPreview] = useState({});
   const [showPreview, setShowPreview] = useState(false);
   const [addBook, setAddBook] = useState(false);
-  const [books, setBooks] = useState([]);
+  // const [books, setBooks] = useState([]);
   const [shelves, setShelves] = useState([]);
   const [selectedShelf, setSelectedShelf] = useState({});
   const [areAllBooksSelected, setAreAllBooksSelected] = useState(true);
   const [showSearchResults, setShowSearchResults] = useState(false);
+
+  const bookInitialState = {
+    books: [],
+    loading: false,
+    error: null,
+  };
+
+  const [bookState, dispatch] = useReducer(bookReducer, bookInitialState);
 
   const ref = useRef();
   useClickOutside(ref, () => {
@@ -28,10 +37,21 @@ const App = () => {
   });
 
   useEffect(() => {
-    bookService.getAllBooks().then((initialBooks) => {
-      setBooks(initialBooks);
-    });
+    const fetchBooks = async () => {
+      dispatch({ type: 'FETCH_BOOKS_REQUEST' });
+
+      try {
+        const initialBooks = await bookService.getAllBooks();
+        dispatch({ type: 'FETCH_BOOKS_SUCCESS', payload: initialBooks });
+      } catch (error) {
+        dispatch({ type: 'FETCH_BOOKS_FAILURE', payload: error.message });
+      }
+    };
+
+    fetchBooks();
   }, []);
+
+  const { books, loading, error } = bookState;
 
   return (
     <AppWrapper>
@@ -50,7 +70,7 @@ const App = () => {
         <MainColumn>
           <Header
             books={books}
-            setBooks={setBooks}
+            // setBooks={setBooks}
             addBook={addBook}
             setAddBook={setAddBook}
             addRef={ref}
@@ -64,7 +84,7 @@ const App = () => {
             setBookToPreview={setBookToPreview}
             selectedShelf={selectedShelf}
             books={books}
-            setBooks={setBooks}
+            // setBooks={setBooks}
             previewRef={ref}
             areAllBooksSelected={areAllBooksSelected}
             shelves={shelves}
