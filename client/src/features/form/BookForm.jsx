@@ -172,7 +172,7 @@ const BookForm = forwardRef(function BookForm(
               noValidate
               onSubmit={(e) => handleSubmit(e)}
             >
-              <BookFormRow
+              <BookFormField
                 name="title"
                 type="text"
                 form={form}
@@ -180,7 +180,7 @@ const BookForm = forwardRef(function BookForm(
                 handleUpdateForm={handleUpdateForm}
                 submitted={submitted}
               />
-              <BookFormRow
+              <BookFormField
                 name="author"
                 type="text"
                 form={form}
@@ -188,7 +188,7 @@ const BookForm = forwardRef(function BookForm(
                 handleUpdateForm={handleUpdateForm}
                 submitted={submitted}
               />
-              <BookFormRow
+              <BookFormField
                 name="pages"
                 type="text"
                 form={form}
@@ -196,7 +196,7 @@ const BookForm = forwardRef(function BookForm(
                 handleUpdateForm={handleUpdateForm}
                 submitted={submitted}
               />
-              <BookFormRow
+              <BookFormField
                 name="image"
                 type="url"
                 placeholder="Enter book cover image URL.."

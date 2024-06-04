@@ -3,7 +3,7 @@ import styled from 'styled-components/macro';
 
 import FormErrorMessage from '../../utils/FormErrorMessage';
 
-const BookFormRow = ({
+const BookFormField = ({
   name,
   type,
   form,
@@ -72,4 +72,4 @@ const Input = styled.input`
       : ``};
 `;
 
-export default BookFormRow;
+export default BookFormField;
