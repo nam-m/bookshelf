@@ -6,7 +6,7 @@ import { QUERIES } from '../../utils/constants';
 import Icon from '../common/Icon';
 import CreateButton from './CreateButton';
 
-const AddBookButton = ({ books, setBooks, addBook, setAddBook, addRef }) => {
+const AddBookButton = ({ addBook, setAddBook, addRef }) => {
   return (
     <>
       <Wrapper>
@@ -19,14 +19,7 @@ const AddBookButton = ({ books, setBooks, addBook, setAddBook, addRef }) => {
           <AddBookIcon id="add" size={16} strokeWidth={4} />
         </Button>
       </Wrapper>
-      {addBook && (
-        <BookForm
-          books={books}
-          setBooks={setBooks}
-          setAddBook={setAddBook}
-          ref={addRef}
-        />
-      )}
+      {addBook && <BookForm setAddBook={setAddBook} ref={addRef} />}
     </>
   );
 };

@@ -1,19 +1,24 @@
-import React, { forwardRef, useState } from 'react';
+import React, { forwardRef, useContext, useState } from 'react';
 import { createPortal } from 'react-dom';
 import styled from 'styled-components/macro';
 
 import CreateButton from '../../components/buttons/CreateButton';
 import PopoverWrapper from '../../components/common/PopoverWrapper';
+import {
+  BooksContext,
+  BooksDispatchContext,
+} from '../../contexts/BooksContext';
 import { BookModel } from '../../models/BookModel';
 import bookService from '../../services/BookServices';
-import BookFormRow from './BookFormRow';
+import BookFormField from './BookFormField';
 
-const BookForm = forwardRef(function BookForm(
-  { books, setBooks, setAddBook },
-  ref
-) {
+const BookForm = forwardRef(function BookForm({ setAddBook }, ref) {
   // State and set state of form input fields
   // Error state and set state when input is invalid
+  const booksState = useContext(BooksContext);
+  const booksDispatch = useContext(BooksDispatchContext);
+  const { books, loading, error } = booksState;
+
   const [form, setForm] = useState({
     title: {
       value: '',
@@ -102,6 +107,24 @@ const BookForm = forwardRef(function BookForm(
     }
   };
 
+  const handleCreateBook = async (newBook) => {
+    booksDispatch({ type: 'CREATE_BOOK_REQUEST' });
+
+    try {
+      const createdBook = await bookService.createBook(newBook);
+      console.log('New created book: ', createdBook);
+      booksDispatch({
+        type: 'CREATE_BOOK_SUCCESS',
+        payload: createdBook,
+      });
+    } catch (error) {
+      booksDispatch({
+        type: 'CREATE_BOOK_FAILURE',
+        payload: error.message,
+      });
+    }
+  };
+
   const handleSubmit = (e) => {
     // Prevent default submit
     e.preventDefault();
@@ -120,11 +143,7 @@ const BookForm = forwardRef(function BookForm(
         form.pages.value,
         form.image.value
       );
-
-      // console.log(newBook);
-      bookService
-        .createBook(newBook)
-        .then((newBook) => setBooks([...books, newBook]));
+      handleCreateBook(newBook);
 
       // Reset form
       setForm({
@@ -165,7 +184,7 @@ const BookForm = forwardRef(function BookForm(
         <AddBookWrapper>
           <Wrapper ref={ref}>
             <Form
-              action="https://httpbin.org/post"
+              action={import.meta.env.VITE_BOOKS_BASE_URL}
               method="post"
               // Open a new page on submit
               target="_blank"

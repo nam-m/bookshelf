@@ -1,18 +1,20 @@
 import { find } from 'lodash';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components/macro';
 
+import {
+  BooksProvider,
+  useBooks,
+  useBooksDispatch,
+} from '../../contexts/BooksContext';
+import bookService from '../../services/BookServices';
 import SortBook from './SortBook';
 import ViewBook from './ViewBook';
 import Book from './book/Book';
 import BookPreview from './book/BookPreview';
 
 const Bookshelf = ({
-  sortId,
-  setSortId,
   selectedShelf,
-  books,
-  setBooks,
   viewBooks,
   setViewBooks,
   showPreview,
@@ -24,34 +26,55 @@ const Bookshelf = ({
   shelves,
   setShelves,
 }) => {
-  const compareName = (name) => {
-    return name.toLowerCase().split(' ').toReversed().join(' ');
-  };
+  const booksState = useBooks();
+  const booksDispatch = useBooksDispatch();
+  const { books, loading, error } = booksState;
 
-  const sortBooksById = (sortValue) => {
-    let sortedBooks;
-    if (sortValue === 'author') {
-      sortedBooks = [...books].sort((currentBook, nextBook) => {
-        if (
-          compareName(currentBook[sortValue]) > compareName(nextBook[sortValue])
-        )
-          return 1;
-        if (
-          compareName(currentBook[sortValue]) < compareName(nextBook[sortValue])
-        )
-          return -1;
-        return 0;
-      });
-      setBooks(sortedBooks);
-    } else if (sortValue === 'title') {
-      sortedBooks = [...books].sort((currentBook, nextBook) => {
-        if (currentBook[sortValue] > nextBook[sortValue]) return 1;
-        if (currentBook[sortValue] < nextBook[sortValue]) return -1;
-        return 0;
-      });
-      setBooks(sortedBooks);
-    }
-  };
+  const [sortId, setSortId] = useState('title');
+
+  // const compareName = (name) => {
+  //   return name.toLowerCase().split(' ').toReversed().join(' ');
+  // };
+
+  // const sortBooksById = (sortValue) => {
+  //   let sortedBooks;
+  //   if (sortValue === 'author') {
+  //     sortedBooks = [...books].sort((currentBook, nextBook) => {
+  //       if (
+  //         compareName(currentBook[sortValue]) > compareName(nextBook[sortValue])
+  //       )
+  //         return 1;
+  //       if (
+  //         compareName(currentBook[sortValue]) < compareName(nextBook[sortValue])
+  //       )
+  //         return -1;
+  //       return 0;
+  //     });
+  //     setBooks(sortedBooks);
+  //   } else if (sortValue === 'title') {
+  //     sortedBooks = [...books].sort((currentBook, nextBook) => {
+  //       if (currentBook[sortValue] > nextBook[sortValue]) return 1;
+  //       if (currentBook[sortValue] < nextBook[sortValue]) return -1;
+  //       return 0;
+  //     });
+  //     setBooks(sortedBooks);
+  //   }
+  // };
+
+  useEffect(() => {
+    const fetchBooks = async () => {
+      booksDispatch({ type: 'FETCH_BOOKS_REQUEST' });
+
+      try {
+        const initialBooks = await bookService.getAllBooks();
+        booksDispatch({ type: 'FETCH_BOOKS_SUCCESS', payload: initialBooks });
+      } catch (error) {
+        booksDispatch({ type: 'FETCH_BOOKS_FAILURE', payload: error.message });
+      }
+    };
+
+    fetchBooks();
+  }, [booksDispatch]);
 
   return (
     <>
@@ -66,14 +89,26 @@ const Bookshelf = ({
               label="Sort"
               value={sortId}
               onChange={(e) => {
-                setSortId(e.target.value);
-                sortBooksById(e.target.value);
+                const sortValue = e.target.value;
+                setSortId(sortValue);
+                switch (sortValue) {
+                  case 'title':
+                    booksDispatch({
+                      type: 'SORT_BOOKS_BY_TITLE',
+                      payload: books,
+                    });
+                    break;
+                  case 'author':
+                    booksDispatch({
+                      type: 'SORT_BOOKS_BY_AUTHOR',
+                      payload: books,
+                    });
+                    break;
+                }
               }}
             >
-              <option value="time">Recent</option>
               <option value="title">Title</option>
               <option value="author">Author</option>
-              <option value="manual">Manually</option>
             </SortBook>
             <ViewBook viewBooks={viewBooks} setViewBooks={setViewBooks} />
           </ViewOptions>
@@ -100,7 +135,6 @@ const Bookshelf = ({
                 books={books}
                 key={book.id}
                 viewBooks={viewBooks}
-                setBooks={setBooks}
                 setShowPreview={setShowPreview}
                 setBookToPreview={setBookToPreview}
                 previewRef={previewRef}

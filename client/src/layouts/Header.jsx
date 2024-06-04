@@ -7,8 +7,6 @@ import Icon from '../components/common/Icon';
 import SearchBook from '../features/bookshelf/search/SearchBook';
 
 const Header = ({
-  books,
-  setBooks,
   addBook,
   setAddBook,
   addRef,
@@ -23,8 +21,6 @@ const Header = ({
       />
       <SideGroup>
         <AddBookButton
-          books={books}
-          setBooks={setBooks}
           addBook={addBook}
           setAddBook={setAddBook}
           addRef={addRef}

@@ -9,6 +9,10 @@ const bookActionTypes = {
     SUCCESS: 'CREATE_BOOK_SUCCESS',
     FAILURE: 'CREATE_BOOK_FAILURE',
   },
+  SORT_BOOKS: {
+    AUTHOR: 'SORT_BOOKS_BY_AUTHOR',
+    TITLE: 'SORT_BOOKS_BY_TITLE',
+  },
 };
 
 const bookReducer = (state, action) => {
@@ -30,25 +34,35 @@ const bookReducer = (state, action) => {
         loading: false,
         error: action.payload,
       };
-    case bookActionTypes.ADD_BOOK.REQUEST:
+    case bookActionTypes.CREATE_BOOK.REQUEST:
       return {
         ...state,
-        books: action.payload,
+        loading: true,
+      };
+    case bookActionTypes.CREATE_BOOK.SUCCESS:
+      console.log('New book from payload: ', action.payload);
+      return {
+        ...state,
+        books: [...state.books, action.payload],
         loading: false,
       };
-    case bookActionTypes.ADD_BOOK.SUCCESS:
-      return state.books.map((book) => {
-        if (book.id === action.book.id) {
-          return [...state, action.book];
-        } else {
-          return state;
-        }
-      });
-    case bookActionTypes.ADD_BOOK.FAILURE:
+    case bookActionTypes.CREATE_BOOK.FAILURE:
       return {
         ...state,
         loading: false,
         error: action.payload,
+      };
+    case bookActionTypes.SORT_BOOKS.TITLE:
+      return {
+        ...state,
+        books: [...state.books].sort((a, b) => a.title.localeCompare(b.title)),
+      };
+    case 'SORT_BOOKS_BY_AUTHOR':
+      return {
+        ...state,
+        books: [...state.books].sort((a, b) =>
+          a.author.localeCompare(b.author)
+        ),
       };
     default: {
       throw Error('Unknown book action: ' + action.type);

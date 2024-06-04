@@ -9,24 +9,17 @@ const Main = ({
   bookToPreview,
   setBookToPreview,
   selectedShelf,
-  books,
-  setBooks,
   previewRef,
   areAllBooksSelected,
   shelves,
   setShelves,
 }) => {
-  const [sortId, setSortId] = useState('manual');
   const [viewBooks, setViewBooks] = useState(false);
 
   return (
     <MainWrapper>
       <Bookshelf
-        sortId={sortId}
-        setSortId={setSortId}
         selectedShelf={selectedShelf}
-        books={books}
-        setBooks={setBooks}
         viewBooks={viewBooks}
         setViewBooks={setViewBooks}
         showPreview={showPreview}
