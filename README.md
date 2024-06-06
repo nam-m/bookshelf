@@ -1,6 +1,7 @@
-# bookshelf
+# LastRead
 
 Virtual space for storing, managing, and keeping up with your favorite books.
+
 Motivation: Providing a more personal touch to your library, and helping readers maintain their reading habits.
 
 ## Features

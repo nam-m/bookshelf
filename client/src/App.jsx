@@ -37,7 +37,7 @@ const App = () => {
       <AppWrapper>
         <Wrapper>
           <LeftColumn>
-            <SideBarTitle>Bookshelf</SideBarTitle>
+            <SideBarTitle>LastRead</SideBarTitle>
             <SideBar
               selectedShelf={selectedShelf}
               setSelectedShelf={setSelectedShelf}

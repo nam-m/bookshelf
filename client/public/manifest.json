@@ -1,6 +1,6 @@
 {
-  "short_name": "Bookshelf",
-  "name": "Bookshelf App",
+  "short_name": "LastRead",
+  "name": "Personal Bookshelf App",
   "start_url": ".",
   "display": "standalone",
   "theme_color": "#000000",
