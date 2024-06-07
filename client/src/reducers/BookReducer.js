@@ -9,6 +9,11 @@ const bookActionTypes = {
     SUCCESS: 'CREATE_BOOK_SUCCESS',
     FAILURE: 'CREATE_BOOK_FAILURE',
   },
+  DELETE_BOOK: {
+    REQUEST: 'DELETE_BOOK_REQUEST',
+    SUCCESS: 'DELETE_BOOK_SUCCESS',
+    FAILURE: 'DELETE_BOOK_FAILURE',
+  },
   SORT_BOOKS: {
     AUTHOR: 'SORT_BOOKS_BY_AUTHOR',
     TITLE: 'SORT_BOOKS_BY_TITLE',
@@ -40,13 +45,29 @@ const bookReducer = (state, action) => {
         loading: true,
       };
     case bookActionTypes.CREATE_BOOK.SUCCESS:
-      console.log('New book from payload: ', action.payload);
       return {
         ...state,
         books: [...state.books, action.payload],
         loading: false,
       };
     case bookActionTypes.CREATE_BOOK.FAILURE:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      };
+    case bookActionTypes.DELETE_BOOK.REQUEST:
+      return {
+        ...state,
+        loading: true,
+      };
+    case bookActionTypes.DELETE_BOOK.SUCCESS:
+      return {
+        ...state,
+        books: state.books.filter((book) => book.id !== action.payload),
+        loading: false,
+      };
+    case bookActionTypes.DELETE_BOOK.FAILURE:
       return {
         ...state,
         loading: false,

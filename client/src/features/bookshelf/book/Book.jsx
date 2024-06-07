@@ -2,6 +2,7 @@ import { find } from 'lodash';
 import React, { useState } from 'react';
 import styled from 'styled-components/macro';
 
+import { useBooksDispatch } from '../../../contexts/BooksContext';
 import bookService from '../../../services/BookServices';
 import { updateObjectInArray } from '../../../utils/ArrayUtils';
 import BookDropdownOptions from './BookDropdown';
@@ -10,9 +11,7 @@ import BookPopover from './BookPopover';
 
 const Book = ({
   book,
-  books,
   viewBooks,
-  setBooks,
   setShowPreview,
   setBookToPreview,
   shelves,
@@ -20,11 +19,25 @@ const Book = ({
 }) => {
   const [showPopover, setShowPopover] = useState(false);
 
-  const removeBook = (bookToRemove) => {
+  const booksDispatch = useBooksDispatch();
+
+  const removeBook = async (bookToRemove) => {
     if (window.confirm('Do you want to delete this book?')) {
-      bookService
-        .deleteBook(bookToRemove)
-        .then(setBooks(books.filter((book) => book.id !== bookToRemove.id)));
+      booksDispatch({
+        type: 'DELETE_BOOK_REQUEST',
+      });
+      try {
+        await bookService.deleteBook(bookToRemove);
+        booksDispatch({
+          type: 'DELETE_BOOK_SUCCESS',
+          payload: bookToRemove.id,
+        });
+      } catch (error) {
+        booksDispatch({
+          type: 'DELETE_BOOK_FAILURE',
+          payload: error.message,
+        });
+      }
     }
   };
 

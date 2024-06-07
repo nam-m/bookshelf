@@ -10,7 +10,7 @@ const getAllBooks = () => {
       return response.json();
     })
     .catch((error) => {
-      console.error('Error fetching all books:', error);
+      console.error('Error fetching all books: ', error);
     });
 };
 
@@ -29,7 +29,7 @@ const createBook = (newBook) => {
       return response.json();
     })
     .catch((error) => {
-      console.error('Error creating new book:', error);
+      console.error('Error creating new book: ', error);
     });
 };
 
@@ -45,10 +45,11 @@ const updateBook = (bookToUpdate) => {
   return fetch(`${baseUrl}/${bookToUpdate.id}`, update_options)
     .then((response) => {
       responseErrorHandler(response);
+      console.log('Delete response: ', response);
       return response.json();
     })
     .catch((error) => {
-      console.error('Error updating book:', error);
+      console.error('Error updating book: ', error);
     });
 };
 
@@ -58,7 +59,6 @@ const deleteBook = (bookToDelete) => {
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify(bookToDelete),
   };
 
   return fetch(`${baseUrl}/${bookToDelete.id}`, delete_options)
@@ -66,7 +66,7 @@ const deleteBook = (bookToDelete) => {
       responseErrorHandler(response);
     })
     .catch((error) => {
-      console.error('Error deleting book:', error);
+      console.error('Error deleting book: ', error);
     });
 };
 
@@ -81,7 +81,7 @@ const searchBook = (query, maxResults = 10) => {
       return response.json();
     })
     .catch((error) => {
-      console.error('Error searching book:', error);
+      console.error('Error searching book: ', error);
     });
 };
 
