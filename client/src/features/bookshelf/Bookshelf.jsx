@@ -32,44 +32,20 @@ const Bookshelf = ({
 
   const [sortId, setSortId] = useState('title');
 
-  // const compareName = (name) => {
-  //   return name.toLowerCase().split(' ').toReversed().join(' ');
-  // };
-
-  // const sortBooksById = (sortValue) => {
-  //   let sortedBooks;
-  //   if (sortValue === 'author') {
-  //     sortedBooks = [...books].sort((currentBook, nextBook) => {
-  //       if (
-  //         compareName(currentBook[sortValue]) > compareName(nextBook[sortValue])
-  //       )
-  //         return 1;
-  //       if (
-  //         compareName(currentBook[sortValue]) < compareName(nextBook[sortValue])
-  //       )
-  //         return -1;
-  //       return 0;
-  //     });
-  //     setBooks(sortedBooks);
-  //   } else if (sortValue === 'title') {
-  //     sortedBooks = [...books].sort((currentBook, nextBook) => {
-  //       if (currentBook[sortValue] > nextBook[sortValue]) return 1;
-  //       if (currentBook[sortValue] < nextBook[sortValue]) return -1;
-  //       return 0;
-  //     });
-  //     setBooks(sortedBooks);
-  //   }
-  // };
-
   useEffect(() => {
     const fetchBooks = async () => {
       booksDispatch({ type: 'FETCH_BOOKS_REQUEST' });
-
       try {
         const initialBooks = await bookService.getAllBooks();
-        booksDispatch({ type: 'FETCH_BOOKS_SUCCESS', payload: initialBooks });
+        booksDispatch({
+          type: 'FETCH_BOOKS_SUCCESS',
+          payload: initialBooks,
+        });
       } catch (error) {
-        booksDispatch({ type: 'FETCH_BOOKS_FAILURE', payload: error.message });
+        booksDispatch({
+          type: 'FETCH_BOOKS_FAILURE',
+          payload: error.message,
+        });
       }
     };
 
@@ -132,7 +108,6 @@ const Bookshelf = ({
             .map((book) => (
               <Book
                 book={book}
-                books={books}
                 key={book.id}
                 viewBooks={viewBooks}
                 setShowPreview={setShowPreview}
