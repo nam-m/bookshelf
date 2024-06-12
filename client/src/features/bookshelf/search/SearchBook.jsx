@@ -1,7 +1,8 @@
-import React, { useRef, useState } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 import styled from 'styled-components/macro';
 import Icon from '../../../components/common/Icon';
 import bookService from '../../../services/BookServices';
+import debounce from '../../../utils/Debounce';
 import useClickOutside from '../../../utils/UseClickOutside';
 import SearchDropdown from './SearchDropdown';
 
@@ -9,9 +10,9 @@ const SearchBook = ({ searchDropdownRef, showSearchResults }) => {
   const [searchInput, setSearchInput] = useState('');
   const [searchedBooks, setSearchedBooks] = useState([]);
 
-  const handleSearch = async () => {
+  const handleSearch = useCallback(async (searchValue) => {
     try {
-      const results = await bookService.searchBook(searchInput);
+      const results = await bookService.searchBook(searchValue);
       const bookResults = results.items.map((book) => book.volumeInfo);
 
       const bookData = bookResults.map((book) => ({
@@ -24,10 +25,19 @@ const SearchBook = ({ searchDropdownRef, showSearchResults }) => {
       }));
 
       setSearchedBooks(bookData);
-      // console.log(searchedBooks.length);
     } catch (error) {
       console.log('Error submitting search: ', error);
     }
+  }, []);
+
+  const debouncedHandleSearch = useMemo(() => {
+    return debounce(handleSearch, 500);
+  }, [handleSearch]);
+
+  const handleSearchChange = (e) => {
+    const searchValue = e.target.value;
+    setSearchInput(searchValue);
+    debouncedHandleSearch(searchValue);
   };
 
   return (
@@ -37,12 +47,8 @@ const SearchBook = ({ searchDropdownRef, showSearchResults }) => {
           type="text"
           id="search"
           placeholder="Search book online..."
-          onChange={(e) => {
-            setSearchInput(e.target.value);
-            setTimeout(() => {
-              handleSearch();
-            }, 1000);
-          }}
+          value={searchInput}
+          onChange={handleSearchChange}
         />
         <SearchIcon id="search" size={16} strokeWidth={2} />
       </SearchLabel>
