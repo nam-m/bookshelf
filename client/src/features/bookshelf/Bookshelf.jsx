@@ -93,30 +93,31 @@ const Bookshelf = ({
         <BookGrid $viewBooks={viewBooks}>
           {/* Map fields of each instance `book` in books to <BookWrapper />
             , which contains <Book /> */}
-          {books
-            .filter((book) => {
-              if (areAllBooksSelected) {
-                return true;
-              } else if (Object.keys(selectedShelf).length > 0) {
-                if (selectedShelf['books'].length > 0) {
-                  return find(selectedShelf['books'], book);
-                } else {
-                  return false;
+          {loading === false &&
+            books
+              .filter((book) => {
+                if (areAllBooksSelected) {
+                  return true;
+                } else if (Object.keys(selectedShelf).length > 0) {
+                  if (selectedShelf['books'].length > 0) {
+                    return find(selectedShelf['books'], book);
+                  } else {
+                    return false;
+                  }
                 }
-              }
-            })
-            .map((book) => (
-              <Book
-                book={book}
-                key={book.id}
-                viewBooks={viewBooks}
-                setShowPreview={setShowPreview}
-                setBookToPreview={setBookToPreview}
-                previewRef={previewRef}
-                shelves={shelves}
-                setShelves={setShelves}
-              />
-            ))}
+              })
+              .map((book) => (
+                <Book
+                  book={book}
+                  key={book.id}
+                  viewBooks={viewBooks}
+                  setShowPreview={setShowPreview}
+                  setBookToPreview={setBookToPreview}
+                  previewRef={previewRef}
+                  shelves={shelves}
+                  setShelves={setShelves}
+                />
+              ))}
         </BookGrid>
       </Wrapper>
       {showPreview && (
