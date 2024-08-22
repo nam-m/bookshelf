@@ -19,6 +19,7 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  padding-left: 4px;
 `;
 
 const Title = styled.h2`

@@ -14,6 +14,16 @@ const getAllBooks = () => {
     });
 };
 
+const getBookImageUrl = async (imageName) => {
+  console.log('Book image base url: ', baseUrl);
+  const response = await fetch(`${baseUrl}/${imageName}`);
+  if (!response.ok) {
+    throw new Error('Failed to fetch image URL');
+  }
+  const data = await response.json();
+  return data.imageUrl;
+};
+
 const createBook = (newBook) => {
   const post_options = {
     method: 'POST',
@@ -85,4 +95,11 @@ const searchBook = (query, maxResults = 10) => {
     });
 };
 
-export default { getAllBooks, createBook, updateBook, deleteBook, searchBook };
+export default {
+  getAllBooks,
+  createBook,
+  updateBook,
+  deleteBook,
+  searchBook,
+  getBookImageUrl,
+};

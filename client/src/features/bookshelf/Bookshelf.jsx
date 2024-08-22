@@ -2,11 +2,7 @@ import { find } from 'lodash';
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components/macro';
 
-import {
-  BooksProvider,
-  useBooks,
-  useBooksDispatch,
-} from '../../contexts/BooksContext';
+import { useBooks, useBooksDispatch } from '../../contexts/BooksContext';
 import bookService from '../../services/BookServices';
 import SortBook from './SortBook';
 import ViewBook from './ViewBook';
@@ -30,6 +26,7 @@ const Bookshelf = ({
   const booksDispatch = useBooksDispatch();
   const { books, loading, error } = booksState;
 
+  const [bookImages, setBookImages] = useState([]);
   const [sortId, setSortId] = useState('title');
 
   useEffect(() => {
@@ -41,6 +38,18 @@ const Bookshelf = ({
           type: 'FETCH_BOOKS_SUCCESS',
           payload: initialBooks,
         });
+
+        // const imageUrls = await Promise.all(
+        //   initialBooks.map(async (book) => {
+        //     console.log('ImageSrc: ', book.imageSrc);
+        //     const imageUrl = await bookService.getBookImageUrl(book.imageSrc);
+        //     console.log('Image url: ', imageUrl);
+        //     return { ...book, imageUrl }; // Append the imageUrl to the book object
+        //   })
+        // );
+        const imageUrls = initialBooks.map((book) => book.imageSrc);
+        // console.log('all book imageUrls: ', imageUrls);
+        setBookImages(imageUrls);
       } catch (error) {
         booksDispatch({
           type: 'FETCH_BOOKS_FAILURE',
@@ -106,16 +115,18 @@ const Bookshelf = ({
                   }
                 }
               })
-              .map((book) => (
+              .map((book, index) => (
                 <Book
                   book={book}
-                  key={book.id}
+                  key={`${book.id}-${index}`}
                   viewBooks={viewBooks}
                   setShowPreview={setShowPreview}
                   setBookToPreview={setBookToPreview}
                   previewRef={previewRef}
                   shelves={shelves}
                   setShelves={setShelves}
+                  index={index}
+                  bookImages={bookImages}
                 />
               ))}
         </BookGrid>
