@@ -1,6 +1,6 @@
 const bookRouter = require("express").Router();
 const Book = require("../models/book");
-const { getImageSrc } = require("../../client/src/services/ImageService");
+// const { getImageSrc } = require("../../client/src/services/ImageService");
 const { S3Client, GetObjectCommand } = require("@aws-sdk/client-s3");
 const { getSignedUrl } = require("@aws-sdk/s3-request-presigner");
 // const User = require("../models/user");

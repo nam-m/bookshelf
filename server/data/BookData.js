@@ -2,6 +2,9 @@
  * To be replaced with actual data later
  */
 
+// const S3_BASE_URL =
+//   "https://bookshelf-store.s3.us-west-2.amazonaws.com/covers/";
+
 const BOOKS = [
   {
     title: "Aislyn",
