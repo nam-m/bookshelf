@@ -1,3 +1,4 @@
+require("dotenv").config();
 const bookRouter = require("express").Router();
 const Book = require("../models/book");
 // const { getImageSrc } = require("../../client/src/services/ImageService");
@@ -8,7 +9,6 @@ const { getSignedUrl } = require("@aws-sdk/s3-request-presigner");
 // const jwt = require("jsonwebtoken");
 // const token = require("../utils/token");
 
-require("dotenv").config();
 const s3Client = new S3Client({
   region: process.env.AWS_REGION,
   credentials: {
@@ -16,18 +16,6 @@ const s3Client = new S3Client({
     secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
   },
 });
-
-// New route to fetch image URL from S3
-// bookRouter.get("/:imageName", async (request, response) => {
-//   const { imageName } = request.params;
-
-//   try {
-//     const imageUrl = await getImageSrc(imageName);
-//     response.json({ imageUrl });
-//   } catch (error) {
-//     response.status(500).json({ error: "Error fetching image URL" });
-//   }
-// });
 
 bookRouter.get("/", async (request, response) => {
   // const books = await Book.find({}).populate("user", {
@@ -40,8 +28,8 @@ bookRouter.get("/", async (request, response) => {
     const booksWithSignedUrls = await Promise.all(
       books.map(async (book) => {
         const params = {
-          Bucket: "bookshelf-store",
-          Key: book.imageSrc,
+          Bucket: process.env.S3_BUCKET_NAME,
+          Key: `${process.env.S3_BUCKET_IMAGE_FOLDER}/${book.imageSrc}`,
         };
 
         const command = new GetObjectCommand(params);
@@ -72,8 +60,8 @@ bookRouter.get("/:id", async (request, response) => {
     }
     // Generate signed URL for the image
     const params = {
-      Bucket: "bookshelf-store",
-      Key: book.imageSrc, // Assuming imageSrc stores the S3 key (e.g., "covers/book1.jpg")
+      Bucket: process.env.S3_BUCKET_NAME,
+      Key: `${process.env.S3_BUCKET_IMAGE_FOLDER}/${book.imageSrc}`,
     };
 
     const command = new GetObjectCommand(params);
@@ -116,7 +104,7 @@ bookRouter.post("/", async (request, response) => {
     title: body.title,
     author: body.author,
     pages: body.pages,
-    imageSrc: `covers/${body.imageName}`,
+    imageSrc: body.imageName,
     // user: user._id,
   });
 
