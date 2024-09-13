@@ -19,8 +19,8 @@ Motivation: Providing a more personal touch to your library, and helping readers
 - [ ] Prevent (or make it harder, at least) non-readers from making reviews
 - [ ] Other content than books (i.e. videos, unrelated external links) to limit distraction
 
-## Tools
+## Tools/Frameworks
 
-- Front-end: HTML, CSS, JS
-- Library: React
+- Front-end: React
 - Styling: styled-components
+- Back-end: Express.js, Node.js, MongoDB
