@@ -1,3 +1,5 @@
+import sortByAuthor from "../utils/SortByAuthor";
+
 const bookActionTypes = {
   FETCH_BOOKS: {
     REQUEST: 'FETCH_BOOKS_REQUEST',
@@ -83,7 +85,7 @@ const bookReducer = (state, action) => {
       return {
         ...state,
         books: [...state.books].sort((a, b) =>
-          a.author.localeCompare(b.author)
+          sortByAuthor(a.author, b.author)
         ),
       };
     default: {
