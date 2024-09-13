@@ -1,4 +1,4 @@
-import sortByAuthor from "../utils/SortByAuthor";
+import sortByAuthor from '../utils/SortByAuthor';
 
 const bookActionTypes = {
   FETCH_BOOKS: {
