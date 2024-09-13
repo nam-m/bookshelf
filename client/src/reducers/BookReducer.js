@@ -76,7 +76,6 @@ const bookReducer = (state, action) => {
         error: action.payload,
       };
     case bookActionTypes.SORT_BOOKS.TITLE:
-      console.log(...state.books)
       return {
         ...state,  
         books: [...state.books].sort((a, b) => a.title.localeCompare(b.title)),
