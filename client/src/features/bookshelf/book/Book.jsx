@@ -15,9 +15,7 @@ const Book = ({
   setShowPreview,
   setBookToPreview,
   shelves,
-  setShelves,
-  index,
-  bookImages,
+  setShelves
 }) => {
   const [showPopover, setShowPopover] = useState(false);
 
@@ -68,9 +66,7 @@ const Book = ({
       <BookCover>
         <Link>
           <ImageWrapper>
-            {bookImages[index] && (
-              <Image alt={book.title} src={bookImages[index]} />
-            )}
+              <Image alt={book.title} src={book.imageSrc} />
           </ImageWrapper>
         </Link>
         {!viewBooks && showPopover && (

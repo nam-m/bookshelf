@@ -125,8 +125,6 @@ const Bookshelf = ({
                   previewRef={previewRef}
                   shelves={shelves}
                   setShelves={setShelves}
-                  index={index}
-                  bookImages={bookImages}
                 />
               ))}
         </BookGrid>
